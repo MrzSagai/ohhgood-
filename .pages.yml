@@ -1,0 +1,95 @@
+media:
+  input: assets
+  output: /assets
+  rename: safe
+content:
+  - name: products
+    label: Products
+    type: file
+    path: content/products.json
+    format: json
+    list: true
+    operations:
+      delete: false
+    fields:
+      - name: id
+        label: Stable product ID
+        type: string
+        required: true
+        description: Unique lowercase identifier; do not change after publishing.
+      - name: brand
+        label: Brand
+        type: string
+        required: true
+      - name: name
+        label: Product name
+        type: string
+        required: true
+      - name: category
+        label: Category
+        type: select
+        required: true
+        options:
+          values:
+            - name: desk
+              label: Desk
+            - name: go
+              label: On the Go
+            - name: break
+              label: Desk Break
+      - name: description
+        label: Short description
+        type: text
+        required: true
+      - name: benefits
+        label: Key benefits
+        type: string
+        list: true
+      - name: image
+        label: Product image
+        type: image
+        description: Product-specific image; verify accuracy and rights before public launch.
+      - name: status
+        label: Editorial status
+        type: select
+        required: true
+        options:
+          values:
+            - name: draft
+              label: Draft
+            - name: published
+              label: Published
+      - name: retailer_url
+        label: Verified retailer link
+        type: string
+        description: Leave blank until verified. Never paste fabricated affiliate URLs.
+  - name: articles
+    label: Journal drafts
+    type: file
+    path: content/articles.json
+    format: json
+    list: true
+    fields:
+      - name: slug
+        label: Slug
+        type: string
+        required: true
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: summary
+        label: Summary
+        type: text
+      - name: body
+        label: Article content
+        type: rich-text
+      - name: status
+        label: Editorial status
+        type: select
+        options:
+          values:
+            - name: draft
+              label: Draft
+            - name: published
+              label: Published

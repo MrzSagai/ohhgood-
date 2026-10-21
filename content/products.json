@@ -1,0 +1,6 @@
+[
+ {"id":"joyroom","brand":"JOYROOM","name":"Magnetic Cable Clips","category":"desk","description":"Keep charging cables neatly within reach.","benefits":["Magnetic cable organization","Helps keep your workspace tidy","Easy access to frequently used cables"],"image":"assets/joyroom-cable-calm.png","status":"draft","retailer_url":""},
+ {"id":"lamicall","brand":"Lamicall","name":"Phone Stand","category":"desk","description":"A comfortable place for hands-free phone viewing.","benefits":["Hands-free desk viewing","Convenient for calls and timers","Simple workspace addition"],"image":"assets/lamicall-desk-lift.png","status":"draft","retailer_url":""},
+ {"id":"oxo","brand":"OXO Good Grips","name":"Sweep & Swipe Laptop Cleaner","category":"desk","description":"A compact way to reset your workspace.","benefits":["Brush for crumbs and dust","Microfiber surface for smudges","Compact two-sided design"],"image":"assets/oxo-desk-reset.png","status":"draft","retailer_url":""},
+ {"id":"bagsmart","brand":"BAGSMART","name":"Electronic Organizer","category":"go","description":"Keep your everyday tech essentials together.","benefits":["Organizes small accessories","Useful for short trips","Helps keep cables within reach"],"image":"assets/bagsmart-pack-neat.png","status":"draft","retailer_url":""}
+]
