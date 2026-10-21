@@ -23,3 +23,6 @@ h1,h2,h3,.logo,.category-label strong{font-family:'Nunito','DM Sans',sans-serif}
 .mascot-peek{z-index:3}
 @media(hover:none){.category-card:hover{transform:none}.product-card:hover img{transform:none}}
 @media(prefers-reduced-motion:reduce){.logo:hover .logo-cat,.logo:focus-visible .logo-cat{animation:none!important}}
+
+/* Drafts remain browseable on staging but are clearly not published */
+.draft-flag{position:absolute;z-index:4;top:12px;left:12px;background:#fff8e8;color:#654b33;border:1px solid #dfc3a0;border-radius:999px;padding:6px 10px;font-size:11px;font-weight:800;letter-spacing:.01em;pointer-events:none}
