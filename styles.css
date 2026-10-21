@@ -23,3 +23,23 @@ h1,h2,h3,.logo,.category-label strong{font-family:'Nunito','DM Sans',sans-serif}
 .mascot-peek{z-index:3}
 @media(hover:none){.category-card:hover{transform:none}.product-card:hover img{transform:none}}
 @media(prefers-reduced-motion:reduce){.logo:hover .logo-cat,.logo:focus-visible .logo-cat{animation:none!important}}
+
+/* Drafts remain browseable on staging but are clearly not published */
+.draft-flag{position:absolute;z-index:4;top:12px;left:12px;background:#fff8e8;color:#654b33;border:1px solid #dfc3a0;border-radius:999px;padding:6px 10px;font-size:11px;font-weight:800;letter-spacing:.01em;pointer-events:none}
+
+/* Journal content driven by published CMS records */
+.journal-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:28px}
+.journal-card{display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-height:230px;padding:28px;border:1px solid var(--line);border-radius:19px;background:var(--panel);transition:transform .2s ease,border-color .2s ease}
+.journal-card:hover{transform:translateY(-3px);border-color:var(--accent)}
+.journal-card h3{font-size:23px;line-height:1.18;margin:0}
+.journal-card p{margin:0;color:var(--muted);line-height:1.6}
+.journal-read{margin-top:auto;font-size:13px;font-weight:800}
+.journal-article{max-width:820px;min-height:65vh;padding-top:72px;padding-bottom:96px}
+.journal-article h1{font-size:clamp(36px,6vw,58px);line-height:1.1;margin:15px 0 22px}
+.journal-intro{color:var(--muted);font-size:20px;line-height:1.65}
+.article-body{padding:16px 0 30px;font-size:17px;line-height:1.9;white-space:pre-line}
+.article-body p{margin:0 0 20px}
+.journal-back{font-size:13px;font-weight:800;text-decoration:underline;text-underline-offset:4px}
+@media(max-width:800px){.journal-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.journal-grid{grid-template-columns:1fr}.journal-card{min-height:185px}.journal-article{padding-top:44px;padding-bottom:65px}}
+@media(prefers-reduced-motion:reduce){.journal-card{transition:none}.journal-card:hover{transform:none}}
