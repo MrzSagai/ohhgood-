@@ -1,0 +1,42 @@
+name: Unpack Ohhgood V5 source
+on:
+  push:
+    branches: [main]
+    paths: [ohhgood-v5-ux-cms-update.zip, .github/workflows/unpack-v5.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  unpack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Extract and validate static site
+        run: |
+          set -euo pipefail
+          unzip -q -o ohhgood-v5-ux-cms-update.zip -d /tmp/ohhgood-extract
+          echo "Archive contents:"
+          find /tmp/ohhgood-extract -maxdepth 3 -type f | head -45
+          src=/tmp/ohhgood-extract
+          if [ ! -f "$src/index.html" ]; then
+            matches=$(find "$src" -name index.html -type f | wc -l)
+            test "$matches" -eq 1 || { echo "Expected exactly one site index.html"; exit 1; }
+            src=$(dirname "$(find "$src" -name index.html -type f | head -1)")
+          fi
+          test -f "$src/index.html"
+          cp -a "$src"/. ./
+          test -f index.html
+          rm -f ohhgood-v5-ux-cms-update.zip
+          echo "Root contents:"
+          ls -la
+      - name: Commit extracted site
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if ! git diff --staged --quiet; then
+            git commit -m "Unpack Ohhgood V5 website source"
+            git push origin HEAD:main
+          fi
