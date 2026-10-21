@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "slug": "small-desk-improvements",
+    "title": "5 Small Ways to Make Your Desk Feel Better",
+    "summary": "Simpan, kemudian cek deployment preview dari branch",
+    "body": "Catatan penting: empat produk awal kita masih berstatus draft. Jadi pada versi pengembangan ini, Featured Finds akan menampilkan pesan bahwa produk sedang dikurasi. Itu disengaja, bukan error.",
+    "status": "published"
+  }
+]
