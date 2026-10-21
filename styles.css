@@ -202,3 +202,10 @@ html{scroll-padding-top:30px}
  .category-label strong{font-size:26px}
 }
 @media(prefers-reduced-motion:reduce){.category-pic.category-photo{transition:none}}
+
+/* Brand fidelity pass: keep the logo/mascot black in both themes. */
+.logo-cat,.story-cat svg,.mascot-peek svg{color:#121212;flex-shrink:0}
+:root[data-theme=dark] .logo{color:#101010;text-shadow:-1px -1px #f9f5ef,1px -1px #f9f5ef,-1px 1px #f9f5ef,1px 1px #f9f5ef,0 2px #f9f5ef,0 -2px #f9f5ef,2px 0 #f9f5ef,-2px 0 #f9f5ef}
+:root[data-theme=dark] .logo-cat{filter:drop-shadow(-1.4px 0 #f9f5ef) drop-shadow(1.4px 0 #f9f5ef) drop-shadow(0 -1.4px #f9f5ef) drop-shadow(0 1.4px #f9f5ef)}
+:root[data-theme=dark] .logo .accent{color:#eea18a;text-shadow:none;-webkit-text-stroke:0}
+.logo .accent{color:#eea18a}
