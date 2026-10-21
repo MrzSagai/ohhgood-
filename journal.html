@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="description" content="Thoughtful tips and little discoveries from Ohhgood!"><title>Good Journal — Ohhgood!</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css"></head>
+<body><a class="skip-link" href="#article">Skip to article</a><header class="site-header"><div class="container header-inner"><a class="logo" href="index.html" aria-label="Ohhgood home">Ohhgood<span class="accent">!</span></a><nav class="desktop-nav" aria-label="Primary"><a href="index.html#categories">Categories</a><a href="index.html#featured">Finds</a><a href="index.html#journal">Journal</a><a href="index.html#about">About</a></nav><a href="index.html#journal" class="journal-back">← All stories</a></div></header><main class="container journal-article" id="article"><p class="eyebrow">GOOD JOURNAL</p><h1 id="article-title">Loading story…</h1><p class="journal-intro" id="article-summary"></p><div class="article-body" id="article-body"></div><p><a class="journal-back" href="index.html#journal">← Back to the Journal</a></p></main><footer class="footer"><div class="container footer-inner"><a href="index.html">Ohhgood!</a><p>Independent discoveries. Good feelings.</p></div></footer>
+<script>
+'use strict';
+(async()=>{
+ const title=document.getElementById('article-title'),summary=document.getElementById('article-summary'),body=document.getElementById('article-body');
+ const slug=new URLSearchParams(location.search).get('slug');
+ if(!slug||!/^[a-z0-9-]+$/.test(slug)){title.textContent='Story not found.';return}
+ try{
+   const response=await fetch('content/articles.json',{cache:'no-store'});if(!response.ok)throw Error(response.status);
+   const list=await response.json();if(!Array.isArray(list))throw Error('Invalid journal data');
+   const item=list.find(a=>a&&a.status==='published'&&a.slug===slug&&typeof a.title==='string');
+   if(!item){title.textContent='Story not found.';return}
+   title.textContent=item.title;document.title=item.title+' — Ohhgood!';
+   summary.textContent=typeof item.summary==='string'?item.summary:'';
+   const raw=typeof item.body==='string'?item.body:'';
+   const doc=new DOMParser().parseFromString(raw,'text/html');
+   const safeText=doc.body.textContent||raw;
+   const paragraphs=safeText.split(/\n\s*\n/).map(t=>t.trim()).filter(Boolean);
+   if(!paragraphs.length&&safeText.trim())paragraphs.push(safeText.trim());
+   for(const para of paragraphs){const p=document.createElement('p');p.textContent=para;body.appendChild(p)}
+ }catch(error){title.textContent='Unable to load this story.';console.error(error)}
+})();
+</script></body></html>
