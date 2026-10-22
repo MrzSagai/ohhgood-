@@ -1,7 +1,7 @@
 'use strict';
 const $=(selector,scope=document)=>scope.querySelector(selector);
 const $$=(selector,scope=document)=>Array.from(scope.querySelectorAll(selector));
-const showDraftPreviews=new URLSearchParams(location.search).get('preview')==='drafts';let products=[];let selectedFilter='all';let searchQuery='';let previouslyFocused=null;
+const host=location.hostname.toLowerCase();const isCloudflarePreview=host.endsWith('.ohhgood2.pages.dev')&&host!=='ohhgood2.pages.dev';const showDraftPreviews=isCloudflarePreview||new URLSearchParams(location.search).get('preview')==='drafts';let products=[];let selectedFilter='all';let searchQuery='';let previouslyFocused=null;
 const escapeHTML=(input)=>String(input??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 function renderProducts(){
   const matches=products.filter(p=>(selectedFilter==='all'||p.category===selectedFilter)&&(!searchQuery||[p.brand,p.name,p.description,...p.benefits].join(' ').toLocaleLowerCase().includes(searchQuery)));
