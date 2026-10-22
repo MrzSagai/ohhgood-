@@ -1,6 +1,62 @@
 [
- {"id":"joyroom","brand":"JOYROOM","name":"Magnetic Cable Clips","category":"desk","description":"Keep charging cables neatly within reach.","benefits":["Magnetic cable organization","Helps keep your workspace tidy","Easy access to frequently used cables"],"image":"assets/joyroom-cable-calm.png","status":"draft","retailer_url":""},
- {"id":"lamicall","brand":"Lamicall","name":"Phone Stand","category":"desk","description":"A comfortable place for hands-free phone viewing.","benefits":["Hands-free desk viewing","Convenient for calls and timers","Simple workspace addition"],"image":"assets/lamicall-desk-lift.png","status":"draft","retailer_url":""},
- {"id":"oxo","brand":"OXO Good Grips","name":"Sweep & Swipe Laptop Cleaner","category":"desk","description":"A compact way to reset your workspace.","benefits":["Brush for crumbs and dust","Microfiber surface for smudges","Compact two-sided design"],"image":"assets/oxo-desk-reset.png","status":"draft","retailer_url":""},
- {"id":"bagsmart","brand":"BAGSMART","name":"Electronic Organizer","category":"go","description":"Keep your everyday tech essentials together.","benefits":["Organizes small accessories","Useful for short trips","Helps keep cables within reach"],"image":"assets/bagsmart-pack-neat.png","status":"draft","retailer_url":""}
+  {
+    "id": "joyroom",
+    "brand": "JOYROOM",
+    "name": "JR-ZS368 Magnetic Cable Organizer (9-Piece)",
+    "category": "desk",
+    "description": "A small magnetic cable holder designed to keep everyday charging cords accessible and off your desk.",
+    "benefits": [
+      "Magnetic clips open for quick cable access",
+      "Adhesive-backed bases for desktop cable routing",
+      "Designed for cables less than 7.5 mm in diameter"
+    ],
+    "image": "assets/joyroom-cable-calm.png",
+    "status": "draft",
+    "retailer_url": ""
+  },
+  {
+    "id": "lamicall",
+    "brand": "Lamicall",
+    "name": "Adjustable Cell Phone Stand — A-Black",
+    "category": "desk",
+    "description": "An aluminum desk stand that gives your phone a dedicated spot for viewing calls, recipes, and reminders.",
+    "benefits": [
+      "Designed for phones with 4–8-inch screens",
+      "14 mm hook width; check case thickness before buying",
+      "Designed for tabletop portrait or landscape viewing"
+    ],
+    "image": "assets/lamicall-desk-lift.png",
+    "status": "draft",
+    "retailer_url": ""
+  },
+  {
+    "id": "oxo",
+    "brand": "OXO Good Grips",
+    "name": "Sweep & Swipe Laptop Cleaner",
+    "category": "desk",
+    "description": "A compact two-in-one cleaning tool for brushing away desk debris and wiping fingerprints from devices.",
+    "benefits": [
+      "Retractable soft brush for dust and crumbs",
+      "Microfiber pad for smudges and fingerprints",
+      "Protective cap for storage between uses"
+    ],
+    "image": "assets/oxo-desk-reset.png",
+    "status": "draft",
+    "retailer_url": ""
+  },
+  {
+    "id": "bagsmart",
+    "brand": "BAGSMART",
+    "name": "Pomona Electronic Organizer — Grey",
+    "category": "go",
+    "description": "A compact travel pouch with dedicated loops and pockets to help keep small tech accessories together.",
+    "benefits": [
+      "Elastic loops and mesh sections for cables and accessories",
+      "Double-zip opening for quick access",
+      "Water-resistant fabric; approx. 9.4 × 6.7 × 1.4 in"
+    ],
+    "image": "assets/bagsmart-pack-neat.png",
+    "status": "draft",
+    "retailer_url": ""
+  }
 ]
