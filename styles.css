@@ -242,3 +242,11 @@ html,body{max-width:100%}
 @media(min-width:901px){
  .journal-card{content-visibility:auto;contain-intrinsic-size:auto 430px}
 }
+
+/* Approved PNG wordmarks: explicit site toggle controls the active image. */
+.logo .brand-logo-image{display:block;width:clamp(128px,13vw,177px);height:auto;max-height:56px;object-fit:contain;object-position:left center;flex:none}
+.logo .brand-logo-dark{display:none}
+:root[data-theme="dark"] .logo .brand-logo-primary{display:none}
+:root[data-theme="dark"] .logo .brand-logo-dark{display:block}
+:root[data-theme="dark"] .logo:has(.brand-logo-image){color:inherit;text-shadow:none}
+@media(max-width:680px){.logo .brand-logo-image{width:clamp(122px,38vw,160px);max-height:48px}}
