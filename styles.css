@@ -349,3 +349,15 @@ html,body{max-width:100%}
 @media(hover:none){.mascot-trigger:active .mascot-peek-primary{opacity:1;transform:translateY(0)}.product-peek,.cta-retailer-cat{display:none}}
 @media(prefers-reduced-motion:reduce){.mascot-peek-primary,.product-peek,.cta-retailer-cat{transition:none!important}}
 @media(max-width:680px){.mascot-trigger .mascot-peek-primary{width:65px;height:67px;top:-43px}}
+
+/* CTA mascot placement refinement — 2026-10-22 */
+.hero-copy .mascot-trigger{margin-top:18px}
+.mascot-trigger .mascot-peek-primary{right:-10px;top:-62px;width:76px;height:79px}
+.mascot-trigger:is(:hover,:focus-visible) .mascot-peek-primary{transform:translateY(-3px) rotate(-4deg)}
+/* Cat peeks at lower-right edge, leaving Quick Look button unobstructed. */
+.product-card .product-peek{top:auto;bottom:calc(100% - 76%);right:-3px;width:72px;height:76px;transform:translate(28px,8px) rotate(8deg)}
+.product-card:is(:hover,:focus-within) .product-peek{transform:translate(14px,8px) rotate(0)}
+@media(max-width:680px){
+ .hero-copy .mascot-trigger{margin-top:21px}
+ .mascot-trigger .mascot-peek-primary{top:-54px;right:-8px;width:67px;height:70px}
+}
