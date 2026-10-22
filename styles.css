@@ -304,3 +304,20 @@ html,body{max-width:100%}
  .hero-copy{background:#f5e7db!important}
  .hero-photo{display:block;background-image:url("assets/hero-homepage.png");background-size:cover;background-position:74% 54%;min-height:250px;height:clamp(250px,65vw,375px)}
 }
+
+/* Mobile brand visibility: isolate the two logo variants and reinforce dark-mode edges. */
+.logo .brand-logo-parts:not(.brand-logo-parts-dark){display:inline-flex}
+.logo .brand-logo-parts.brand-logo-parts-dark{display:none}
+:root[data-theme="dark"] .logo .brand-logo-parts:not(.brand-logo-parts-dark){display:none}
+:root[data-theme="dark"] .logo .brand-logo-parts.brand-logo-parts-dark{display:inline-flex}
+:root[data-theme="dark"] .brand-logo-parts-dark .brand-wordmark{
+ filter:drop-shadow(0 1px 0 #faf5ef) drop-shadow(0 -1px 0 #faf5ef) drop-shadow(1px 0 0 #faf5ef) drop-shadow(-1px 0 0 #faf5ef);
+}
+:root[data-theme="dark"] .brand-logo-parts-dark .brand-cat-head{
+ filter:drop-shadow(0 0 1px #fff8ef);
+}
+@media(max-width:390px){
+ .site-header .logo .brand-logo-parts{max-width:148px}
+ .site-header .brand-cat-head{width:38px;height:38px}
+ .site-header .brand-wordmark{width:110px;height:38px}
+}
