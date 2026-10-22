@@ -276,3 +276,17 @@ html,body{max-width:100%}
 :root[data-theme="dark"] .logo .brand-logo-parts:not(.brand-logo-parts-dark){display:none}
 :root[data-theme="dark"] .logo .brand-logo-parts.brand-logo-parts-dark{display:inline-flex}
 :root[data-theme="dark"] .logo .brand-logo-image.brand-logo-dark{display:none}
+
+/* V6 approved bespoke homepage imagery, replacing temporary third-party photography. */
+.hero-photo{background-image:url("assets/hero-homepage.png");background-position:center center;background-size:cover;background-color:#efd4bd}
+.category-photo-desk{background-image:url("assets/category-desk.png")}
+.category-photo-go{background-image:url("assets/category-on-the-go.png")}
+.category-photo-break{background-image:url("assets/category-desk-break.png")}
+.category-photo{filter:none}
+.story-cat:has(.mascot-fullbody){width:clamp(155px,21vw,230px)}
+.story-cat .mascot-fullbody{max-height:270px}
+@media(max-width:680px){
+ .hero-photo{background-position:58% center}
+ .story-cat:has(.mascot-fullbody){width:116px}
+ .story-cat .mascot-fullbody{max-height:170px}
+}
