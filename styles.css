@@ -385,3 +385,25 @@ html,body{max-width:100%}
  .hero-copy .mascot-trigger .mascot-peek-primary{width:68px;right:9px;bottom:calc(100% - 5px)}
 }
 @media(prefers-reduced-motion:reduce){.hero-copy .mascot-trigger .mascot-peek-primary{transition:none}}
+
+/* Mobile theme + brand legibility. Keep selected theme separate from OS setting. */
+:root[data-theme="light"] .site-header{background:#fffdfa;color:#17191b}
+:root[data-theme="dark"] .site-header{background:#201f1e;color:#f5f2ed}
+:root[data-theme="dark"] .site-header .brand-logo-parts-dark .brand-wordmark,
+:root[data-theme="dark"] .footer-logo .brand-logo-parts-dark .brand-wordmark{
+ filter:brightness(0) invert(1);
+}
+:root[data-theme="dark"] .site-header .brand-logo-parts-dark .brand-cat-head,
+:root[data-theme="dark"] .footer-logo .brand-logo-parts-dark .brand-cat-head{
+ filter:drop-shadow(1px 0 0 #faf5ef) drop-shadow(-1px 0 0 #faf5ef)
+        drop-shadow(0 1px 0 #faf5ef) drop-shadow(0 -1px 0 #faf5ef);
+}
+/* Touchscreen animation: no hover sensor is required or implied. */
+@media(hover:none){
+ .hero-copy .mascot-trigger.mobile-peek-visible .mascot-peek-primary{
+  opacity:1;transform:translateY(0) rotate(0);
+ }
+}
+@media(prefers-reduced-motion:reduce){
+ .hero-copy .mascot-trigger.mobile-peek-visible .mascot-peek-primary{transition:none}
+}
