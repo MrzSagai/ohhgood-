@@ -270,3 +270,9 @@ html,body{max-width:100%}
 }
 @keyframes ohhgood-head-wiggle{0%,100%{transform:rotate(0)}30%{transform:rotate(-13deg)}65%{transform:rotate(7deg)}}
 @media(max-width:680px){.logo .brand-logo-parts{height:46px}.logo .brand-cat-head{width:39px;height:39px}.logo .brand-wordmark{width:115px;height:39px;margin-left:-3px}}
+
+/* Split approved dark-mode logo; same dimensions and head-only interaction. */
+.logo .brand-logo-parts-dark{display:none}
+:root[data-theme="dark"] .logo .brand-logo-parts:not(.brand-logo-parts-dark){display:none}
+:root[data-theme="dark"] .logo .brand-logo-parts.brand-logo-parts-dark{display:inline-flex}
+:root[data-theme="dark"] .logo .brand-logo-image.brand-logo-dark{display:none}
