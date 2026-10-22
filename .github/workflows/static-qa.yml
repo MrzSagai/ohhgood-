@@ -21,6 +21,7 @@ jobs:
         run: |
           python3 - <<'PY'
           import json,os,re
+          from urllib.parse import unquote
           from html.parser import HTMLParser
           class Links(HTMLParser):
               def __init__(self):
@@ -38,7 +39,7 @@ jobs:
               for ref in parsed.links:
                   if not ref or ref.startswith(('http:','https:','data:','mailto:','#')):continue
                   dest=ref.split('?')[0].split('#')[0]
-                  if dest:assert os.path.exists(dest),(name,ref)
+                  if dest:assert os.path.exists(unquote(dest)),(name,ref)
           home=pages['index.html']
           for target in ['featured','categories','journal','about','product-grid','modal-backdrop','mobile-nav']:
               assert target in home.ids,target
