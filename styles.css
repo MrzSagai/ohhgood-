@@ -257,3 +257,16 @@ html,body{max-width:100%}
 .brand-tagline-mark{display:block;width:min(250px,65%);height:auto;max-height:105px;object-fit:contain;object-position:left center;margin-top:20px}
 :root[data-theme="dark"] .brand-tagline-mark{background:#f6eee6;border-radius:12px;padding:8px}
 @media(max-width:680px){.story-cat:has(.mascot-fullbody){width:110px;min-height:120px}.story-cat .mascot-fullbody{max-height:150px}.brand-tagline-mark{width:min(210px,85%);margin-top:15px}}
+
+/* Light-mode split logo test; dark mode temporarily retains approved full logo. */
+.logo .brand-logo-parts{display:inline-flex;align-items:center;gap:0;flex:none;height:55px}
+.logo .brand-cat-head{display:block;width:48px;height:48px;object-fit:contain;flex:none;transform-origin:50% 72%}
+.logo .brand-wordmark{display:block;width:141px;height:48px;object-fit:contain;object-position:left center;flex:none;margin-left:-3px}
+:root[data-theme="dark"] .logo .brand-logo-parts{display:none}
+.logo .brand-logo-dark{display:none}
+:root[data-theme="dark"] .logo .brand-logo-dark{display:block}
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+ .logo:hover .brand-cat-head,.logo:focus-visible .brand-cat-head{animation:ohhgood-head-wiggle .65s ease-in-out 1}
+}
+@keyframes ohhgood-head-wiggle{0%,100%{transform:rotate(0)}30%{transform:rotate(-13deg)}65%{transform:rotate(7deg)}}
+@media(max-width:680px){.logo .brand-logo-parts{height:46px}.logo .brand-cat-head{width:39px;height:39px}.logo .brand-wordmark{width:115px;height:39px;margin-left:-3px}}
