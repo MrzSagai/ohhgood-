@@ -1,0 +1,60 @@
+name: V6 static QA
+on:
+  push:
+    branches: [development]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: JavaScript syntax
+        run: node --check app.js
+      - name: Verify site routes, links, CMS and release rules
+        run: |
+          python3 - <<'PY'
+          import json,os,re
+          from html.parser import HTMLParser
+          class Links(HTMLParser):
+              def __init__(self):
+                  super().__init__();self.links=[];self.ids=set()
+              def handle_starttag(self,tag,attrs):
+                  a=dict(attrs)
+                  if 'id' in a:self.ids.add(a['id'])
+                  for key in ['href','src']:
+                      if key in a and tag in ('a','script','link','img'):self.links.append(a[key])
+          pages={}
+          for name in ['index.html','journal.html','standards.html']:
+              assert os.path.isfile(name),name
+              p=Links();p.feed(open(name,encoding='utf-8').read());pages[name]=p
+          for name,parsed in pages.items():
+              for ref in parsed.links:
+                  if not ref or ref.startswith(('http:','https:','data:','mailto:','#')):continue
+                  dest=ref.split('?')[0].split('#')[0]
+                  if dest:assert os.path.exists(dest),(name,ref)
+          home=pages['index.html']
+          for target in ['featured','categories','journal','about','product-grid','modal-backdrop','mobile-nav']:
+              assert target in home.ids,target
+          for name in ['products','articles']:
+              with open('content/'+name+'.json',encoding='utf-8') as h: data=json.load(h)
+              assert isinstance(data,list),name
+          products=json.load(open('content/products.json'))
+          assert len({p['id'] for p in products})==len(products)
+          assert all(p['status'] in ('draft','published') for p in products)
+          articles=json.load(open('content/articles.json'))
+          assert len({a['slug'] for a in articles})==len(articles)
+          assert all(re.fullmatch('[a-z0-9-]+',a['slug']) for a in articles)
+          js=open('app.js',encoding='utf-8').read()
+          assert 'const showDraftPreviews=isCloudflarePreview;' in js
+          assert "p.status==='published'||(showDraftPreviews&&p.status==='draft')" in js
+          assert 'loadJournal()' in js
+          assert "cta.rel='noopener noreferrer sponsored'" in js
+          print('Static QA passed: routes, JSON, drafts and links')
+          PY
