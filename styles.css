@@ -372,16 +372,16 @@ html,body{max-width:100%}
    Keep the existing successful product-card interaction unchanged. */
 .hero-copy .mascot-trigger{margin-top:37px;overflow:visible}
 .hero-copy .mascot-trigger .mascot-peek-primary{
- width:84px;height:87px;right:-33px;top:-43px;
- transform:translateY(21px) rotate(7deg);transform-origin:75% 88%;
+ width:84px;height:87px;right:0;top:-78px;
+ transform:translateY(22px) rotate(5deg);transform-origin:65% 90%;
 }
 .hero-copy .mascot-trigger:is(:hover,:focus-visible) .mascot-peek-primary{
- opacity:1;transform:translateY(9px) rotate(-5deg);
+ opacity:1;transform:translateY(9px) rotate(-3deg);
 }
 @media(max-width:680px){
  .hero-copy .mascot-trigger{margin-top:39px}
  .hero-copy .mascot-trigger .mascot-peek-primary{
-  width:75px;height:77px;right:-30px;top:-41px;
+  width:75px;height:77px;right:0;top:-70px;
  }
 }
 @media(prefers-reduced-motion:reduce){
