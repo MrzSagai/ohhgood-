@@ -36,3 +36,11 @@ Branch: development. Production main unchanged.
 - Production launch needs indexation decision, domain and release review.
 
 Do not represent the above as tested in a browser until independently verified.
+
+## Performance & responsive pass 2 (2026-10-22)
+- Preconnected image host to reduce third-party image connection setup time.
+- Added async decoding for product and Journal list images (lazy loading already existed).
+- Added minimum-width and line-wrapping safeguards for narrow layouts, including extra rules under 390 px.
+- Applied content-visibility: auto to Journal cards on wider screens to defer offscreen rendering.
+- These are source improvements, **not audited Lighthouse scores or browser-tested fixes**. Real device validation remains required.
+- Large legacy product PNG images remain untouched per the owner's asset lock. Compression/conversion to WebP or AVIF is a follow-up once approved replacement files are ready.
