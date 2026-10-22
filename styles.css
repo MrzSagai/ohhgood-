@@ -412,3 +412,19 @@ html,body{max-width:100%}
 @media(prefers-reduced-motion:reduce){
  .hero-copy .mascot-trigger .mascot-peek-primary{transition:none}
 }
+
+/* CTA alignment based on measured opaque PNG bounds:
+   430x438 canvas, visible cat x=67..397 / y=90..343.
+   Enlarge to make the visible cat legible while paws meet top of button. */
+.hero-copy .mascot-trigger .mascot-peek-primary{
+ width:120px;height:122px;right:-5px;top:-104px;
+ transform:translateY(14px) rotate(2deg);
+}
+.hero-copy .mascot-trigger:is(:hover,:focus-visible) .mascot-peek-primary{
+ opacity:1;transform:translateY(8px) rotate(-2deg);
+}
+@media(max-width:680px){
+ .hero-copy .mascot-trigger .mascot-peek-primary{
+  width:100px;height:102px;right:-3px;top:-87px;
+ }
+}
