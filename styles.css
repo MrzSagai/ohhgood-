@@ -278,10 +278,10 @@ html,body{max-width:100%}
 :root[data-theme="dark"] .logo .brand-logo-image.brand-logo-dark{display:none}
 
 /* V6 approved bespoke homepage imagery, replacing temporary third-party photography. */
-.hero-photo{background-image:url("assets/hero-homepage.png");background-position:center center;background-size:cover;background-color:#efd4bd}
-.category-photo-desk{background-image:url("assets/category-desk.png")}
-.category-photo-go{background-image:url("assets/category-on-the-go.png")}
-.category-photo-break{background-image:url("assets/category-desk-break.png")}
+.hero-photo{background-image:url("assets/hero-homepage.webp");background-position:center center;background-size:cover;background-color:#efd4bd}
+.category-photo-desk{background-image:url("assets/category-desk.webp")}
+.category-photo-go{background-image:url("assets/category-on-the-go.webp")}
+.category-photo-break{background-image:url("assets/category-desk-break.webp")}
 .category-photo{filter:none}
 .story-cat:has(.mascot-fullbody){width:clamp(155px,21vw,230px)}
 .story-cat .mascot-fullbody{max-height:270px}
@@ -294,7 +294,7 @@ html,body{max-width:100%}
 /* Hero composition fix: use the entire wide artwork, not a cropped right-hand panel.
    Its left side is intentionally quiet space for the live HTML headline. */
 @media(min-width:681px){
- .hero{position:relative;display:grid;grid-template-columns:1fr;background:#f5e7db url("assets/hero-homepage.png") center center/cover no-repeat}
+ .hero{position:relative;display:grid;grid-template-columns:1fr;background:#f5e7db url("assets/hero-homepage.webp") center center/cover no-repeat}
  .hero-copy{width:min(55%,660px);background:transparent!important;position:relative;z-index:2}
  .hero-copy:after{display:none!important}
  .hero-photo{display:none}
@@ -302,7 +302,7 @@ html,body{max-width:100%}
 @media(max-width:680px){
  .hero{display:grid;grid-template-columns:minmax(0,1fr);background:#f5e7db}
  .hero-copy{background:#f5e7db!important}
- .hero-photo{display:block;background-image:url("assets/hero-homepage.png");background-size:cover;background-position:74% 54%;min-height:250px;height:clamp(250px,65vw,375px)}
+ .hero-photo{display:block;background-image:url("assets/hero-homepage.webp");background-size:cover;background-position:74% 54%;min-height:250px;height:clamp(250px,65vw,375px)}
 }
 
 /* Mobile brand visibility: isolate the two logo variants and reinforce dark-mode edges. */
