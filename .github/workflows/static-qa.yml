@@ -49,6 +49,8 @@ jobs:
           products=json.load(open('content/products.json'))
           assert len({p['id'] for p in products})==len(products)
           assert all(p['status'] in ('draft','published') for p in products)
+          assert all(p.get('retailer_url','').startswith('https://') for p in products if p['status']=='published')
+          assert 'As an Amazon Associate I earn from qualifying purchases.' in open('index.html',encoding='utf-8').read()
           articles=json.load(open('content/articles.json'))
           assert len({a['slug'] for a in articles})==len(articles)
           assert all(re.fullmatch('[a-z0-9-]+',a['slug']) for a in articles)
