@@ -290,3 +290,17 @@ html,body{max-width:100%}
  .story-cat:has(.mascot-fullbody){width:116px}
  .story-cat .mascot-fullbody{max-height:170px}
 }
+
+/* Hero composition fix: use the entire wide artwork, not a cropped right-hand panel.
+   Its left side is intentionally quiet space for the live HTML headline. */
+@media(min-width:681px){
+ .hero{position:relative;display:grid;grid-template-columns:1fr;background:#f5e7db url("assets/hero-homepage.png") center center/cover no-repeat}
+ .hero-copy{width:min(55%,660px);background:transparent!important;position:relative;z-index:2}
+ .hero-copy:after{display:none!important}
+ .hero-photo{display:none}
+}
+@media(max-width:680px){
+ .hero{display:grid;grid-template-columns:minmax(0,1fr);background:#f5e7db}
+ .hero-copy{background:#f5e7db!important}
+ .hero-photo{display:block;background-image:url("assets/hero-homepage.png");background-size:cover;background-position:74% 54%;min-height:250px;height:clamp(250px,65vw,375px)}
+}
