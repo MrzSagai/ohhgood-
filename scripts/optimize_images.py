@@ -17,6 +17,7 @@ ASSETS = {
     "mascot-primary": (650, 87),
     "logo-tagline": (660, 88),
     "CTA-primary": (460, 85),
+    "CTA-primary-resize": (320, 86),
     "CTA-secondary": (460, 85),
     "CTA-product card": (400, 85),
 }
