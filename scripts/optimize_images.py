@@ -16,6 +16,9 @@ ASSETS = {
     "mascot-curator": (650, 87),
     "mascot-primary": (650, 87),
     "logo-tagline": (660, 88),
+    "CTA-primary": (460, 85),
+    "CTA-secondary": (460, 85),
+    "CTA-product card": (400, 85),
 }
 root = Path(__file__).resolve().parent.parent
 savings = 0
@@ -42,6 +45,7 @@ for filename in ("styles.css", "index.html", "content/products.json"):
     updated = original
     for name in ASSETS:
         updated = updated.replace("assets/" + name + ".png", "assets/" + name + ".webp")
+        updated = updated.replace("assets/" + name.replace(" ", "%20") + ".png", "assets/" + name.replace(" ", "%20") + ".webp")
     if updated != original:
         path.write_text(updated, encoding="utf-8")
 print(f"Total asset savings: {savings/1048576:.2f} MiB")
