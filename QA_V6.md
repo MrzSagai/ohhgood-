@@ -44,3 +44,10 @@ Do not represent the above as tested in a browser until independently verified.
 - Applied content-visibility: auto to Journal cards on wider screens to defer offscreen rendering.
 - These are source improvements, **not audited Lighthouse scores or browser-tested fixes**. Real device validation remains required.
 - Large legacy product PNG images remain untouched per the owner's asset lock. Compression/conversion to WebP or AVIF is a follow-up once approved replacement files are ready.
+
+## Desktop final polish + Release Candidate pre-review — 2026-10-22
+- Standardized the approved split cat-head/wordmark logo across Journal and Standards headers, including saved dark-theme styling.
+- Applied measured desktop and mid-width navigation spacing and consistent visible keyboard-focus states.
+- Retained approved hero artwork, categories, Journal images, Quick Look interaction, CTA mascot, and product-card peeks.
+- Source checks and GitHub static QA are not a substitute for rendered-browser regression testing.
+- **Release Candidate decision: NOT YET FROZEN.** Remaining sign-off: live desktop/browser appearance across widths, Journal/Standards navigation, mobile dark logo (provisional), retailer CTA behavior, a performance measurement, and final content/license/affiliate readiness. Keep main unchanged until reviewed.
