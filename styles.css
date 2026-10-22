@@ -387,3 +387,28 @@ html,body{max-width:100%}
 @media(prefers-reduced-motion:reduce){
  .hero-copy .mascot-trigger .mascot-peek-primary{transition:none}
 }
+
+/* Approved primary CTA mascot polish: slightly larger, clear keyline, balanced grip. */
+.hero-copy .mascot-trigger{margin-top:39px;overflow:visible}
+.hero-copy .mascot-trigger .mascot-peek-primary{
+ width:94px;height:97px;right:-10px;top:-86px;
+ opacity:0;pointer-events:none;
+ transform:translateY(22px) rotate(4deg);transform-origin:65% 90%;
+ transition:transform .32s ease-out,opacity .22s ease-out;
+}
+.hero-copy .mascot-trigger .mascot-peek-primary img{
+ width:100%;height:100%;object-fit:contain;
+ filter:drop-shadow(1.5px 0 0 #fff9f3) drop-shadow(-1.5px 0 0 #fff9f3)
+        drop-shadow(0 1.5px 0 #fff9f3) drop-shadow(0 -1.5px 0 #fff9f3);
+}
+.hero-copy .mascot-trigger:is(:hover,:focus-visible) .mascot-peek-primary{
+ opacity:1;transform:translateY(8px) rotate(-2deg);
+}
+@media(max-width:680px){
+ .hero-copy .mascot-trigger .mascot-peek-primary{
+  width:84px;height:86px;right:-8px;top:-76px;
+ }
+}
+@media(prefers-reduced-motion:reduce){
+ .hero-copy .mascot-trigger .mascot-peek-primary{transition:none}
+}
