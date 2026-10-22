@@ -443,3 +443,22 @@ html,body{max-width:100%}
  .story-cat:has(.mascot-fullbody){width:82px;min-width:82px}
  .story-band h2{font-size:21px}
 }
+
+/* V6 desktop release polish: consistent navigation and visual focus. */
+@media(min-width:901px){
+ .header-inner{gap:clamp(18px,2.1vw,32px)}
+ .desktop-nav{gap:clamp(18px,2.3vw,36px)}
+ .hero-copy{min-width:0}
+ .category-card{min-width:0}
+ .product-image-wrap{isolation:isolate}
+ .journal-grid,.product-grid{align-items:stretch}
+}
+@media(min-width:681px) and (max-width:1100px){
+ .header-inner{gap:15px}
+ .desktop-nav{gap:clamp(12px,1.65vw,22px)}
+ .logo .brand-cat-head{width:42px;height:42px}
+ .logo .brand-wordmark{width:124px;height:42px}
+}
+@media(hover:hover) and (pointer:fine){
+ .desktop-nav a:focus-visible,.journal-card:focus-visible,.category-card:focus-visible{outline:3px solid #63967b;outline-offset:4px}
+}
