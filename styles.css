@@ -407,3 +407,39 @@ html,body{max-width:100%}
 @media(prefers-reduced-motion:reduce){
  .hero-copy .mascot-trigger.mobile-peek-visible .mascot-peek-primary{transition:none}
 }
+
+/* V6 mobile completion: readable category, catalog, story and modal touch targets. */
+@media(max-width:680px){
+ .categories{gap:12px}
+ .category-card{min-height:174px;padding:21px;touch-action:manipulation}
+ .category-label{max-width:64%;text-shadow:0 1px 8px rgba(255,255,255,.35)}
+ .category-label strong{font-size:clamp(24px,7vw,29px)}
+ .category-label small{font-size:13px;line-height:1.45}
+ .category-card .circle-arrow{width:44px;height:44px;bottom:14px;left:17px}
+ .section-heading{gap:12px;align-items:flex-start}
+ .section-heading h2{font-size:clamp(28px,8vw,34px)}
+ .product-grid{min-width:0}
+ .product-card{min-width:0}
+ .product-card-footer{gap:9px}
+ .product-card-footer>button,.quicklook-button{width:44px;height:44px;min-width:44px;min-height:44px;display:grid;place-items:center}
+ .product-card h3{overflow-wrap:anywhere}
+ .story-band{align-items:center;gap:12px;padding:20px 15px;min-width:0}
+ .story-band>div{min-width:0}
+ .story-band h2{font-size:clamp(21px,6vw,27px);overflow-wrap:break-word}
+ .story-cat:has(.mascot-fullbody){width:clamp(90px,27vw,118px);min-width:90px;flex:none}
+ .story-cat .mascot-fullbody{max-height:155px}
+ .journal-card{min-width:0}
+ .journal-cover{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
+ .quicklook{width:100%;max-height:calc(100dvh - 16px);grid-template-columns:minmax(0,1fr)}
+ .modal-image-wrap{min-height:0}
+ .modal-content{min-width:0}
+ .modal-close{width:44px;height:44px}
+ .retailer-cta{min-height:48px}
+}
+@media(max-width:359px){
+ .category-card{min-height:162px}
+ .category-label{max-width:69%}
+ .story-band{gap:8px;padding:16px 10px}
+ .story-cat:has(.mascot-fullbody){width:82px;min-width:82px}
+ .story-band h2{font-size:21px}
+}
