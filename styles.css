@@ -223,3 +223,22 @@ html{scroll-padding-top:30px}
 .journal-card>.journal-read{margin-bottom:24px}
 .article-cover-photo{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:18px;margin:27px 0 35px;background:var(--soft)}
 @media(max-width:560px){.journal-card>.eyebrow,.journal-card>h3,.journal-card>p,.journal-card>.journal-read{margin-left:20px;margin-right:20px}.journal-card>.journal-read{margin-bottom:22px}}
+
+/* Responsive safety and progressive content rendering */
+html,body{max-width:100%}
+.container,.hero,.categories,.featured,.journal,.story-band{min-width:0}
+.hero-copy,.hero-visual,.category-card,.product-card,.journal-card{min-width:0}
+.hero h1,.section-heading h2,.journal-card h3,.product-card h3{overflow-wrap:break-word}
+.product-grid,.journal-grid,.categories{min-width:0}
+@media(max-width:390px){
+ .header-actions{gap:5px}
+ .theme-toggle{padding:8px 9px}
+ .logo{font-size:22px}
+ .category-label{max-width:74%}
+ .journal-card h3{font-size:21px}
+ .modal-content{padding:18px 18px 26px}
+ .quicklook{width:100%}
+}
+@media(min-width:901px){
+ .journal-card{content-visibility:auto;contain-intrinsic-size:auto 430px}
+}
