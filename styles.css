@@ -321,3 +321,14 @@ html,body{max-width:100%}
  .site-header .brand-cat-head{width:38px;height:38px}
  .site-header .brand-wordmark{width:110px;height:38px}
 }
+
+/* Final mobile dark-logo contrast: preserve approved black wordmark and peach mark,
+   but add a continuous warm-white keyline similar to the approved dark logo. */
+:root[data-theme="dark"] .logo .brand-logo-parts-dark .brand-wordmark{
+ filter:drop-shadow(2px 0 0 #fff9f2) drop-shadow(-2px 0 0 #fff9f2)
+        drop-shadow(0 2px 0 #fff9f2) drop-shadow(0 -2px 0 #fff9f2);
+}
+:root[data-theme="dark"] .logo .brand-logo-parts-dark .brand-cat-head{
+ filter:drop-shadow(1.5px 0 0 #fff9f2) drop-shadow(-1.5px 0 0 #fff9f2)
+        drop-shadow(0 1.5px 0 #fff9f2) drop-shadow(0 -1.5px 0 #fff9f2);
+}
