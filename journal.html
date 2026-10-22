@@ -13,7 +13,7 @@
    const item=list.find(a=>a&&a.status==='published'&&a.slug===slug&&typeof a.title==='string');
    if(!item){title.textContent='Story not found.';return}
    title.textContent=item.title;document.title=item.title+' — Ohhgood!';
-   summary.textContent=typeof item.summary==='string'?item.summary:'';if(typeof item.cover_image==='string'&&/^https:\/\/images\.unsplash\.com\/photo-[a-zA-Z0-9-]+\?/.test(item.cover_image)){const img=document.createElement('img');img.src=item.cover_image;img.alt='';img.className='article-cover-photo';document.getElementById('article-cover').appendChild(img)}
+   summary.textContent=typeof item.summary==='string'?item.summary:'';if(typeof item.cover_image==='string'&&/^(https:\/\/images\.unsplash\.com\/photo-[a-zA-Z0-9-]+\?|\/?assets\/[a-zA-Z0-9_./-]+$)/.test(item.cover_image)){const img=document.createElement('img');img.src=item.cover_image;img.alt='';img.className='article-cover-photo';document.getElementById('article-cover').appendChild(img)}
    const raw=typeof item.body==='string'?item.body:'';
    const doc=new DOMParser().parseFromString(raw,'text/html');
    const safeText=doc.body.textContent||raw;
