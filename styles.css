@@ -462,3 +462,7 @@ html,body{max-width:100%}
 @media(hover:hover) and (pointer:fine){
  .desktop-nav a:focus-visible,.journal-card:focus-visible,.category-card:focus-visible{outline:3px solid #63967b;outline-offset:4px}
 }
+
+/* Clearly visible but unobtrusive Associate disclosure alongside product links. */
+.affiliate-note{font-size:12px;line-height:1.55;color:var(--muted);margin:10px 0 18px}
+.affiliate-note a{text-decoration:underline;text-underline-offset:3px;color:var(--ink)}
