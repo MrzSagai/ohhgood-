@@ -56,7 +56,7 @@ jobs:
           assert all(re.fullmatch('[a-z0-9-]+',a['slug']) for a in articles)
           js=open('app.js',encoding='utf-8').read()
           assert 'const showDraftPreviews=isCloudflarePreview;' in js
-          assert "p.status==='published'||(showDraftPreviews&&p.status==='draft')" in js
+          assert "p.status==='published'&&typeof p.retailer_url==='string'" in js
           assert 'loadJournal()' in js
           assert "cta.rel='noopener noreferrer sponsored'" in js
           print('Static QA passed: routes, JSON, drafts and links')
