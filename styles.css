@@ -361,3 +361,9 @@ html,body{max-width:100%}
  .hero-copy .mascot-trigger{margin-top:21px}
  .mascot-trigger .mascot-peek-primary{top:-54px;right:-8px;width:67px;height:70px}
 }
+
+/* Product mascot anchored precisely to the red-marked lower-right image corner. */
+.product-image-wrap .product-peek{top:auto;bottom:0;right:-26px;width:83px;height:88px;z-index:5;transform:translate(30px,6px) rotate(5deg)}
+.product-card:is(:hover,:focus-within) .product-image-wrap .product-peek{transform:translate(0,6px) rotate(-3deg)}
+.product-card:hover .product-image-wrap .product-peek img{transform:none!important}
+@media(hover:none){.product-image-wrap .product-peek{display:none}}
