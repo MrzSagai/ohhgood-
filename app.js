@@ -25,7 +25,7 @@ async function loadJournal(){
     const live=items.filter(a=>a&&a.status==='published'&&typeof a.slug==='string'&&/^[a-z0-9-]+$/.test(a.slug)&&typeof a.title==='string');
     if(!live.length)return;
     root.className='journal-grid';
-    root.innerHTML=live.map(a=>`<a class="journal-card" href="journal.html?slug=${encodeURIComponent(a.slug)}">${/^https:\/\/images\.unsplash\.com\/photo-[a-zA-Z0-9-]+\?/.test(a.cover_image||"")?`<img class="journal-cover" src="${escapeHTML(a.cover_image)}" alt="" loading="lazy">`:""}<span class="eyebrow">GOOD JOURNAL</span><h3>${escapeHTML(a.title)}</h3><p>${escapeHTML(a.summary||'A little something worth reading.')}</p><span class="journal-read">Read story ↗</span></a>`).join('');
+    root.innerHTML=live.map(a=>`<a class="journal-card" href="journal.html?slug=${encodeURIComponent(a.slug)}">${/^(https:\/\/images\.unsplash\.com\/photo-[a-zA-Z0-9-]+\?|\/?assets\/[a-zA-Z0-9_./-]+$)/.test(a.cover_image||"")?`<img class="journal-cover" src="${escapeHTML(a.cover_image)}" alt="" loading="lazy">`:""}<span class="eyebrow">GOOD JOURNAL</span><h3>${escapeHTML(a.title)}</h3><p>${escapeHTML(a.summary||'A little something worth reading.')}</p><span class="journal-read">Read story ↗</span></a>`).join('');
   }catch(error){console.error('Unable to load journal:',error)}
 }
 document.addEventListener('DOMContentLoaded',initialize);
