@@ -480,3 +480,20 @@ html,body{max-width:100%}
 .product-title-hit:hover .product-title-arrow,.product-title-hit:focus-visible .product-title-arrow{transform:translateX(2px);background:var(--soft)}
 .product-title-hit:focus-visible{outline:3px solid #63967b;outline-offset:4px;border-radius:3px}
 @media(max-width:680px){.product-title-arrow{width:44px;height:44px;min-width:44px;min-height:44px}}
+
+/* Fix legacy circular footer-button rules constraining the title link to 30–44px. */
+.product-card-footer > button.product-title-hit{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  gap:10px;width:100%;min-width:0;max-width:none;
+  height:auto;min-height:0;max-height:none;
+  margin:0 0 8px;padding:0;border:0;border-radius:0;
+  background:transparent;color:var(--ink);text-align:left;
+  box-shadow:none;transform:none;
+}
+.product-card-footer > button.product-title-hit h3{
+  flex:1 1 auto;min-width:0;max-width:none;width:auto;
+  white-space:normal;overflow-wrap:break-word;word-break:normal;
+  font-size:14px;line-height:1.4;margin:0;
+}
+.product-card-footer > button.product-title-hit .product-title-arrow{flex:0 0 34px}
+@media(max-width:680px){.product-card-footer > button.product-title-hit{min-height:44px}.product-card-footer > button.product-title-hit .product-title-arrow{flex-basis:44px}}
