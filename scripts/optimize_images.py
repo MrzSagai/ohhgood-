@@ -13,6 +13,9 @@ ASSETS = {
     "lamicall-desk-lift": (800, 80),
     "oxo-desk-reset": (800, 80),
     "bagsmart-pack-neat": (800, 80),
+    "Joyroom": (960, 79),
+    "Lamicall": (960, 79),
+    "Bagsmart": (960, 79),
     "mascot-curator": (650, 87),
     "mascot-primary": (650, 87),
     "logo-tagline": (660, 88),
@@ -49,4 +52,20 @@ for filename in ("styles.css", "index.html", "content/products.json"):
         updated = updated.replace("assets/" + name.replace(" ", "%20") + ".png", "assets/" + name.replace(" ", "%20") + ".webp")
     if updated != original:
         path.write_text(updated, encoding="utf-8")
+# Activate newly approved marketing images in CMS after WebP files exist.
+products_path = root / "content" / "products.json"
+products = json.loads(products_path.read_text(encoding="utf-8"))
+new_images = {
+    "joyroom": "assets/Joyroom.webp",
+    "lamicall": "assets/Lamicall.webp",
+    "bagsmart": "assets/Bagsmart.webp",
+    "oxo": "assets/Oxodesk.webp",
+}
+for item in products:
+    if item.get("id") in new_images:
+        selected = new_images[item["id"]]
+        if not (root / selected).is_file():
+            raise FileNotFoundError(root / selected)
+        item["image"] = selected
+products_path.write_text(json.dumps(products, indent=2, ensure_ascii=False) + "\\n", encoding="utf-8")
 print(f"Total asset savings: {savings/1048576:.2f} MiB")
