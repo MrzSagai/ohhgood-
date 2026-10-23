@@ -534,3 +534,19 @@ html,body{max-width:100%}
 .footer-inner > :not(.footer-sleeping-cat){position:relative;z-index:1}
 @media(max-width:760px){.footer-inner{padding-right:112px;min-height:128px;gap:12px}.footer-sleeping-cat{width:101px;right:0;bottom:8px}}
 @media(max-width:420px){.footer-inner{padding-right:96px;min-height:145px}.footer-sleeping-cat{width:89px;right:0;bottom:10px}.footer-inner .footer-standards{white-space:normal}}
+
+/* Mobile-only universal logo: identical outlined-black assets in both themes.
+   Desktop theme variants remain untouched. */
+@media(max-width:680px){
+  :root[data-theme="light"] .logo .brand-logo-parts:not(.brand-logo-parts-dark),
+  :root[data-theme="dark"] .logo .brand-logo-parts:not(.brand-logo-parts-dark){display:none}
+  :root[data-theme="light"] .logo .brand-logo-parts.brand-logo-parts-dark,
+  :root[data-theme="dark"] .logo .brand-logo-parts.brand-logo-parts-dark{display:inline-flex}
+  :root[data-theme="light"] .logo .brand-logo-parts-dark .brand-wordmark,
+  :root[data-theme="dark"] .logo .brand-logo-parts-dark .brand-wordmark,
+  :root[data-theme="light"] .logo .brand-logo-parts-dark .brand-cat-head,
+  :root[data-theme="dark"] .logo .brand-logo-parts-dark .brand-cat-head{
+    filter:drop-shadow(1.5px 0 0 #fff9f2) drop-shadow(-1.5px 0 0 #fff9f2)
+           drop-shadow(0 1.5px 0 #fff9f2) drop-shadow(0 -1.5px 0 #fff9f2);
+  }
+}
