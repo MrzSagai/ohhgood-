@@ -32,7 +32,7 @@ jobs:
                   for key in ['href','src']:
                       if key in a and tag in ('a','script','link','img'):self.links.append(a[key])
           pages={}
-          for name in ['index.html','journal.html','standards.html']:
+          for name in ['index.html','journal.html','standards.html','privacy.html','contact.html']:
               assert os.path.isfile(name),name
               p=Links();p.feed(open(name,encoding='utf-8').read());pages[name]=p
           for name,parsed in pages.items():
@@ -51,6 +51,8 @@ jobs:
           assert all(p['status'] in ('draft','published') for p in products)
           assert all(p.get('retailer_url','').startswith('https://') for p in products if p['status']=='published')
           assert 'As an Amazon Associate I earn from qualifying purchases.' in open('index.html',encoding='utf-8').read()
+          assert 'privacy.html' in open('index.html',encoding='utf-8').read()
+          assert 'contact.html' in open('index.html',encoding='utf-8').read()
           articles=json.load(open('content/articles.json'))
           assert len({a['slug'] for a in articles})==len(articles)
           assert all(re.fullmatch('[a-z0-9-]+',a['slug']) for a in articles)
@@ -96,7 +98,7 @@ jobs:
               if cover and not cover.startswith(('https://','http://')):
                   assert os.path.isfile(unquote(cover.lstrip('/'))),('Article cover missing',article['slug'])
           assert open('robots.txt',encoding='utf-8').read().strip().endswith('Disallow: /'), 'Staging robots should block indexing'
-          for name in ('index.html','journal.html','standards.html'):
+          for name in ('index.html','journal.html','standards.html','privacy.html','contact.html'):
               assert 'noindex' in open(name,encoding='utf-8').read().lower(),('Noindex missing',name)
           print('V7 static QA passed: routes, CMS, image assets, affiliate tags, prelaunch noindex')
           PY
