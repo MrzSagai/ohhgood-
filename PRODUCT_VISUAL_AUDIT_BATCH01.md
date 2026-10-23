@@ -1,0 +1,32 @@
+# Ohhgood! — Product Visual Audit · Batch 01
+Status: **HOLD — no products approved for public publication**
+Date: 2026-10-23
+
+## Scope and limits
+Reviewed the four CMS product records and independently checked identifiers/specifications against external catalog/manufacturer references. Existing website concept images are creative editorial composites; a pixel-by-pixel comparison with Amazon's current product gallery has **not** been completed. Therefore do not mark any item as visually verified, and do not assume the concept image is a photograph of the exact SKU.
+
+## Per-product decisions
+
+| Product | Amazon ASIN | Variant | Existing image | Audit result |
+|---|---|---|---|---|
+| JOYROOM JR-ZS368 magnetic clips | B0CH159ZNT | **White 9-Pack** | `assets/joyroom-cable-calm.webp` | **REPLACE / REWORK**: old concept card features dark/black clips and large embedded typography in previously reviewed homepage screenshot; actual selected variant is white. Final image must show actual white magnetic clips and not invent product markings, packaging or clip count. |
+| Lamicall adjustable phone stand | B01M7U6F8T | Black | `assets/lamicall-desk-lift.webp` | **REVIEW / REWORK**: actual stand must have consistent black metal support, adjustable hinge, base and retaining lip. Concept image with giant embedded lettering is not a final product visual. Confirm against selected variant/gallery. |
+| OXO Sweep & Swipe laptop cleaner | B07W1L7TCF | White | `assets/oxo-desk-reset.webp` | **REVIEW / REWORK**: distinguish retractable soft brush from microfiber pad and protective cap. Show true two-ended tool, not a generic lint remover/brush. Confirm body, cap, proportions against manufacturer photos. |
+| BAGSMART electronics organizer | B0D3XFN86F | B-Grey | `assets/bagsmart-pack-neat.webp` | **REPLACE / REWORK**: selected listing is Electronics Organizer B-Grey (approx. 7.9 × 4.7 × 2.4 in), **not** the originally planned Pomona pouch (approx. 9.4 × 6.7 × 1.4 in). Show correct pouch, handle, zip opening, silhouette and fabric. |
+
+## Image-production standards
+- Preferred: original editorial lifestyle image built with accurate product geometry + verified variant. Label genuinely illustrative images as such, especially when AI-generated.
+- No huge words burned into product photos: brand/title/benefits should be editable HTML rather than graphics baked into the picture.
+- Do not copy/upload Amazon gallery images without permissions/appropriate program terms.
+- Prepare master images separately, export consistent square 1:1 WebP cards, preserve source masters; avoid fake brand marks and inaccurate mechanical details.
+- Do not imply own hands-on testing unless performed.
+
+## Activation gate
+- Four affiliate links are staged in `content/products.json`; all four statuses must remain `draft` until image audit and per-SKU review are signed off.
+- Check selected Amazon variant/ASIN + link ID, compare new editorial assets against listing, run mobile/desktop Quick Look and source/disclosure checks, then obtain explicit launch approval before changing `main`.
+
+## Product reference research
+- JOYROOM B0CH159ZNT White 9-Pack and model JR-ZS368: https://www.newegg.com/joyroom-joyroom/p/1GU-005G-005S4
+- Lamicall B01M7U6F8T Black: https://www.amazon.com/dp/B01M7U6F8T
+- OXO official feature description: https://www.oxo.com/shop/cleaning-organization/home-office/oxo-sweep-and-swipe-laptop-cleaner.html
+- BAGSMART B0D3XFN86F B-Grey SKU information: https://www.amazon.com/dp/B0D3XFN86F
