@@ -1,4 +1,4 @@
-name: V6 static QA
+name: V7 launch static QA
 on:
   push:
     branches: [development]
@@ -59,5 +59,32 @@ jobs:
           assert "p.status==='published'&&typeof p.retailer_url==='string'" in js
           assert 'loadJournal()' in js
           assert "cta.rel='noopener noreferrer sponsored'" in js
-          print('Static QA passed: routes, JSON, drafts and links')
+          # V7: audit production asset paths, not only literal HTML <img> tags.
+          css=open('styles.css',encoding='utf-8').read()
+          from urllib.parse import urlsplit,parse_qs
+          css_urls=re.findall(r'url\\(\\s*[\'\"]?([^\'\")]+)',css)
+          for url in css_urls:
+              if url.startswith(('data:','http:','https:','#')):continue
+              path=unquote(url.split('?')[0].split('#')[0])
+              assert os.path.isfile(path),('CSS asset missing',path)
+          js_assets=set(re.findall(r'assets/[a-zA-Z0-9_.%/-]+\\.(?:webp|png|svg)',js))
+          for path in js_assets:
+              assert os.path.isfile(unquote(path)),('JS asset missing',path)
+          for product in products:
+              assert os.path.isfile(unquote(product['image'])),('Product image missing',product['id'])
+              assert isinstance(product.get('benefits'),list),('Invalid benefits',product['id'])
+              url=product.get('retailer_url','')
+              if url:
+                  parsed=urlsplit(url)
+                  assert parsed.scheme=='https' and parsed.hostname,('Bad retailer URL',product['id'])
+                  if parsed.hostname in ('amazon.com','www.amazon.com'):
+                      assert parse_qs(parsed.query).get('tag')==['ohhgood-20'],('Unexpected Amazon tracking ID',product['id'])
+          for article in articles:
+              cover=article.get('cover_image','')
+              if cover and not cover.startswith(('https://','http://')):
+                  assert os.path.isfile(unquote(cover.lstrip('/'))),('Article cover missing',article['slug'])
+          assert open('robots.txt',encoding='utf-8').read().strip().endswith('Disallow: /'), 'Staging robots should block indexing'
+          for name in ('index.html','journal.html','standards.html'):
+              assert 'noindex' in open(name,encoding='utf-8').read().lower(),('Noindex missing',name)
+          print('V7 static QA passed: routes, CMS, image assets, affiliate tags, prelaunch noindex')
           PY
