@@ -16,6 +16,7 @@ ASSETS = {
     "Joyroom": (960, 79),
     "Lamicall": (960, 79),
     "Bagsmart": (960, 79),
+    "Sleeping-cat": (320, 82),
     "mascot-curator": (650, 87),
     "mascot-primary": (650, 87),
     "logo-tagline": (660, 88),
