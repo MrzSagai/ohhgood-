@@ -555,7 +555,9 @@ html,body{max-width:100%}
    preserve white facial details and surround silhouette with a warm-white keyline. */
 @media(max-width:680px){
   :root[data-theme="light"] .site-header .brand-logo-parts-dark .brand-cat-head,
-  :root[data-theme="dark"] .site-header .brand-logo-parts-dark .brand-cat-head{
+  :root[data-theme="dark"] .site-header .brand-logo-parts-dark .brand-cat-head,
+  :root[data-theme="light"] .footer-logo .brand-logo-parts-dark .brand-cat-head,
+  :root[data-theme="dark"] .footer-logo .brand-logo-parts-dark .brand-cat-head{
     filter:invert(1) hue-rotate(180deg)
       drop-shadow(1.5px 0 0 #fff9f2) drop-shadow(-1.5px 0 0 #fff9f2)
       drop-shadow(0 1.5px 0 #fff9f2) drop-shadow(0 -1.5px 0 #fff9f2);
