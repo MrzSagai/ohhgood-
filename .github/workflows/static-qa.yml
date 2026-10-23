@@ -54,6 +54,18 @@ jobs:
           articles=json.load(open('content/articles.json'))
           assert len({a['slug'] for a in articles})==len(articles)
           assert all(re.fullmatch('[a-z0-9-]+',a['slug']) for a in articles)
+          for a in articles:
+              if a.get('status')=='published':
+                  page='stories/'+a['slug']+'.html'
+                  assert os.path.isfile(page),('Published story HTML missing',page)
+                  html=open(page,encoding='utf-8').read()
+                  assert '<h1>' in html and a['title'].replace('&','&amp;') in html,('Story title mismatch',page)
+                  assert 'noindex' in html.lower(),('Prelaunch noindex missing',page)
+                  parsed=Links();parsed.feed(html)
+                  for ref in parsed.links:
+                      if not ref or ref.startswith(('http:','https:','data:','mailto:','#')):continue
+                      dest=ref.split('?')[0].split('#')[0]
+                      if dest:assert os.path.isfile(os.path.normpath(os.path.join('stories',unquote(dest)))),(page,ref)
           js=open('app.js',encoding='utf-8').read()
           assert 'const showDraftPreviews=isCloudflarePreview;' in js
           assert "p.status==='published'&&typeof p.retailer_url==='string'" in js
