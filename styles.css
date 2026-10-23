@@ -497,3 +497,31 @@ html,body{max-width:100%}
 }
 .product-card-footer > button.product-title-hit .product-title-arrow{flex:0 0 34px}
 @media(max-width:680px){.product-card-footer > button.product-title-hit{min-height:44px}.product-card-footer > button.product-title-hit .product-title-arrow{flex-basis:44px}}
+
+/* Dark mode regression fix: preserve the original hero artwork and black logo artwork. */
+:root[data-theme="dark"] .site-header .brand-logo-parts-dark .brand-wordmark,
+:root[data-theme="dark"] .footer-logo .brand-logo-parts-dark .brand-wordmark,
+:root[data-theme="dark"] .logo .brand-logo-parts-dark .brand-wordmark{
+  filter:drop-shadow(1.5px 0 0 #fff9f2) drop-shadow(-1.5px 0 0 #fff9f2)
+         drop-shadow(0 1.5px 0 #fff9f2) drop-shadow(0 -1.5px 0 #fff9f2);
+}
+:root[data-theme="dark"] .site-header .brand-logo-parts-dark .brand-cat-head,
+:root[data-theme="dark"] .footer-logo .brand-logo-parts-dark .brand-cat-head{
+  filter:drop-shadow(1.5px 0 0 #fff9f2) drop-shadow(-1.5px 0 0 #fff9f2)
+         drop-shadow(0 1.5px 0 #fff9f2) drop-shadow(0 -1.5px 0 #fff9f2);
+}
+@media(min-width:681px){
+  :root[data-theme="dark"] .hero{
+    background-color:#f5e7db;
+    background-image:url("assets/hero-homepage.webp");
+    background-position:center center;
+    background-size:cover;
+    background-repeat:no-repeat;
+  }
+}
+@media(max-width:680px){
+  :root[data-theme="dark"] .hero-photo{
+    background-image:url("assets/hero-homepage.webp");
+    background-position:74% 54%;background-size:cover;
+  }
+}
