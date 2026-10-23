@@ -62,12 +62,12 @@ jobs:
           # V7: audit production asset paths, not only literal HTML <img> tags.
           css=open('styles.css',encoding='utf-8').read()
           from urllib.parse import urlsplit,parse_qs
-          css_urls=re.findall(r'url\\(\\s*[\'\"]?([^\'\")]+)',css)
+          css_urls=[m.strip().strip('\"').strip("'") for m in re.findall(r'url\(([^)]+)\)',css)]
           for url in css_urls:
               if url.startswith(('data:','http:','https:','#')):continue
               path=unquote(url.split('?')[0].split('#')[0])
               assert os.path.isfile(path),('CSS asset missing',path)
-          js_assets=set(re.findall(r'assets/[a-zA-Z0-9_.%/-]+\\.(?:webp|png|svg)',js))
+          js_assets=set(re.findall(r'assets/[a-zA-Z0-9_.%/-]+\.(?:webp|png|svg)',js))
           for path in js_assets:
               assert os.path.isfile(unquote(path)),('JS asset missing',path)
           for product in products:
