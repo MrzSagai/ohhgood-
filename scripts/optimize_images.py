@@ -67,5 +67,5 @@ for item in products:
         if not (root / selected).is_file():
             raise FileNotFoundError(root / selected)
         item["image"] = selected
-products_path.write_text(json.dumps(products, indent=2, ensure_ascii=False) + "\\n", encoding="utf-8")
+products_path.write_text(json.dumps(products, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 print(f"Total asset savings: {savings/1048576:.2f} MiB")
