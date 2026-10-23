@@ -563,3 +563,9 @@ html,body{max-width:100%}
       drop-shadow(0 1.5px 0 #fff9f2) drop-shadow(0 -1.5px 0 #fff9f2);
   }
 }
+
+/* Prelaunch footer legal links: compact, flexible, and clear of the sleeping cat. */
+.footer-policy-links{display:flex;align-items:center;flex-wrap:wrap;gap:8px 15px;min-width:0}
+.footer-policy-links a{font-size:12px;line-height:1.5;color:var(--muted);text-decoration:underline;text-decoration-color:transparent;text-underline-offset:3px}
+.footer-policy-links a:hover,.footer-policy-links a:focus-visible{text-decoration-color:currentColor;color:var(--ink)}
+@media(max-width:680px){.footer-policy-links{width:100%;gap:8px 13px;max-width:calc(100% - 4px)}}
