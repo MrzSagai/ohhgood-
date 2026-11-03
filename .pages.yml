@@ -81,6 +81,10 @@ content:
       - name: summary
         label: Summary
         type: text
+      - name: cover_image
+        label: Featured image
+        type: image
+        description: Journal cover; use an image with suitable commercial-use rights.
       - name: body
         label: Article content
         type: rich-text
