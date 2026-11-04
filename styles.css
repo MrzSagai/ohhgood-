@@ -162,7 +162,7 @@ html{scroll-padding-top:30px}
 @keyframes ohhgood-fade{from{opacity:0}to{opacity:1}}
 @keyframes ohhgood-dialog{from{opacity:0;transform:translateY(12px) scale(.992)}to{opacity:1;transform:translateY(0) scale(1)}}
 .product-card:focus-within,.journal-card:focus-visible,.category-card:focus-visible{outline:3px solid #63967b;outline-offset:3px}
-@media(hover:none){.mascot-peek{display:none}.hero-copy>*{animation-duration:.01ms}}
+@media(hover:none){.category-card:hover{transform:none}.product-card:hover img{transform:none}}
 @media(prefers-reduced-motion:reduce){
   .hero-copy>*,.modal-backdrop:not([hidden]),.modal-backdrop:not([hidden]) .quicklook{animation:none!important}
   .logo-cat,.category-pic,.circle-arrow,.journal-read{transition:none!important}
@@ -569,3 +569,98 @@ html,body{max-width:100%}
 .footer-policy-links a{font-size:12px;line-height:1.5;color:var(--muted);text-decoration:underline;text-decoration-color:transparent;text-underline-offset:3px}
 .footer-policy-links a:hover,.footer-policy-links a:focus-visible{text-decoration-color:currentColor;color:var(--ink)}
 @media(max-width:680px){.footer-policy-links{width:100%;gap:8px 13px;max-width:calc(100% - 4px)}}
+
+/* === OHHGOOD V7 DARK BAR FOOTER - like Lamicall reference === */
+.product-grid{gap:16px}
+.product-card{
+  border-radius:14px !important;
+  overflow:hidden !important;
+}
+.product-card-footer{
+  padding:0 !important;
+  display:block !important;
+  background:#1e1e1e !important;
+  border-top:1px solid #e8e6e2;
+}
+.product-card-footer p{display:none !important}
+.product-card-footer > button.product-title-hit{
+  margin:0 !important;
+  width:100% !important;
+  min-height:54px !important;
+  display:flex !important;
+  align-items:stretch !important;
+  justify-content:space-between !important;
+  gap:0 !important;
+  background:#1e1e1e !important;
+  color:#fff !important;
+  border:0 !important;
+  border-radius:0 !important;
+  padding:0 !important;
+  text-align:left !important;
+}
+.product-card-footer h3{
+  flex:1 1 auto !important;
+  font-size:13.5px !important;
+  line-height:1.35 !important;
+  font-weight:700 !important;
+  color:#fff !important;
+  padding:14px 14px 14px 14px !important;
+  margin:0 !important;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+  align-self:center;
+}
+/* Arrow area with vertical separator - fix gepeng */
+.product-title-arrow,
+.product-card-footer > button.product-title-hit .product-title-arrow{
+  width:56px !important;
+  height:auto !important;
+  min-width:56px !important;
+  min-height:54px !important;
+  flex:0 0 56px !important;
+  background:transparent !important;
+  color:#fff !important;
+  border:0 !important;
+  border-left:1px solid #3a3a3a !important;
+  border-radius:0 !important;
+  display:grid !important;
+  place-items:center !important;
+  font-size:20px !important;
+}
+.product-title-arrow svg{
+  width:18px !important;
+  height:18px !important;
+}
+.product-title-hit:hover .product-title-arrow{
+  background:#2a2a2a !important;
+  transform:none !important;
+}
+.product-title-hit:hover{
+  background:#252525 !important;
+}
+@media(max-width:900px){.product-grid{gap:12px}}
+@media(max-width:680px){
+  .product-grid{gap:10px}
+  .product-card-footer > button.product-title-hit{min-height:52px !important}
+  .product-card-footer h3{font-size:13px !important; padding:12px 12px !important}
+  .product-title-arrow,
+  .product-card-footer > button.product-title-hit .product-title-arrow{
+    width:52px !important;
+    min-width:52px !important;
+    min-height:52px !important;
+    flex-basis:52px !important;
+  }
+}
+:root[data-theme=dark] .product-card-footer{
+  background:#2e2a27 !important;
+  border-top-color:#514942 !important;
+}
+:root[data-theme=dark] .product-card-footer > button.product-title-hit{
+  background:#2e2a27 !important;
+}
+:root[data-theme=dark] .product-title-arrow{
+  border-left-color:#5a524b !important;
+  color:#f5f2ed !important;
+}
