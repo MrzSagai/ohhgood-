@@ -73,5 +73,80 @@
     "image": "assets/yecaye.webp",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/B0FCS7QGNT?tag=ohhgood0c-20"
+  },
+    {
+    "id": "bamboo-dividers",
+    "brand": "S & C Living",
+    "name": "Bamboo Drawer Dividers — 4-Pack Adjustable",
+    "category": "desk",
+    "description": "Spring-loaded bamboo dividers to keep desk drawers tidy without extra boxes.",
+    "benefits": [
+      "Adjusts 17.5–22 inches, spring-loaded for snug fit",
+      "Natural bamboo, no tools needed",
+      "Ideal for desk drawers, stationery and small supplies"
+    ],
+    "image": "assets/bamboo-dividers.webp",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/B08CQ8HRVG?tag=ohhgood0c-20"
+  },
+  {
+    "id": "homeify-drawer",
+    "brand": "Homeify",
+    "name": "Under Desk Drawer Organizer — Clamp-On 2-Drawer",
+    "category": "desk",
+    "description": "Mesh metal drawer that clamps under your desk to hide pens, notepads and small office supplies.",
+    "benefits": [
+      "Clamp-on install, no drilling, holds up to 15 lbs",
+      "2 slide-out drawers, can also sit on desktop",
+      "Powder-coated metal, 11.8 x 18.5 x 4.5 inches"
+    ],
+    "image": "assets/homeify-drawer.webp",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/B0BR4K8HCZ?tag=ohhgood0c-20"
+  },
+  {
+    "id": "felt-mat",
+    "brand": "DAWNTREES",
+    "name": "Large Felt Desk Mat — 40x16 inches",
+    "category": "desk",
+    "description": "Non-slip felt mat that protects your desk and gives mouse and keyboard a soft base.",
+    "benefits": [
+      "40x16 inches, covers full keyboard + mouse area",
+      "Felt with non-slip backing, protects desk surface",
+      "Minimal look, easy to clean and roll up"
+    ],
+    "image": "assets/felt-mat.webp",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/B096S2Z9Q7?tag=ohhgood0c-20"
+  },
+  {
+    "id": "weenson-stand",
+    "brand": "Weenson",
+    "name": "Dual Monitor Stand — White Bamboo",
+    "category": "desk",
+    "description": "Bamboo riser for two monitors with adjustable metal legs to free up desk space underneath.",
+    "benefits": [
+      "White bamboo top, 3 height settings with metal legs",
+      "Creates storage space underneath for keyboard or notebooks",
+      "No tools setup for home office"
+    ],
+    "image": "assets/weenson-stand.webp",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/B0BD4CSSRG?tag=ohhgood0c-20"
+  },
+  {
+    "id": "rocdeer-shelf",
+    "brand": "ROCDEER",
+    "name": "Bamboo Dual Monitor Shelf — Natural",
+    "category": "desk",
+    "description": "Sturdy bamboo shelf that holds monitors and hides office supplies underneath.",
+    "benefits": [
+      "Supports up to 300 lbs, natural bamboo finish",
+      "Underneath storage for desk essentials",
+      "Minimal design that matches calm desk setup"
+    ],
+    "image": "assets/rocdeer-shelf.webp",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/B09BYFR44J?tag=ohhgood0c-20"
   }
 ]
