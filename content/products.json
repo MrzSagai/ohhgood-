@@ -58,5 +58,19 @@
     "image": "assets/Bagsmart.webp",
     "status": "published",
     "retailer_url": "https://www.amazon.com/BAGSMART-Electronics-Organizer-Essentials-Accessories/dp/B0D3XFN86F?dib=eyJ2IjoiMSJ9.pkVy3bnTsb1WMG4xebji27kkKErp5UrqtSs-z3NA8wFfhIQZNyah5KkIIVzSmJV-ftNBGrFOYMTALZhrwZN9ubjlufvvYpe1mPyl2bGb_88laSwRmpw0qLClha_vBQS_J_TYWwh2Al4QVRs5md0AGcjrGGHW0ACNNa7fBgedzyjYRgDYCmHBpI781z91pv0hmp2Rm70omeqjoAmocrj181roIoamXTs1y4DOAXJoBbk.0SQxxSGC0dVwFkpVYSN3B1RryBBXpB10GS08o0CTaak&dib_tag=se&keywords=BAGSMART+Pomona+Electronic+Organizer+Grey&qid=1792729133&sr=8-1&utm_source=chatgpt.com&linkCode=ll2&tag=ohhgood-20&linkId=1dc12a2f2c54c9d7798399c9c9b30688&language=en_US&gaOptInStatus=true&ref_=as_li_ss_tl"
-  }
+  },
+  {
+  "id": "yecaye-clamp-tray-2025",
+  "slug": "yecaye-under-desk-cable-tray",
+  "name": "YECAYE Under Desk Cable Management Tray",
+  "brand": "YECAYE",
+  "category": "Desk Organization",
+  "tagline": "Tidy your desk instantly — no drilling needed",
+  "description": "All-metal clamp-mount tray with dual-bar design. The lower bar holds a power strip, the upper bar organizes excess cords. F-clamp installs without drilling and fits desks 0.2–1.85 inches thick with protective pads to avoid scratches. Includes hook-and-loop straps for routers or small hubs.",
+  "editorialNote": "We like this one because it separates the power strip from the cable mess — most trays only do one. The F-clamp means renters can install it without tools.",
+  "amazonLink": "https://www.amazon.com/dp/B0FCS7QGNT?tag=ohhgood0c-20",
+  "image": "assets/illustrations/cable-tray-01.png",
+  "featured": true,
+  "goodFor": ["small desks", "renters", "standing desks", "WFM setups"]
+}
 ]
