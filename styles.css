@@ -585,11 +585,46 @@ html,body{max-width:100%}
   margin:0 !important;
 }
 .product-card-footer > button.product-title-hit{margin:0 !important}
-.product-title-arrow{width:28px !important;height:28px !important;min-width:28px !important;font-size:14px !important}
+/* SOLID BLACK CTA - fix gepeng & tipis */
+.product-title-arrow,
+.product-card-footer > button.product-title-hit .product-title-arrow{
+  width:36px !important;
+  height:36px !important;
+  min-width:36px !important;
+  min-height:36px !important;
+  background:#17191b !important;
+  color:#fff !important;
+  border:0 !important;
+  border-radius:50% !important;
+  font-size:18px !important;
+  font-weight:800 !important;
+  line-height:1 !important;
+  display:grid !important;
+  place-items:center !important;
+  flex:0 0 36px !important;
+}
+.product-title-hit:hover .product-title-arrow{
+  background:#000 !important;
+  transform:translateX(2px) !important;
+}
 @media(max-width:900px){.product-grid{gap:12px}}
 @media(max-width:680px){
   .product-grid{gap:10px}
   .product-card-footer{padding:10px 11px !important}
   .product-card h3{font-size:12.5px !important}
-  .product-title-arrow{width:32px !important;height:32px !important;min-width:32px !important}
+  .product-title-arrow,
+  .product-card-footer > button.product-title-hit .product-title-arrow{
+    width:38px !important;
+    height:38px !important;
+    min-width:38px !important;
+    min-height:38px !important;
+    flex-basis:38px !important;
+    font-size:18px !important;
+  }
 }
+/* Dark mode - keep same solid black for contrast */
+:root[data-theme=dark] .product-title-arrow{
+  background:#f2ece6 !important;
+  color:#17191b !important;
+}
+
