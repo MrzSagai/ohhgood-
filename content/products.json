@@ -148,5 +148,85 @@
     "image": "assets/rocdeer-shelf.webp",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/B09BYFR44J?tag=ohhgood0c-20"
+  },
+  {
+    "id": "mind-design-purpose-planner",
+    "brand": "Mind Design",
+    "name": "Purpose Planner — Solid Walnut Holder",
+    "category": "desk",
+    "description": "Analog system with 120 Today cards and walnut tray that holds the stack and displays today's focus. Includes slate gift box and black metal divider.",
+    "benefits": [
+      "Solid walnut tray holds full stack",
+      "120 Today cards (4 months)",
+      "Task Signal Key on every card",
+      "Slate gift box + metal divider"
+    ],
+    "image": "assets/mind-design.webp",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/B0BT73XYQG?tag=ohhgood0c-20"
+  },
+  {
+    "id": "nuvograin-vertical-stand",
+    "brand": "Nuvograin",
+    "name": "Adjustable Vertical Laptop Stand — Walnut",
+    "category": "desk",
+    "description": "Faceted geometric walnut stand with soft inner padding and width-adjustable slot for MacBook, Surface and more. Solid wood, hand-polished.",
+    "benefits": [
+      "Faceted walnut, hand-polished",
+      "H 1.77\" x L 7.08\" x W 3.62\"",
+      "Soft inner padding protects laptop",
+      "Width adjustable, vertical storage"
+    ],
+    "image": "assets/nuvograin.webp",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/B0FL6B9MDD?tag=ohhgood0c-20"
+  },
+  {
+    "id": "yecaye-cable-tray",
+    "brand": "YECAYE",
+    "name": "Under Desk Cable Management Tray — L-Clamp",
+    "category": "desk",
+    "description": "Open-wire tray with L-shaped clamps and bonus clips that hides power strips and cables for a zero-wire look.",
+    "benefits": [
+      "No-drill L-clamp mount",
+      "Open wire design, airflow",
+      "Includes 4 round + 2 multi clips",
+      "Holds power strip under desk"
+    ],
+    "image": "assets/yecaye.webp",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/B0953L1ML6?tag=ohhgood0c-20"
+  },
+  {
+    "id": "maxgear-mesh-3pack",
+    "brand": "MaxGear",
+    "name": "Mesh Pen Holder — 3 Pack Black",
+    "category": "desk",
+    "description": "Premium mesh metal pencil holders with non-slip EVA pad. 3.7\" tall, round, for desk organization.",
+    "benefits": [
+      "3 pack, mesh metal",
+      "Non-slip EVA pad",
+      "3.7\" tall, holds 30+ pens",
+      "Black, minimal desk look"
+    ],
+    "image": "assets/maxgear.webp",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/B0756X76P5?tag=ohhgood0c-20"
+  },
+  {
+    "id": "benq-screenbar-halo",
+    "brand": "BenQ",
+    "name": "ScreenBar Halo Monitor Light",
+    "category": "desk",
+    "description": "Wireless controller, adjustable brightness and color temperature, eye-care monitor light bar with no screen glare. Space saving.",
+    "benefits": [
+      "Wireless dial controller",
+      "Auto brightness + hue adjust",
+      "No screen glare, eye-care",
+      "Fits curved monitors, USB powered"
+    ],
+    "image": "assets/benq.webp",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/B08WT889V3?tag=ohhgood0c-20"
   }
 ]
