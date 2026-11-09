@@ -756,3 +756,38 @@ main > article > div p{font-size:13px !important;line-height:1.45 !important;mar
   main > article h1{font-size:23px !important}
   main > article img{max-height:280px !important}
 }
+/* === FIX 2026-11-09: Mobile logo - jangan invert, pakai file aslinya === */
+@media(max-width:680px){
+  :root[data-theme="light"] .site-header .logo .brand-logo-parts:not(.brand-logo-parts-dark),
+  :root[data-theme="light"] .footer-logo .brand-logo-parts:not(.brand-logo-parts-dark){
+    display:inline-flex !important;
+  }
+  :root[data-theme="light"] .site-header .logo .brand-logo-parts.brand-logo-parts-dark,
+  :root[data-theme="light"] .footer-logo .brand-logo-parts.brand-logo-parts-dark{
+    display:none !important;
+  }
+  :root[data-theme="dark"] .site-header .logo .brand-logo-parts:not(.brand-logo-parts-dark),
+  :root[data-theme="dark"] .footer-logo .brand-logo-parts:not(.brand-logo-parts-dark){
+    display:none !important;
+  }
+  :root[data-theme="dark"] .site-header .logo .brand-logo-parts.brand-logo-parts-dark,
+  :root[data-theme="dark"] .footer-logo .brand-logo-parts.brand-logo-parts-dark{
+    display:inline-flex !important;
+  }
+
+  /* Light mode: file asli, tanpa filter sama sekali */
+  :root[data-theme="light"] .site-header .brand-logo-parts .brand-cat-head,
+  :root[data-theme="light"] .site-header .brand-logo-parts .brand-wordmark,
+  :root[data-theme="light"] .footer-logo .brand-logo-parts .brand-cat-head,
+  :root[data-theme="light"] .footer-logo .brand-logo-parts .brand-wordmark{
+    filter:none !important;
+  }
+
+  /* Dark mode: cuma keyline tipis, bukan invert */
+  :root[data-theme="dark"] .site-header .brand-logo-parts-dark .brand-cat-head,
+  :root[data-theme="dark"] .footer-logo .brand-logo-parts-dark .brand-cat-head,
+  :root[data-theme="dark"] .site-header .brand-logo-parts-dark .brand-wordmark,
+  :root[data-theme="dark"] .footer-logo .brand-logo-parts-dark .brand-wordmark{
+    filter:drop-shadow(1.5px 0 0 #fff9f2) drop-shadow(-1.5px 0 0 #fff9f2) drop-shadow(0 1.5px 0 #fff9f2) drop-shadow(0 -1.5px 0 #fff9f2) !important;
+  }
+}
