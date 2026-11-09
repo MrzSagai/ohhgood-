@@ -665,11 +665,35 @@ main > article > div p{font-size:13px !important;line-height:1.45 !important;mar
   .logo .brand-cat-head{width:42px;height:42px}
   .logo .brand-wordmark{width:124px;height:42px}
 }
+/* Mobile: 1 logo khusus, logo-wordmark-dark-mobile.webp untuk LIGHT + DARK. Tanpa HTML baru, cuma CSS. */
+.logo::after{display:none}
+.footer-logo::after{display:none}
 @media(max-width:680px){
   .logo{font-size:23px}
-  .logo .brand-logo-parts{height:46px}
-  .logo .brand-cat-head{width:39px;height:39px}
-  .logo .brand-wordmark{width:115px;height:39px;margin-left:-3px}
+  .logo .brand-logo-parts{display:none !important}
+  .logo::after{
+    content:"";
+    display:block !important;
+    width:clamp(132px,38vw,168px);
+    height:44px;
+    background-image:url("assets/logo-wordmark-dark-mobile.webp");
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position:left center;
+    filter:none !important;
+  }
+  .footer-logo .brand-logo-parts{display:none !important}
+  .footer-logo::after{
+    content:"";
+    display:block !important;
+    width:clamp(128px,36vw,156px);
+    height:40px;
+    background-image:url("assets/logo-wordmark-dark-mobile.webp");
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position:left center;
+    filter:none !important;
+  }
 }
 @media(max-width:390px){
   .site-header .logo .brand-logo-parts{max-width:148px}
