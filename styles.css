@@ -13,7 +13,7 @@ h1,h2,h3,.logo,.category-label strong{font-family:'Nunito','DM Sans',sans-serif}
 @media(max-width:390px){.product-grid{grid-template-columns:1fr}.product-card-footer{padding:13px}.product-card h3{font-size:14px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}.mascot-peek{display:none}}
 
-/* UX pass: gentle, predictable feedback with minimal brand motion */
+/* UX pass */
 .logo-cat{transform-origin:50% 73%}
 @media(hover:hover) and (pointer:fine){.logo:hover .logo-cat,.logo:focus-visible .logo-cat{animation:cat-greet .65s ease-in-out 1}}
 @keyframes cat-greet{0%,100%{transform:rotate(0)}35%{transform:rotate(-9deg)}70%{transform:rotate(4deg)}}
@@ -24,10 +24,10 @@ h1,h2,h3,.logo,.category-label strong{font-family:'Nunito','DM Sans',sans-serif}
 @media(hover:none){.category-card:hover{transform:none}.product-card:hover img{transform:none}}
 @media(prefers-reduced-motion:reduce){.logo:hover .logo-cat,.logo:focus-visible .logo-cat{animation:none!important}}
 
-/* Drafts remain browseable on staging but are clearly not published */
+/* Drafts */
 .draft-flag{position:absolute;z-index:4;top:12px;left:12px;background:#fff8e8;color:#654b33;border:1px solid #dfc3a0;border-radius:999px;padding:6px 10px;font-size:11px;font-weight:800;letter-spacing:.01em;pointer-events:none}
 
-/* Journal content driven by published CMS records */
+/* Journal content */
 .journal-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:28px}
 .journal-card{display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-height:230px;padding:28px;border:1px solid var(--line);border-radius:19px;background:var(--panel);transition:transform .2s ease,border-color .2s ease}
 .journal-card:hover{transform:translateY(-3px);border-color:var(--accent)}
@@ -44,8 +44,7 @@ h1,h2,h3,.logo,.category-label strong{font-family:'Nunito','DM Sans',sans-serif}
 @media(max-width:560px){.journal-grid{grid-template-columns:1fr}.journal-card{min-height:185px}.journal-article{padding-top:44px;padding-bottom:65px}}
 @media(prefers-reduced-motion:reduce){.journal-card{transition:none}.journal-card:hover{transform:none}}
 
-
-/* V5 editorial polish sprint — quiet composition, no decorative gradients */
+/* V5 editorial polish */
 .find-search.is-deferred{display:none}
 html{scroll-padding-top:30px}
 .site-header{background:var(--page)}
@@ -141,7 +140,7 @@ html{scroll-padding-top:30px}
 }
 @media(prefers-reduced-motion:reduce){.category-card:hover,.product-card:hover,.button:hover,.filter:hover{transform:none}}
 
-/* Sprint B — restrained brand motion and accessible interaction */
+/* Sprint B */
 .logo-cat{transition:transform .24s cubic-bezier(.2,.75,.25,1)}
 .mascot-peek{width:31px;height:31px;right:12px;bottom:calc(100% - 5px);transform:translateY(12px) rotate(7deg) scale(.88);z-index:2}
 @media(hover:hover) and (pointer:fine){
@@ -169,8 +168,7 @@ html{scroll-padding-top:30px}
   .mascot-peek{display:none}
 }
 
-/* V6 lifestyle editorial surfaces; all copy and navigation stay in HTML.
-   Photographs are temporary Unsplash editorial assets, not product depictions. */
+/* V6 lifestyle editorial surfaces */
 .hero{grid-template-columns:49% 51%;background:#f6e8dc}
 .hero-photo{background:#d9c8b3 url("https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1450&q=85") center/cover no-repeat}
 .hero-photo::after{border-left:0;background:none}
@@ -203,19 +201,16 @@ html{scroll-padding-top:30px}
 }
 @media(prefers-reduced-motion:reduce){.category-pic.category-photo{transition:none}}
 
-/* Brand fidelity pass: keep the logo/mascot black in both themes. */
-.logo-cat,.story-cat svg,.mascot-peek svg{color:#121212;flex-shrink:0}
-:root[data-theme=dark] .logo{color:#101010;text-shadow:-1px -1px #f9f5ef,1px -1px #f9f5ef,-1px 1px #f9f5ef,1px 1px #f9f5ef,0 2px #f9f5ef,0 -2px #f9f5ef,2px 0 #f9f5ef,-2px 0 #f9f5ef}
-:root[data-theme=dark] .logo-cat{filter:drop-shadow(-1.4px 0 #f9f5ef) drop-shadow(1.4px 0 #f9f5ef) drop-shadow(0 -1.4px #f9f5ef) drop-shadow(0 1.4px #f9f5ef)}
-:root[data-theme=dark] .logo .accent{color:#eea18a;text-shadow:none;-webkit-text-stroke:0}
+/* Brand fidelity: mascot black in both themes, logo handled by single LOGO block at bottom */
+.story-cat svg,.mascot-peek svg{color:#121212;flex-shrink:0}
 .logo .accent{color:#eea18a}
 
-/* Launch preparation: readable editorial transparency link */
+/* Launch preparation */
 .footer-standards{font-size:12px;font-weight:700;text-decoration:underline;text-underline-offset:4px;color:var(--muted)}
 .footer-standards:hover{color:var(--ink)}
 .article-body h2{font-family:'Nunito','DM Sans',sans-serif;font-size:clamp(22px,3vw,30px);line-height:1.25;letter-spacing:-.03em;margin:30px 0 12px}
 
-/* V6 Journal covers: consistent editorial 4:3 crop */
+/* V6 Journal covers */
 .journal-card{padding:0;overflow:hidden;gap:10px}
 .journal-cover{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--soft)}
 .journal-card>.eyebrow,.journal-card>h3,.journal-card>p,.journal-card>.journal-read{margin-left:23px;margin-right:23px}
@@ -224,7 +219,7 @@ html{scroll-padding-top:30px}
 .article-cover-photo{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:18px;margin:27px 0 35px;background:var(--soft)}
 @media(max-width:560px){.journal-card>.eyebrow,.journal-card>h3,.journal-card>p,.journal-card>.journal-read{margin-left:20px;margin-right:20px}.journal-card>.journal-read{margin-bottom:22px}}
 
-/* Responsive safety and progressive content rendering */
+/* Responsive safety */
 html,body{max-width:100%}
 .container,.hero,.categories,.featured,.journal,.story-band{min-width:0}
 .hero-copy,.hero-visual,.category-card,.product-card,.journal-card{min-width:0}
@@ -243,41 +238,14 @@ html,body{max-width:100%}
  .journal-card{content-visibility:auto;contain-intrinsic-size:auto 430px}
 }
 
-/* Approved PNG wordmarks: explicit site toggle controls the active image. */
-.logo .brand-logo-image{display:block;width:clamp(128px,13vw,177px);height:auto;max-height:56px;object-fit:contain;object-position:left center;flex:none}
-.logo .brand-logo-dark{display:none}
-:root[data-theme="dark"] .logo .brand-logo-primary{display:none}
-:root[data-theme="dark"] .logo .brand-logo-dark{display:block}
-:root[data-theme="dark"] .logo:has(.brand-logo-image){color:inherit;text-shadow:none}
-@media(max-width:680px){.logo .brand-logo-image{width:clamp(122px,38vw,160px);max-height:48px}}
-
-/* Approved Ohhgood! brand assets in the story section */
+/* Approved Ohhgood brand assets in the story section */
 .story-cat:has(.mascot-fullbody){width:clamp(130px,19vw,205px);height:auto;min-height:175px;display:flex;align-items:center;justify-content:center}
 .story-cat .mascot-fullbody{width:100%;height:auto;max-height:245px;object-fit:contain;display:block;position:relative;z-index:1}
 .brand-tagline-mark{display:block;width:min(250px,65%);height:auto;max-height:105px;object-fit:contain;object-position:left center;margin-top:20px}
 :root[data-theme="dark"] .brand-tagline-mark{background:#f6eee6;border-radius:12px;padding:8px}
 @media(max-width:680px){.story-cat:has(.mascot-fullbody){width:110px;min-height:120px}.story-cat .mascot-fullbody{max-height:150px}.brand-tagline-mark{width:min(210px,85%);margin-top:15px}}
 
-/* Light-mode split logo test; dark mode temporarily retains approved full logo. */
-.logo .brand-logo-parts{display:inline-flex;align-items:center;gap:0;flex:none;height:55px}
-.logo .brand-cat-head{display:block;width:48px;height:48px;object-fit:contain;flex:none;transform-origin:50% 72%}
-.logo .brand-wordmark{display:block;width:141px;height:48px;object-fit:contain;object-position:left center;flex:none;margin-left:-3px}
-:root[data-theme="dark"] .logo .brand-logo-parts{display:none}
-.logo .brand-logo-dark{display:none}
-:root[data-theme="dark"] .logo .brand-logo-dark{display:block}
-@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
- .logo:hover .brand-cat-head,.logo:focus-visible .brand-cat-head{animation:ohhgood-head-wiggle .65s ease-in-out 1}
-}
-@keyframes ohhgood-head-wiggle{0%,100%{transform:rotate(0)}30%{transform:rotate(-13deg)}65%{transform:rotate(7deg)}}
-@media(max-width:680px){.logo .brand-logo-parts{height:46px}.logo .brand-cat-head{width:39px;height:39px}.logo .brand-wordmark{width:115px;height:39px;margin-left:-3px}}
-
-/* Split approved dark-mode logo; same dimensions and head-only interaction. */
-.logo .brand-logo-parts-dark{display:none}
-:root[data-theme="dark"] .logo .brand-logo-parts:not(.brand-logo-parts-dark){display:none}
-:root[data-theme="dark"] .logo .brand-logo-parts.brand-logo-parts-dark{display:inline-flex}
-:root[data-theme="dark"] .logo .brand-logo-image.brand-logo-dark{display:none}
-
-/* V6 approved bespoke homepage imagery, replacing temporary third-party photography. */
+/* V6 approved bespoke homepage imagery */
 .hero-photo{background-image:url("assets/hero-homepage.webp");background-position:center center;background-size:cover;background-color:#efd4bd}
 .category-photo-desk{background-image:url("assets/category-desk.webp")}
 .category-photo-go{background-image:url("assets/category-on-the-go.webp")}
@@ -291,8 +259,7 @@ html,body{max-width:100%}
  .story-cat .mascot-fullbody{max-height:170px}
 }
 
-/* Hero composition fix: use the entire wide artwork, not a cropped right-hand panel.
-   Its left side is intentionally quiet space for the live HTML headline. */
+/* Hero composition fix */
 @media(min-width:681px){
  .hero{position:relative;display:grid;grid-template-columns:1fr;background:#f5e7db url("assets/hero-homepage.webp") center center/cover no-repeat}
  .hero-copy{width:min(55%,660px);background:transparent!important;position:relative;z-index:2}
@@ -305,35 +272,7 @@ html,body{max-width:100%}
  .hero-photo{display:block;background-image:url("assets/hero-homepage.webp");background-size:cover;background-position:74% 54%;min-height:250px;height:clamp(250px,65vw,375px)}
 }
 
-/* Mobile brand visibility: isolate the two logo variants and reinforce dark-mode edges. */
-.logo .brand-logo-parts:not(.brand-logo-parts-dark){display:inline-flex}
-.logo .brand-logo-parts.brand-logo-parts-dark{display:none}
-:root[data-theme="dark"] .logo .brand-logo-parts:not(.brand-logo-parts-dark){display:none}
-:root[data-theme="dark"] .logo .brand-logo-parts.brand-logo-parts-dark{display:inline-flex}
-:root[data-theme="dark"] .brand-logo-parts-dark .brand-wordmark{
- filter:drop-shadow(0 1px 0 #faf5ef) drop-shadow(0 -1px 0 #faf5ef) drop-shadow(1px 0 0 #faf5ef) drop-shadow(-1px 0 0 #faf5ef);
-}
-:root[data-theme="dark"] .brand-logo-parts-dark .brand-cat-head{
- filter:drop-shadow(0 0 1px #fff8ef);
-}
-@media(max-width:390px){
- .site-header .logo .brand-logo-parts{max-width:148px}
- .site-header .brand-cat-head{width:38px;height:38px}
- .site-header .brand-wordmark{width:110px;height:38px}
-}
-
-/* Final mobile dark-logo contrast: preserve approved black wordmark and peach mark,
-   but add a continuous warm-white keyline similar to the approved dark logo. */
-:root[data-theme="dark"] .logo .brand-logo-parts-dark .brand-wordmark{
- filter:drop-shadow(2px 0 0 #fff9f2) drop-shadow(-2px 0 0 #fff9f2)
-        drop-shadow(0 2px 0 #fff9f2) drop-shadow(0 -2px 0 #fff9f2);
-}
-:root[data-theme="dark"] .logo .brand-logo-parts-dark .brand-cat-head{
- filter:drop-shadow(1.5px 0 0 #fff9f2) drop-shadow(-1.5px 0 0 #fff9f2)
-        drop-shadow(0 1.5px 0 #fff9f2) drop-shadow(0 -1.5px 0 #fff9f2);
-}
-
-/* Ohhgood! mascot UI interactions — decorative, keyboard accessible and motion-safe. */
+/* Ohhgood mascot UI interactions */
 .mascot-trigger{position:relative;isolation:isolate}
 .mascot-trigger .mascot-peek-primary{position:absolute;z-index:-1;width:82px;height:84px;right:0;top:-48px;pointer-events:none;overflow:visible;opacity:0;transform:translateY(23px) rotate(8deg);transition:transform .36s cubic-bezier(.2,.85,.3,1),opacity .25s}
 .mascot-peek-primary img{display:block;width:100%;height:100%;object-fit:contain}
@@ -350,11 +289,10 @@ html,body{max-width:100%}
 @media(prefers-reduced-motion:reduce){.mascot-peek-primary,.product-peek,.cta-retailer-cat{transition:none!important}}
 @media(max-width:680px){.mascot-trigger .mascot-peek-primary{width:65px;height:67px;top:-43px}}
 
-/* CTA mascot placement refinement — 2026-10-22 */
+/* CTA mascot placement refinement */
 .hero-copy .mascot-trigger{margin-top:18px}
 .mascot-trigger .mascot-peek-primary{right:-10px;top:-62px;width:76px;height:79px}
 .mascot-trigger:is(:hover,:focus-visible) .mascot-peek-primary{transform:translateY(-3px) rotate(-4deg)}
-/* Cat peeks at lower-right edge, leaving Quick Look button unobstructed. */
 .product-card .product-peek{top:auto;bottom:calc(100% - 76%);right:-3px;width:72px;height:76px;transform:translate(28px,8px) rotate(8deg)}
 .product-card:is(:hover,:focus-within) .product-peek{transform:translate(14px,8px) rotate(0)}
 @media(max-width:680px){
@@ -362,12 +300,11 @@ html,body{max-width:100%}
  .mascot-trigger .mascot-peek-primary{top:-54px;right:-8px;width:67px;height:70px}
 }
 
-/* Product mascot anchored precisely to the red-marked lower-right image corner. */
+/* Product mascot anchored */
 .product-image-wrap .product-peek{top:auto;bottom:0;right:-26px;width:83px;height:88px;z-index:5;transform:translate(30px,6px) rotate(5deg)}
 .product-card:is(:hover,:focus-within) .product-image-wrap .product-peek{transform:translate(0,6px) rotate(-3deg)}
 .product-card:hover .product-image-wrap .product-peek img{transform:none!important}
 @media(hover:none){.product-image-wrap .product-peek{display:none}}
-/* Primary CTA: cat perches over right edge; paws touch top edge, never CTA copy. */
 .hero-copy .mascot-trigger{position:relative;margin-top:42px;overflow:visible}
 .hero-copy .mascot-trigger .mascot-peek-primary{
  position:absolute;top:auto;bottom:calc(100% - 5px);right:8px;
@@ -386,19 +323,9 @@ html,body{max-width:100%}
 }
 @media(prefers-reduced-motion:reduce){.hero-copy .mascot-trigger .mascot-peek-primary{transition:none}}
 
-/* Mobile theme + brand legibility. Keep selected theme separate from OS setting. */
+/* Mobile theme: keep selected theme separate from OS setting, logo handled at bottom */
 :root[data-theme="light"] .site-header{background:#fffdfa;color:#17191b}
 :root[data-theme="dark"] .site-header{background:#201f1e;color:#f5f2ed}
-:root[data-theme="dark"] .site-header .brand-logo-parts-dark .brand-wordmark,
-:root[data-theme="dark"] .footer-logo .brand-logo-parts-dark .brand-wordmark{
- filter:brightness(0) invert(1);
-}
-:root[data-theme="dark"] .site-header .brand-logo-parts-dark .brand-cat-head,
-:root[data-theme="dark"] .footer-logo .brand-logo-parts-dark .brand-cat-head{
- filter:drop-shadow(1px 0 0 #faf5ef) drop-shadow(-1px 0 0 #faf5ef)
-        drop-shadow(0 1px 0 #faf5ef) drop-shadow(0 -1px 0 #faf5ef);
-}
-/* Touchscreen animation: no hover sensor is required or implied. */
 @media(hover:none){
  .hero-copy .mascot-trigger.mobile-peek-visible .mascot-peek-primary{
   opacity:1;transform:translateY(0) rotate(0);
@@ -408,7 +335,7 @@ html,body{max-width:100%}
  .hero-copy .mascot-trigger.mobile-peek-visible .mascot-peek-primary{transition:none}
 }
 
-/* V6 mobile completion: readable category, catalog, story and modal touch targets. */
+/* V6 mobile completion */
 @media(max-width:680px){
  .categories{gap:12px}
  .category-card{min-height:174px;padding:21px;touch-action:manipulation}
@@ -444,7 +371,7 @@ html,body{max-width:100%}
  .story-band h2{font-size:21px}
 }
 
-/* V6 desktop release polish: consistent navigation and visual focus. */
+/* V6 desktop release polish */
 @media(min-width:901px){
  .header-inner{gap:clamp(18px,2.1vw,32px)}
  .desktop-nav{gap:clamp(18px,2.3vw,36px)}
@@ -456,18 +383,16 @@ html,body{max-width:100%}
 @media(min-width:681px) and (max-width:1100px){
  .header-inner{gap:15px}
  .desktop-nav{gap:clamp(12px,1.65vw,22px)}
- .logo .brand-cat-head{width:42px;height:42px}
- .logo .brand-wordmark{width:124px;height:42px}
 }
 @media(hover:hover) and (pointer:fine){
  .desktop-nav a:focus-visible,.journal-card:focus-visible,.category-card:focus-visible{outline:3px solid #63967b;outline-offset:4px}
 }
 
-/* Clearly visible but unobtrusive Associate disclosure alongside product links. */
+/* Affiliate disclosure */
 .affiliate-note{font-size:12px;line-height:1.55;color:var(--muted);margin:10px 0 18px}
 .affiliate-note a{text-decoration:underline;text-underline-offset:3px;color:var(--ink)}
 
-/* Product discovery: entire image and combined title/arrow are accessible Quick Look targets. */
+/* Product discovery */
 .product-image-wrap{isolation:isolate}
 .product-image-hit{position:absolute;inset:0;width:100%;height:100%;z-index:2;border:0;background:transparent;cursor:pointer;padding:0;border-radius:0;touch-action:manipulation}
 .product-image-hit:focus-visible{outline:3px solid #63967b;outline-offset:-4px}
@@ -481,7 +406,7 @@ html,body{max-width:100%}
 .product-title-hit:focus-visible{outline:3px solid #63967b;outline-offset:4px;border-radius:3px}
 @media(max-width:680px){.product-title-arrow{width:44px;height:44px;min-width:44px;min-height:44px}}
 
-/* Fix legacy circular footer-button rules constraining the title link to 30–44px. */
+/* Fix legacy circular footer-button rules */
 .product-card-footer > button.product-title-hit{
   display:flex;align-items:flex-start;justify-content:space-between;
   gap:10px;width:100%;min-width:0;max-width:none;
@@ -498,18 +423,7 @@ html,body{max-width:100%}
 .product-card-footer > button.product-title-hit .product-title-arrow{flex:0 0 34px}
 @media(max-width:680px){.product-card-footer > button.product-title-hit{min-height:44px}.product-card-footer > button.product-title-hit .product-title-arrow{flex-basis:44px}}
 
-/* Dark mode regression fix: preserve the original hero artwork and black logo artwork. */
-:root[data-theme="dark"] .site-header .brand-logo-parts-dark .brand-wordmark,
-:root[data-theme="dark"] .footer-logo .brand-logo-parts-dark .brand-wordmark,
-:root[data-theme="dark"] .logo .brand-logo-parts-dark .brand-wordmark{
-  filter:drop-shadow(1.5px 0 0 #fff9f2) drop-shadow(-1.5px 0 0 #fff9f2)
-         drop-shadow(0 1.5px 0 #fff9f2) drop-shadow(0 -1.5px 0 #fff9f2);
-}
-:root[data-theme="dark"] .site-header .brand-logo-parts-dark .brand-cat-head,
-:root[data-theme="dark"] .footer-logo .brand-logo-parts-dark .brand-cat-head{
-  filter:drop-shadow(1.5px 0 0 #fff9f2) drop-shadow(-1.5px 0 0 #fff9f2)
-         drop-shadow(0 1.5px 0 #fff9f2) drop-shadow(0 -1.5px 0 #fff9f2);
-}
+/* Dark mode regression fix: preserve hero artwork, logo handled at bottom */
 @media(min-width:681px){
   :root[data-theme="dark"] .hero{
     background-color:#f5e7db;
@@ -526,7 +440,7 @@ html,body{max-width:100%}
   }
 }
 
-/* Subtle end-of-page mascot: sleeping cat, visually anchored without blocking footer links. */
+/* Subtle end-of-page mascot */
 .footer{position:relative}
 .footer-inner{position:relative;padding-right:170px;min-height:114px}
 .footer-sleeping-cat{position:absolute;right:0;bottom:4px;width:150px;height:auto;pointer-events:none;color:var(--ink);opacity:.96;z-index:0}
@@ -535,42 +449,13 @@ html,body{max-width:100%}
 @media(max-width:760px){.footer-inner{padding-right:112px;min-height:128px;gap:12px}.footer-sleeping-cat{width:101px;right:0;bottom:8px}}
 @media(max-width:420px){.footer-inner{padding-right:96px;min-height:145px}.footer-sleeping-cat{width:89px;right:0;bottom:10px}.footer-inner .footer-standards{white-space:normal}}
 
-/* Mobile-only universal logo: identical outlined-black assets in both themes.
-   Desktop theme variants remain untouched. */
-@media(max-width:680px){
-  :root[data-theme="light"] .logo .brand-logo-parts:not(.brand-logo-parts-dark),
-  :root[data-theme="dark"] .logo .brand-logo-parts:not(.brand-logo-parts-dark){display:none}
-  :root[data-theme="light"] .logo .brand-logo-parts.brand-logo-parts-dark,
-  :root[data-theme="dark"] .logo .brand-logo-parts.brand-logo-parts-dark{display:inline-flex}
-  :root[data-theme="light"] .logo .brand-logo-parts-dark .brand-wordmark,
-  :root[data-theme="dark"] .logo .brand-logo-parts-dark .brand-wordmark,
-  :root[data-theme="light"] .logo .brand-logo-parts-dark .brand-cat-head,
-  :root[data-theme="dark"] .logo .brand-logo-parts-dark .brand-cat-head{
-    filter:drop-shadow(1.5px 0 0 #fff9f2) drop-shadow(-1.5px 0 0 #fff9f2)
-           drop-shadow(0 1.5px 0 #fff9f2) drop-shadow(0 -1.5px 0 #fff9f2);
-  }
-}
-
-/* Mobile logo refinement: keep black wordmark, invert cat's white face to black,
-   preserve white facial details and surround silhouette with a warm-white keyline. */
-@media(max-width:680px){
-  :root[data-theme="light"] .site-header .brand-logo-parts-dark .brand-cat-head,
-  :root[data-theme="dark"] .site-header .brand-logo-parts-dark .brand-cat-head,
-  :root[data-theme="light"] .footer-logo .brand-logo-parts-dark .brand-cat-head,
-  :root[data-theme="dark"] .footer-logo .brand-logo-parts-dark .brand-cat-head{
-    filter:invert(1) hue-rotate(180deg)
-      drop-shadow(1.5px 0 0 #fff9f2) drop-shadow(-1.5px 0 0 #fff9f2)
-      drop-shadow(0 1.5px 0 #fff9f2) drop-shadow(0 -1.5px 0 #fff9f2);
-  }
-}
-
-/* Prelaunch footer legal links: compact, flexible, and clear of the sleeping cat. */
+/* Prelaunch footer legal links */
 .footer-policy-links{display:flex;align-items:center;flex-wrap:wrap;gap:8px 15px;min-width:0}
 .footer-policy-links a{font-size:12px;line-height:1.5;color:var(--muted);text-decoration:underline;text-decoration-color:transparent;text-underline-offset:3px}
 .footer-policy-links a:hover,.footer-policy-links a:focus-visible{text-decoration-color:currentColor;color:var(--ink)}
 @media(max-width:680px){.footer-policy-links{width:100%;gap:8px 13px;max-width:calc(100% - 4px)}}
 
-/* === OHHGOOD V7 DARK BAR FOOTER - like Lamicall reference === */
+/* === OHHGOOD V7 DARK BAR FOOTER === */
 .product-grid{gap:16px}
 .product-card{
   border-radius:14px !important;
@@ -612,7 +497,6 @@ html,body{max-width:100%}
   overflow:hidden;
   align-self:center;
 }
-/* Arrow area with vertical separator - fix gepeng */
 .product-title-arrow,
 .product-card-footer > button.product-title-hit .product-title-arrow{
   width:56px !important;
@@ -663,4 +547,157 @@ html,body{max-width:100%}
 :root[data-theme=dark] .product-title-arrow{
   border-left-color:#5a524b !important;
   color:#f5f2ed !important;
+}
+/* === OHHGOOD FIX 2026 - Performance + View Details + Static links === */
+.hero-photo{background-color:#efd4bd}
+.view-details{display:block;text-align:center;padding:10px 14px;font-size:13px;font-weight:800;color:#fff;background:#1e1e1e;border-top:1px solid #3a3a3a;text-decoration:none}
+.view-details:hover{background:#2a2a2a;text-decoration:underline;text-underline-offset:3px}
+:root[data-theme=dark] .view-details{background:#2e2a27;border-top-color:#5a524b}
+.all-finds-links{margin-top:28px;padding:22px;border:1px solid var(--line);border-radius:16px;background:var(--panel)}
+.all-finds-links h3{margin:0 0 14px;font-size:19px}
+.all-finds-links ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px}
+.all-finds-links li{font-size:13.5px;line-height:1.5}
+.all-finds-links a{text-decoration:underline;text-underline-offset:3px}
+.all-finds-links a:hover{color:var(--accent)}
+@media(max-width:680px){.all-finds-links ul{grid-template-columns:1fr}}
+.product-image-wrap img{width:100%;height:100%;object-fit:cover;aspect-ratio:1/1}
+.journal-link-list{list-style:none;padding:0;display:grid;gap:16px}
+.journal-link-list a{font-weight:700;text-decoration:underline;text-underline-offset:3px}
+/* === FIX 2026-11-09: Hapus View Details, judul jadi link detail === */
+.view-details{display:none !important}
+.product-card-footer > a.product-title-hit{
+  margin:0 !important;
+  width:100% !important;
+  min-height:54px !important;
+  display:flex !important;
+  align-items:stretch !important;
+  justify-content:space-between !important;
+  gap:0 !important;
+  background:#1e1e1e !important;
+  color:#fff !important;
+  border:0 !important;
+  border-radius:0 !important;
+  padding:0 !important;
+  text-align:left !important;
+  text-decoration:none !important;
+}
+.product-card-footer > a.product-title-hit h3{
+  flex:1 1 auto !important;
+  font-size:13.5px !important;
+  line-height:1.35 !important;
+  font-weight:700 !important;
+  color:#fff !important;
+  padding:14px !important;
+  margin:0 !important;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+  align-self:center;
+}
+.product-card-footer > a.product-title-hit .product-title-arrow{
+  width:56px !important;
+  min-width:56px !important;
+  min-height:54px !important;
+  flex:0 0 56px !important;
+  border-left:1px solid #3a3a3a !important;
+  display:grid !important;
+  place-items:center !important;
+  font-size:20px !important;
+  color:#fff !important;
+}
+.product-card-footer > a.product-title-hit:hover{background:#252525 !important}
+.product-card-footer > a.product-title-hit:hover .product-title-arrow{background:#2a2a2a !important}
+:root[data-theme=dark] .product-card-footer > a.product-title-hit{background:#2e2a27 !important}
+:root[data-theme=dark] .product-card-footer > a.product-title-hit .product-title-arrow{border-left-color:#5a524b !important;color:#f5f2ed !important}
+@media(max-width:680px){
+  .product-card-footer > a.product-title-hit{min-height:52px !important}
+  .product-card-footer > a.product-title-hit h3{font-size:13px !important;padding:12px !important}
+  .product-card-footer > a.product-title-hit .product-title-arrow{width:52px !important;min-width:52px !important;min-height:52px !important;flex-basis:52px !important}
+}
+/* === FIX 2026-11-09: Finds page compact, CTA after title === */
+main > article{max-width:680px !important;margin:0 auto !important;padding:16px 20px 24px !important}
+main > article > span:first-child{font-size:11px !important;letter-spacing:.12em !important;margin:0 !important}
+main > article h1{font-size:26px !important;line-height:1.2 !important;margin:6px 0 10px !important}
+main > article h1 + a.retailer-cta, main > article h1 + p + a.retailer-cta{
+  display:inline-flex !important;margin:0 0 6px !important;
+  padding:10px 18px !important;font-size:14px !important;line-height:1.2 !important;border-radius:999px !important;
+}
+main > article .affiliate-note, main > article a.retailer-cta + p{
+  font-size:11px !important;line-height:1.4 !important;margin:0 0 12px !important;color:#666 !important;
+}
+main > article > p{font-size:14.5px !important;line-height:1.5 !important;margin:0 0 12px !important}
+main > article img{width:100% !important;max-height:360px !important;object-fit:cover !important;margin:0 0 8px !important;border-radius:10px !important}
+main > article > div{padding:14px 16px !important;border-radius:10px !important;margin:0 0 12px !important}
+main > article > div h2, main > article > div h3{font-size:15px !important;line-height:1.3 !important;margin:0 0 8px !important}
+main > article > div ul{margin:0 !important;padding:0 !important;display:grid !important;gap:6px !important}
+main > article > div li{font-size:14px !important;line-height:1.45 !important;margin:0 !important}
+main > article > div p{font-size:13px !important;line-height:1.45 !important;margin:8px 0 0 !important}
+@media(max-width:680px){
+  main > article{padding:12px 16px 20px !important}
+  main > article h1{font-size:23px !important}
+  main > article img{max-height:280px !important}
+}
+
+/* === LOGO - CLEANED 2026-11-09: satu-satunya aturan logo di file ini === */
+/* Light: file light, tanpa filter. Dark: file dark, kucing tetap hitam + keyline putih tipis. */
+.logo{display:inline-flex;align-items:center;white-space:nowrap;font-size:29px;font-weight:900;letter-spacing:-.075em;line-height:1;color:var(--ink)}
+.logo .brand-logo-image,
+.logo .brand-logo-dark,
+.logo .brand-logo-primary{display:none !important}
+.logo .brand-logo-parts{display:inline-flex;align-items:center;gap:0;flex:none;height:55px}
+.logo .brand-logo-parts-dark{display:none}
+.logo .brand-cat-head{display:block;width:48px;height:48px;object-fit:contain;flex:none;transform-origin:50% 72%;filter:none}
+.logo .brand-wordmark{display:block;width:141px;height:48px;object-fit:contain;object-position:left center;flex:none;margin-left:-3px;filter:none}
+:root[data-theme="dark"] .logo .brand-logo-parts:not(.brand-logo-parts-dark){display:none}
+:root[data-theme="dark"] .logo .brand-logo-parts.brand-logo-parts-dark{display:inline-flex}
+:root[data-theme="dark"] .logo .brand-logo-parts-dark .brand-cat-head,
+:root[data-theme="dark"] .logo .brand-logo-parts-dark .brand-wordmark{
+  filter:drop-shadow(1.5px 0 0 #fff9f2) drop-shadow(-1.5px 0 0 #fff9f2) drop-shadow(0 1.5px 0 #fff9f2) drop-shadow(0 -1.5px 0 #fff9f2);
+}
+.footer-logo{font-size:23px}
+.footer-logo .logo-cat{width:27px;height:27px}
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  .logo:hover .brand-cat-head,.logo:focus-visible .brand-cat-head{animation:ohhgood-head-wiggle .65s ease-in-out 1}
+}
+@keyframes ohhgood-head-wiggle{0%,100%{transform:rotate(0)}30%{transform:rotate(-13deg)}65%{transform:rotate(7deg)}}
+@media(min-width:681px) and (max-width:1100px){
+  .logo .brand-cat-head{width:42px;height:42px}
+  .logo .brand-wordmark{width:124px;height:42px}
+}
+/* Mobile: 1 logo khusus, logo-wordmark-dark-mobile.webp untuk LIGHT + DARK. Tanpa HTML baru, cuma CSS. */
+.logo::after{display:none}
+.footer-logo::after{display:none}
+@media(max-width:680px){
+  .logo{font-size:23px}
+  .logo .brand-logo-parts{display:none !important}
+  .logo::after{
+    content:"";
+    display:block !important;
+    width:clamp(132px,38vw,168px);
+    height:44px;
+    background-image:url("assets/logo-wordmark-dark-mobile.webp");
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position:left center;
+    filter:none !important;
+  }
+  .footer-logo .brand-logo-parts{display:none !important}
+  .footer-logo::after{
+    content:"";
+    display:block !important;
+    width:clamp(128px,36vw,156px);
+    height:40px;
+    background-image:url("assets/logo-wordmark-dark-mobile.webp");
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position:left center;
+    filter:none !important;
+  }
+}
+@media(max-width:390px){
+  .site-header .logo .brand-logo-parts{max-width:148px}
+  .site-header .brand-cat-head{width:38px;height:38px}
+  .site-header .brand-wordmark{width:110px;height:38px}
+  .logo{font-size:22px}
 }
