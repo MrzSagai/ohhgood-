@@ -1,63 +1,177 @@
-'use strict';
-const $=(selector,scope=document)=>scope.querySelector(selector);
-const $$=(selector,scope=document)=>Array.from(scope.querySelectorAll(selector));
-const host=location.hostname.toLowerCase();const isCloudflarePreview=host.endsWith('.ohhgood2.pages.dev')&&host!=='ohhgood2.pages.dev';const showDraftPreviews=isCloudflarePreview;let products=[];let selectedFilter='all';let searchQuery='';let previouslyFocused=null;
-const escapeHTML=(input)=>String(input??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
-// Mapping product id -> finds/ page slug (SEO, no date/price/ID)
-const FINDS_SLUG={
-  'yecaye-cable-tray':'yecaye-under-desk-cable-tray-l-clamp',
-  'joyroom':'joyroom-magnetic-cable-organizer-9-pack',
-  'lamicall':'lamicall-adjustable-cell-phone-stand',
-  'oxo':'oxo-sweep-swipe-laptop-cleaner',
-  'bagsmart':'bagsmart-electronics-organizer-travel-case',
-  'yecaye':'yecaye-under-desk-cable-tray-all-metal-clamp-mount',
-  'bamboo-dividers':'s-and-c-living-bamboo-drawer-dividers-4-pack',
-  'homeify-drawer':'homeify-under-desk-drawer-organizer-2-drawer',
-  'felt-mat':'dawntrees-large-felt-desk-mat-40x16',
-  'weenson-stand':'weenson-dual-monitor-stand-white-bamboo',
-  'rocdeer-shelf':'rocdeer-bamboo-dual-monitor-shelf',
-  'mind-design-purpose-planner':'mind-design-purpose-planner-walnut-holder',
-  'nuvograin-vertical-stand':'nuvograin-adjustable-vertical-laptop-stand-walnut',
-  'maxgear-mesh-3pack':'maxgear-mesh-pen-holder-3-pack',
-  'benq-screenbar-halo':'benq-screenbar-halo-monitor-light'
-};
-function findsUrl(p){ const slug=FINDS_SLUG[p.id]; return slug ? `finds/${slug}.html` : null; }
-function renderProducts(){
-  const matches=products.filter(p=>(selectedFilter==='all'||p.category===selectedFilter)&&(!searchQuery||[p.brand,p.name,p.description,...p.benefits].join(' ').toLocaleLowerCase().includes(searchQuery)));
-  $('#product-grid').innerHTML=matches.length?matches.map(p=>{ const url=findsUrl(p); return `<article class="product-card"><div class="product-image-wrap"><span class="product-peek" aria-hidden="true"><img src="assets/CTA-product%20card.webp" alt="" loading="lazy" width="105" height="105"></span>${p.status!=="published"?"<span class=\"draft-flag\">Preview · draft</span>":""}<img src="${escapeHTML(p.image)}" alt="Editorial concept of ${escapeHTML(p.brand+' '+p.name)}" loading="lazy" decoding="async" width="400" height="400"/><button type="button" class="product-image-hit" data-open="${escapeHTML(p.id)}" aria-label="Quick Look at ${escapeHTML(p.brand+' '+p.name)}"></button></div><div class="product-card-footer"><a class="product-title-hit" href="${url}"><h3>${escapeHTML(p.brand+' '+p.name)}</h3><span class="product-title-arrow" aria-hidden="true">→</span></a></div></article>`}).join(''):`<div class="empty-list"><h3>Good things are being curated.</h3><p>${searchQuery?'Try a different search term or clear the search.':'New finds will appear here once they are ready to share.'}</p><button type="button" class="filter" data-reset>View all finds</button></div>`;
-  $$('[data-open]',$('#product-grid')).forEach(button=>button.addEventListener('click',()=>openModal(button.dataset.open)));
-  $('[data-reset]',$('#product-grid'))?.addEventListener('click',()=>changeFilter('all'));
+// Ohhgood! - app.js - FULL VERSION - 4 Niches: Tidy / Cozy / Ritual / Green
+// Tinggal timpa file app.js lama. Gak perlu edit apa-apa lagi.
+
+const PRODUCTS_URL = 'content/products.json';
+const ALLOWED_CATEGORIES = ['tidy', 'cozy', 'ritual', 'green'];
+
+let allProducts = [];
+let currentFilter = 'all';
+let currentSearch = '';
+
+function escapeHTML(s) {
+  return String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 }
-function changeFilter(next){selectedFilter=next;$$('[data-filter]').forEach(b=>{const current=b.dataset.filter===next;b.classList.toggle('active',current);b.setAttribute('aria-pressed',String(current))});renderProducts()}
-function openModal(id){const product=products.find(p=>p.id===id);if(!product)return;previouslyFocused=document.activeElement;$('#quicklook-image').src=product.image;$('#quicklook-image').alt=`Editorial concept of ${product.brand} ${product.name}`;$('#quicklook-brand').textContent=product.brand;$('#quicklook-title').textContent=product.name;$('#quicklook-desc').textContent=product.description;$('#quicklook-benefits').replaceChildren(...product.benefits.map(item=>{const li=document.createElement('li');li.textContent=item;return li}));const cta=$('#retailer-cta');cta.removeAttribute('href');cta.removeAttribute('target');cta.removeAttribute('rel');cta.textContent=product.status==='draft'?'Preview only — not published':'Retailer link coming soon ↗';cta.classList.add('is-disabled');cta.setAttribute('aria-disabled','true');cta.tabIndex=-1;if(product.status==='published'&&product.retailer_url){try{const u=new URL(product.retailer_url);if(u.protocol==='https:'){cta.href=u.href;cta.textContent='View at Retailer ↗';cta.classList.remove('is-disabled');cta.removeAttribute('aria-disabled');cta.tabIndex=0;cta.target='_blank';cta.rel='noopener noreferrer sponsored'}}catch{}}const retailerCat=document.createElement('span');retailerCat.className='cta-retailer-cat';retailerCat.setAttribute('aria-hidden','true');retailerCat.innerHTML='<img src="assets/CTA-secondary.webp" alt="" width="110" height="110" loading="lazy">';cta.appendChild(retailerCat);$('#modal-backdrop').hidden=false;document.body.classList.add('modal-open');$('.quicklook').scrollTop=0;$('.modal-close').focus()}
-function closeModal(){$('#modal-backdrop').hidden=true;document.body.classList.remove('modal-open');previouslyFocused?.focus()}
-function initialize(){const storedTheme=(()=>{try{return localStorage.getItem('ohhgood-theme')}catch{return null}})();setTheme(storedTheme==='dark'?'dark':'light');$('.theme-toggle').addEventListener('click',()=>{const theme=document.documentElement.dataset.theme==='dark'?'light':'dark';setTheme(theme);try{localStorage.setItem('ohhgood-theme',theme)}catch{}});$('.menu-toggle').addEventListener('click',()=>{const button=$('.menu-toggle');const open=button.getAttribute('aria-expanded')!=='true';button.setAttribute('aria-expanded',String(open));button.setAttribute('aria-label',open?'Close menu':'Open menu');$('#mobile-nav').hidden=!open});$$('#mobile-nav a').forEach(a=>a.addEventListener('click',()=>{$('#mobile-nav').hidden=true;$('.menu-toggle').setAttribute('aria-expanded','false');$('.menu-toggle').setAttribute('aria-label','Open menu')}));$$('[data-filter]').forEach(button=>button.addEventListener('click',()=>changeFilter(button.dataset.filter)));$$('[data-category]').forEach(button=>button.addEventListener('click',()=>{changeFilter(button.dataset.category);$('#featured').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})}));$('.modal-close').addEventListener('click',closeModal);$('#modal-backdrop').addEventListener('click',event=>{if(event.target.id==='modal-backdrop')closeModal()});document.addEventListener('keydown',event=>{if($('#modal-backdrop').hidden){if(event.key==='Escape'&&!$('#mobile-nav').hidden){$('#mobile-nav').hidden=true;$('.menu-toggle').setAttribute('aria-expanded','false');$('.menu-toggle').setAttribute('aria-label','Open menu');$('.menu-toggle').focus()}return}if(event.key==='Escape'){closeModal();return}if(event.key==='Tab'){const focusables=$$('button:not([disabled]),a[href]', $('.quicklook')).filter(x=>x.tabIndex!==-1);if(!focusables.length)return;const first=focusables[0],last=focusables.at(-1);if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}}});const search=$('#find-search-input');const clear=$('#clear-find-search');search?.addEventListener('input',()=>{searchQuery=search.value.trim().toLocaleLowerCase();clear.hidden=!searchQuery;renderProducts()});clear?.addEventListener('click',()=>{search.value='';searchQuery='';clear.hidden=true;renderProducts();search.focus()});
- const heroCTA=$('.mascot-trigger');
- if(heroCTA&&window.matchMedia('(hover: none)').matches){
-   let activeTimeout;
-   const peek=()=>{heroCTA.classList.add('mobile-peek-visible');window.clearTimeout(activeTimeout);activeTimeout=window.setTimeout(()=>heroCTA.classList.remove('mobile-peek-visible'),1050)};
-   heroCTA.addEventListener('pointerdown',peek,{passive:true});
-   if('IntersectionObserver' in window&&!window.matchMedia('(hover: none)').matches){
-     const observer=new IntersectionObserver(entries=>{for(const e of entries){if(e.isIntersecting){peek();observer.disconnect();break}}},{threshold:.55});
-     observer.observe(heroCTA);
-   }
- }
- $('#year').textContent=new Date().getFullYear();loadProducts();loadJournal()}
-function setTheme(theme){document.documentElement.dataset.theme=theme;$('.theme-toggle').textContent=theme==='dark'?'Light mode':'Dark mode';$('.theme-toggle').setAttribute('aria-label',`Switch to ${theme==='dark'?'light':'dark'} mode`)}
-async function loadProducts(){try{const response=await fetch('content/products.json');if(!response.ok)throw Error(response.status);const result=await response.json();if(!Array.isArray(result))throw Error('Invalid products list');products=result.filter(p=>p&&typeof p.id==='string'&&typeof p.name==='string'&&typeof p.brand==='string'&&typeof p.image==='string'&&['desk','go','break'].includes(p.category)&&((p.status==='published'&&typeof p.retailer_url==='string'&&/^https:\/\//i.test(p.retailer_url))||(showDraftPreviews&&p.status==='draft'))).map(p=>({...p,benefits:Array.isArray(p.benefits)?p.benefits.filter(x=>typeof x==='string'):[],description:typeof p.description==='string'?p.description:''}));renderProducts()}catch(error){console.error('Unable to load products:',error);$('#product-grid').innerHTML='<div class="empty-list">Unable to load products. Please refresh.</div>'}}
-async function loadJournal(){
-  const root=$('#journal-content');if(!root)return;
-  // Do not overwrite static journal list in index.html (SEO) - it already has 3 articles linking to journal.html?slug=
-  if(root.querySelector('.journal-link-list')) return;
-  try{
-    const response=await fetch('content/articles.json');
-    if(!response.ok)throw Error(response.status);
-    const items=await response.json();
-    if(!Array.isArray(items))throw Error('Invalid articles');
-    const live=items.filter(a=>a&&a.status==='published'&&typeof a.slug==='string'&&/^[a-z0-9-]+$/.test(a.slug)&&typeof a.title==='string');
-    if(!live.length)return;
-    root.className='journal-grid';
-    root.innerHTML=live.map(a=>`<a class="journal-card" href="journal.html?slug=${encodeURIComponent(a.slug)}">${/^(https:\/\/images\.unsplash\.com\/photo-[a-zA-Z0-9-]+\?|\/?assets\/[a-zA-Z0-9_./-]+$)/.test(a.cover_image||"")?`<img class="journal-cover" src="${escapeHTML(a.cover_image)}" alt="" loading="lazy" decoding="async">`:""}<span class="eyebrow">GOOD JOURNAL</span><h3>${escapeHTML(a.title)}</h3><p>${escapeHTML(a.summary||'A little something worth reading.')}</p><span class="journal-read">Read story ↗</span></a>`).join('');
-  }catch(error){console.error('Unable to load journal:',error)}
+
+function getFilteredProducts() {
+  let list = allProducts.filter(p => p.status === 'published');
+  if (currentFilter !== 'all') {
+    list = list.filter(p => p.category === currentFilter);
+  }
+  if (currentSearch) {
+    const q = currentSearch.toLowerCase();
+    list = list.filter(p => {
+      const hay = [p.brand, p.name, p.description, ...(p.benefits || [])].join(' ').toLowerCase();
+      return hay.includes(q);
+    });
+  }
+  return list;
 }
-document.addEventListener('DOMContentLoaded',initialize);
+
+function renderProducts() {
+  const grid = document.getElementById('product-grid');
+  if (!grid) return;
+  const list = getFilteredProducts();
+  if (!list.length) {
+    grid.innerHTML = '<p>No finds yet in this category.</p>';
+    return;
+  }
+  grid.innerHTML = list.map(p => `
+    <article class="product-card" data-id="${escapeHTML(p.id)}" tabindex="0" role="button" aria-label="${escapeHTML(p.brand)} ${escapeHTML(p.name)}">
+      <div class="product-image-wrap"><img src="${escapeHTML(p.image)}" alt="${escapeHTML(p.brand)} ${escapeHTML(p.name)}" loading="lazy" decoding="async"></div>
+      <div class="product-card-footer">
+        <div class="product-card-text"><span class="product-brand">${escapeHTML(p.brand)}</span><h3 class="product-title">${escapeHTML(p.name)}</h3></div>
+        <span class="product-arrow" aria-hidden="true">&gt;</span>
+      </div>
+    </article>
+  `).join('');
+  grid.querySelectorAll('.product-card').forEach(card => {
+    card.addEventListener('click', () => openQuickLook(card.dataset.id));
+    card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openQuickLook(card.dataset.id); } });
+  });
+}
+
+function openQuickLook(id) {
+  const p = allProducts.find(x => x.id === id);
+  if (!p) return;
+  const backdrop = document.getElementById('modal-backdrop');
+  const img = document.getElementById('quicklook-image');
+  const brand = document.getElementById('quicklook-brand');
+  const title = document.getElementById('quicklook-title');
+  const desc = document.getElementById('quicklook-desc');
+  const benefits = document.getElementById('quicklook-benefits');
+  const cta = document.getElementById('retailer-cta');
+  if (img) { img.src = p.image; img.alt = `${p.brand} ${p.name}`; }
+  if (brand) brand.textContent = p.brand;
+  if (title) title.textContent = p.name;
+  if (desc) desc.textContent = p.description;
+  if (benefits) benefits.innerHTML = (p.benefits || []).map(b => `<li>${escapeHTML(b)}</li>`).join('');
+  if (cta) {
+    if (p.retailer_url) {
+      cta.href = p.retailer_url;
+      cta.textContent = 'View at Retailer ↗';
+      cta.classList.remove('is-disabled');
+      cta.removeAttribute('aria-disabled');
+      cta.removeAttribute('tabindex');
+    } else {
+      cta.textContent = 'Retailer link coming soon ↗';
+      cta.classList.add('is-disabled');
+    }
+  }
+  if (backdrop) { backdrop.hidden = false; document.body.style.overflow = 'hidden'; }
+}
+
+function closeQuickLook() {
+  const backdrop = document.getElementById('modal-backdrop');
+  if (backdrop) backdrop.hidden = true;
+  document.body.style.overflow = '';
+}
+
+function setFilter(filter) {
+  currentFilter = filter;
+  document.querySelectorAll('.filter-row .filter').forEach(btn => {
+    const active = btn.dataset.filter === filter;
+    btn.classList.toggle('active', active);
+    btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+  });
+  renderProducts();
+}
+
+function initFilters() {
+  document.querySelectorAll('.filter-row .filter').forEach(btn => {
+    btn.addEventListener('click', () => setFilter(btn.dataset.filter));
+  });
+  document.querySelectorAll('.category-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const cat = card.dataset.category;
+      if (cat && ALLOWED_CATEGORIES.includes(cat)) {
+        setFilter(cat);
+        document.getElementById('featured')?.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+}
+
+function initSearch() {
+  const input = document.getElementById('find-search-input');
+  const clear = document.getElementById('clear-find-search');
+  if (!input) return;
+  input.addEventListener('input', () => {
+    currentSearch = input.value.trim();
+    if (clear) clear.hidden = !currentSearch;
+    renderProducts();
+  });
+  if (clear) clear.addEventListener('click', () => { input.value = ''; currentSearch = ''; clear.hidden = true; renderProducts(); });
+}
+
+function initModal() {
+  const backdrop = document.getElementById('modal-backdrop');
+  const closeBtn = document.querySelector('.modal-close');
+  if (closeBtn) closeBtn.addEventListener('click', closeQuickLook);
+  if (backdrop) backdrop.addEventListener('click', e => { if (e.target === backdrop) closeQuickLook(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeQuickLook(); });
+}
+
+function initHeader() {
+  const year = document.getElementById('year');
+  if (year) year.textContent = new Date().getFullYear();
+  const themeBtn = document.querySelector('.theme-toggle');
+  if (themeBtn) themeBtn.addEventListener('click', () => {
+    const html = document.documentElement;
+    const cur = html.getAttribute('data-theme') || 'light';
+    const next = cur === 'light' ? 'dark' : 'light';
+    html.setAttribute('data-theme', next);
+    themeBtn.textContent = next === 'light' ? 'Dark mode' : 'Light mode';
+    themeBtn.setAttribute('aria-label', next === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
+  });
+  const menuBtn = document.querySelector('.menu-toggle');
+  const mobileNav = document.getElementById('mobile-nav');
+  if (menuBtn && mobileNav) menuBtn.addEventListener('click', () => {
+    const open = mobileNav.hidden === false;
+    mobileNav.hidden = open;
+    menuBtn.setAttribute('aria-expanded', open ? 'false' : 'true');
+  });
+}
+
+async function loadProducts() {
+  const grid = document.getElementById('product-grid');
+  try {
+    const res = await fetch(PRODUCTS_URL);
+    if (!res.ok) throw new Error('Failed to load products');
+    const data = await res.json();
+    allProducts = Array.isArray(data) ? data : (data.products || []);
+    // Safety: only allowed categories show
+    allProducts = allProducts.filter(p => ALLOWED_CATEGORIES.includes(p.category));
+    renderProducts();
+  } catch (err) {
+    if (grid) grid.innerHTML = '<p>Unable to load products. Please refresh.</p>';
+    console.error(err);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initFilters();
+  initSearch();
+  initModal();
+  initHeader();
+  loadProducts();
+});
