@@ -701,3 +701,19 @@ main > article > div p{font-size:13px !important;line-height:1.45 !important;mar
   .site-header .brand-wordmark{width:110px;height:38px}
   .logo{font-size:22px}
 }
+/* --- FIX 4 NICHE CATEGORY GRID --- */
+.categories {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+@media (max-width: 900px) {
+  .categories { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .categories { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .category-card .category-label strong { font-size: 14px; }
+  .category-card .category-label small { font-size: 11px; line-height: 1.3; }
+}
+.filter-row { flex-wrap: wrap; gap: 8px; }
+.filter-row .filter { white-space: nowrap; }

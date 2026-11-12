@@ -5,11 +5,7 @@
     "name": "Mesh Pen Holder — 3 Pack Black",
     "category": "tidy",
     "description": "Premium mesh metal pencil holders with non-slip EVA pad. 3.7\" tall, round, for desk organization.",
-    "benefits": [
-      "3 pack, mesh metal",
-      "Non-slip EVA pad",
-      "3.7\" tall, holds 30+ pens"
-    ],
+    "benefits": ["3 pack, mesh metal", "Non-slip EVA pad", "3.7\" tall, holds 30+ pens"],
     "image": "assets/maxgear.webp",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/B0756X76P5?tag=ohhgood0c-20"
@@ -20,12 +16,8 @@
     "name": "Magnetic Cable Organizer — 6 Pack",
     "category": "tidy",
     "description": "Magnetic cable clips that keep chargers tidy on your desk. Easy to generate, flat and simple.",
-    "benefits": [
-      "Magnetic, easy snap",
-      "6 pack for desk + nightstand",
-      "Keeps cables tidy"
-    ],
-    "image": "assets/maxgear.webp",
+    "benefits": ["Magnetic, easy snap", "6 pack for desk + nightstand", "Keeps cables tidy"],
+    "image": "assets/joyroom.webp",
     "status": "published",
     "retailer_url": "https://www.amazon.com/s?k=JOYROOM+magnetic+cable+organizer&tag=ohhgood0c-20"
   },
@@ -35,14 +27,32 @@
     "name": "Electronics Organizer — Travel Pouch",
     "category": "tidy",
     "description": "Double-layer pouch for cables, chargers and small tech. Tidy inside your bag.",
-    "benefits": [
-      "Double layer, padded",
-      "Fits cables + power bank",
-      "Travel-friendly"
-    ],
-    "image": "assets/maxgear.webp",
+    "benefits": ["Double layer, padded", "Fits cables + power bank", "Travel-friendly"],
+    "image": "assets/bagsmart.webp",
     "status": "published",
     "retailer_url": "https://www.amazon.com/s?k=BAGSMART+electronics+organizer&tag=ohhgood0c-20"
+  },
+  {
+    "id": "yecaye-cable-tray-metal",
+    "brand": "YECAYE",
+    "name": "Under Desk Cable Management Tray — Metal",
+    "category": "tidy",
+    "description": "Metal cable tray with L-clamp, open wire design for under-desk cable management. No drill needed.",
+    "benefits": ["Metal wire tray, open design", "L-clamp, no drill", "Holds power strip + cables"],
+    "image": "assets/yecaye.webp",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/B0953L1ML6?tag=ohhgood0c-20"
+  },
+  {
+    "id": "nuvograin-laptop-stand",
+    "brand": "Nuvograin",
+    "name": "Adjustable Vertical Laptop Stand — Walnut",
+    "category": "tidy",
+    "description": "Faceted diamond-cut walnut vertical laptop stand, adjustable width, saves desk space.",
+    "benefits": ["Faceted diamond-cut walnut", "Adjustable width", "Vertical, saves desk space"],
+    "image": "assets/nuvograin.webp",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/B0FL6B9MDD?tag=ohhgood0c-20"
   },
   {
     "id": "benq-screenbar-halo",
@@ -50,11 +60,7 @@
     "name": "ScreenBar Halo Monitor Light",
     "category": "cozy",
     "description": "Wireless controller, adjustable brightness and color temperature, eye-care monitor light bar with no screen glare.",
-    "benefits": [
-      "Wireless dial controller",
-      "Auto brightness + hue adjust",
-      "No screen glare, eye-care"
-    ],
+    "benefits": ["Wireless dial controller", "Auto brightness + hue adjust", "No screen glare, eye-care"],
     "image": "assets/benq.webp",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/B08WT889V3?tag=ohhgood0c-20"
@@ -65,12 +71,8 @@
     "name": "Amber Sandalwood Candle — 7oz Soy",
     "category": "cozy",
     "description": "7oz soy candle in amber glass jar. Warm woody fragrance, clean burn, perfect for evenings and meditation.",
-    "benefits": [
-      "Soy wax, 50h burn",
-      "Amber glass jar, cozy glow",
-      "Warm woody scent"
-    ],
-    "image": "assets/benq.webp",
+    "benefits": ["Soy wax, 50h burn", "Amber glass jar, cozy glow", "Warm woody scent"],
+    "image": "assets/candle-amber.webp",
     "status": "published",
     "retailer_url": "https://www.amazon.com/s?k=amber+sandalwood+candle+soy&tag=ohhgood0c-20"
   },
@@ -80,12 +82,8 @@
     "name": "Candle Warmer Lamp — Dimmable Amber",
     "category": "cozy",
     "description": "Dimmable wax melt warmer with amber lampshade. Vintage nightstand lamp for cozy ambience without flame.",
-    "benefits": [
-      "Dimmable, timer",
-      "Amber lampshade, warm light",
-      "No flame, safe"
-    ],
-    "image": "assets/benq.webp",
+    "benefits": ["Dimmable, timer", "Amber lampshade, warm light", "No flame, safe"],
+    "image": "assets/candle-warmer.webp",
     "status": "published",
     "retailer_url": "https://www.amazon.com/s?k=candle+warmer+lamp+dimmable+amber&tag=ohhgood0c-20"
   },
@@ -95,11 +93,7 @@
     "name": "Purpose Planner — Solid Walnut Holder",
     "category": "ritual",
     "description": "Analog system with 120 Today cards and walnut tray that holds the stack and displays today's focus. Includes slate gift box and metal divider.",
-    "benefits": [
-      "Solid walnut tray holds stack",
-      "120 Today cards",
-      "Slate gift box + metal divider"
-    ],
+    "benefits": ["Solid walnut tray holds stack", "120 Today cards", "Slate gift box + metal divider"],
     "image": "assets/mind-design.webp",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/B0BT73XYQG?tag=ohhgood0c-20"
@@ -110,12 +104,8 @@
     "name": "Reading Journal — Linen Cover",
     "category": "ritual",
     "description": "Linen-wrapped hardcover journal with minimal pages for tracking books, notes and quotes. Easy to generate, flat linen texture.",
-    "benefits": [
-      "Linen-wrapped hardcover",
-      "Minimal layout, 52 books",
-      "Gold foil, satin marker"
-    ],
-    "image": "assets/mind-design.webp",
+    "benefits": ["Linen-wrapped hardcover", "Minimal layout, 52 books", "Gold foil, satin marker"],
+    "image": "assets/journal-linen.webp",
     "status": "published",
     "retailer_url": "https://www.amazon.com/s?k=linen+journal+reading+journal&tag=ohhgood0c-20"
   },
@@ -125,12 +115,8 @@
     "name": "Herbal Tea Ritual Set — Calm Blend",
     "category": "ritual",
     "description": "Herbal tea for slow evenings. Chamomile and mint blend for calm ritual before bed.",
-    "benefits": [
-      "Herbal, caffeine-free",
-      "Calm evening ritual",
-      "Easy to brew"
-    ],
-    "image": "assets/mind-design.webp",
+    "benefits": ["Herbal, caffeine-free", "Calm evening ritual", "Easy to brew"],
+    "image": "assets/tea-ritual.webp",
     "status": "published",
     "retailer_url": "https://www.amazon.com/s?k=herbal+tea+calm+chamomile&tag=ohhgood0c-20"
   },
@@ -140,12 +126,8 @@
     "name": "Mid Century Planter — Walnut Stand + White Ceramic",
     "category": "green",
     "description": "10 inch white ceramic planter with American Black Walnut stand. Mid-century, drainage hole with plug.",
-    "benefits": [
-      "American Black Walnut stand",
-      "White ceramic, drainage",
-      "10 inch, for snake plant / fiddle leaf"
-    ],
-    "image": "assets/nuvograin.webp",
+    "benefits": ["American Black Walnut stand", "White ceramic, drainage", "10 inch, for snake plant / fiddle leaf"],
+    "image": "assets/planter-omysa.webp",
     "status": "published",
     "retailer_url": "https://www.amazon.com/s?k=OMYSA+mid+century+planter+walnut+stand&tag=ohhgood0c-20"
   },
@@ -155,12 +137,8 @@
     "name": "Ceramic Planter Set — 2 Pack Walnut Stand",
     "category": "green",
     "description": "Set of 2 ceramic planters with walnut stands for small monstera, pothos, peace lily. Biophilic corner starter.",
-    "benefits": [
-      "2 pack, walnut stands",
-      "Ceramic, drainage",
-      "For small indoor plants"
-    ],
-    "image": "assets/nuvograin.webp",
+    "benefits": ["2 pack, walnut stands", "Ceramic, drainage", "For small indoor plants"],
+    "image": "assets/planter-set.webp",
     "status": "published",
     "retailer_url": "https://www.amazon.com/s?k=ceramic+planter+walnut+stand+set&tag=ohhgood0c-20"
   },
@@ -170,12 +148,8 @@
     "name": "Monstera Deliciosa — Live Plant",
     "category": "green",
     "description": "Live monstera for Green Corner. The plant behind all your warm editorial photos.",
-    "benefits": [
-      "Live plant, easy care",
-      "Biophilic, air purifying",
-      "Iconic monstera leaves"
-    ],
-    "image": "assets/nuvograin.webp",
+    "benefits": ["Live plant, easy care", "Biophilic, air purifying", "Iconic monstera leaves"],
+    "image": "assets/monstera.webp",
     "status": "published",
     "retailer_url": "https://www.amazon.com/s?k=monstera+deliciosa+live+plant&tag=ohhgood0c-20"
   }
