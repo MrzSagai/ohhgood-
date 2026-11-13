@@ -29,7 +29,7 @@ Use a GitHub App rather than a broad personal access token or an OAuth token wit
 6. Under repository permissions, set **Contents: Read and write**. Metadata read-only is required by GitHub.
 7. Do not enable unrelated permissions or webhook access for this first version.
 8. Create the app, note its **App ID** and **Client ID**, and generate a **Client secret**.
-9. Generate a private key and download the PEM file. Keep it private.
+9. Generate a private key and download the PEM file. Keep it private. GitHub-generated RSA keys are commonly PKCS#1 (`BEGIN RSA PRIVATE KEY`); the Pages Function imports PKCS#8, so convert it before adding the secret: `openssl pkcs8 -topk8 -nocrypt -in github-app-key.pem -out github-app-key-pkcs8.pem`. Paste the complete converted PEM (`BEGIN PRIVATE KEY` / `END PRIVATE KEY`) into Cloudflare.
 10. Install the app and choose **Only select repositories → MrzSagai/ohhgood-**. Do not install it on all repositories.
 11. Find the installation ID from the installation's GitHub URL or the installed-app settings page.
 
