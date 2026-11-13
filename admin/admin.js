@@ -37,6 +37,12 @@
     }
   }
   function esc(value) { return String(value ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c])); }
+  function imageUrl(path) {
+    const value = String(path || "").trim();
+    if (!value) return "";
+    if (/^(?:https?:)?\\/\\//i.test(value) || value.startsWith("data:") || value.startsWith("/")) return value;
+    return "/" + value.replace(/^\\.\\/+/, "");
+  }
   function statusTag(status) { return '<span class="status ' + (status === "published" ? "published" : "draft") + '">' + esc(status || "draft") + '</span>'; }
   function render() {
     const published = state.products.filter(p => p.status === "published").length;
@@ -47,7 +53,7 @@
     $("#stat-drafts").textContent = drafts;
     $("#nav-products").textContent = state.products.length;
     $("#nav-articles").textContent = state.articles.length;
-    $("#recent-products").innerHTML = state.products.slice(0,5).map(p => '<div class="recent-row"><img class="recent-thumb" src="' + esc(p.image || "") + '" alt=""><div class="recent-info"><strong>' + esc(p.name) + '</strong><small>' + esc(p.brand) + ' · ' + esc(p.category) + '</small></div>' + statusTag(p.status) + '</div>').join("") || '<p class="muted">No products yet.</p>';
+    $("#recent-products").innerHTML = state.products.slice(0,5).map(p => '<div class="recent-row"><img class="recent-thumb" src="' + esc(imageUrl(p.image)) + '" alt=""><div class="recent-info"><strong>' + esc(p.name) + '</strong><small>' + esc(p.brand) + ' · ' + esc(p.category) + '</small></div>' + statusTag(p.status) + '</div>').join("") || '<p class="muted">No products yet.</p>';
     const missingImages = state.products.filter(p => !p.image).length;
     const noLinks = state.products.filter(p => p.status === "published" && !p.retailer_url).length;
     $("#health-list").innerHTML = [
@@ -62,7 +68,7 @@
     const query = $("#product-search").value.toLowerCase(), filter = $("#product-filter").value;
     const items = state.products.filter(p => (filter === "all" || p.status === filter) && [p.name,p.brand,p.id,p.category].join(" ").toLowerCase().includes(query));
     $("#product-count").textContent = items.length + " items";
-    $("#products-table").innerHTML = items.map(p => '<tr><td><div class="product-cell"><img src="' + esc(p.image || "") + '" alt=""><div><strong>' + esc(p.name) + '</strong><div class="muted">' + esc(p.brand) + '</div></div></div></td><td>' + esc(p.category) + '</td><td>' + statusTag(p.status) + '</td><td>' + (p.retailer_url ? '<a href="' + esc(p.retailer_url) + '" target="_blank" rel="noopener noreferrer">Open link ↗</a>' : '—') + '</td><td><button class="row-action" data-edit-product="' + esc(p.id) + '">Edit</button></td></tr>').join("") || '<tr><td colspan="5" class="empty-row">No products match this search.</td></tr>';
+    $("#products-table").innerHTML = items.map(p => '<tr><td><div class="product-cell"><img src="' + esc(imageUrl(p.image)) + '" alt=""><div><strong>' + esc(p.name) + '</strong><div class="muted">' + esc(p.brand) + '</div></div></div></td><td>' + esc(p.category) + '</td><td>' + statusTag(p.status) + '</td><td>' + (p.retailer_url ? '<a href="' + esc(p.retailer_url) + '" target="_blank" rel="noopener noreferrer">Open link ↗</a>' : '—') + '</td><td><button class="row-action" data-edit-product="' + esc(p.id) + '">Edit</button></td></tr>').join("") || '<tr><td colspan="5" class="empty-row">No products match this search.</td></tr>';
   }
   function renderArticles() {
     const query = $("#article-search").value.toLowerCase(), filter = $("#article-filter").value;
