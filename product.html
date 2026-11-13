@@ -3,7 +3,12 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Product - Ohhgood!</title>
-<meta name="description" content="Ohhgood! independent finds. No pressure, no made-up ratings.">
+<meta name="description" content="Independent product finds from Ohhgood!, with useful details and honest considerations.">
+<meta property="og:type" content="product">
+<meta property="og:site_name" content="Ohhgood!">
+<meta property="og:title" content="Product finds — Ohhgood!">
+<meta property="og:description" content="Independent product finds from Ohhgood!.">
+<link rel="canonical" href="https://ohhgood.store/product.html">
 <link rel="stylesheet" href="styles.css">
 <style>
   .product-page{max-width:760px;margin:0 auto;padding:24px 18px 64px;background:#FFFDF8}
@@ -35,48 +40,58 @@
 <main class="product-page" id="app"><p style="padding:40px 0;text-align:center">Loading product...</p></main>
 <footer class="footer"><div class="container footer-inner"><p>Ohhgood! Independent discoveries. No pressure, no made-up ratings.</p><a href="standards.html">Editorial standards and disclosures</a></div></footer>
 <script>
-function clean(s){ if(!s) return ""; return String(s).replace(/—/g, ",").replace(/–/g, "-").replace(/\[entity-[^\]]+\]/g, "Amazon"); }
-function catLabel(c){ return {tidy:"Tidy Space", cozy:"Cozy Ambience", ritual:"Slow Ritual", green:"Green Corner"}[c] || c; }
-function slugToId(){ return new URLSearchParams(location.search).get("id") || ""; }
-async function load(){
-  let data=null;
-  for(const url of ["content/products.json","products.json","./content/products.json"]){
-    try{ const r=await fetch(url); if(r.ok){ data=await r.json(); break; } }catch(e){}
-  }
-  const app=document.getElementById("app");
-  if(!data){ app.innerHTML='<div class="notfound"><h2>Products file not found</h2><p>Upload content/products.json from CMS export, then refresh.</p><p><a href="index.html">Back to all finds</a></p></div>'; return; }
-  const id=slugToId();
-  const p=data.find(x=>x.id===id) || data[0];
-  if(!p){ app.innerHTML='<div class="notfound"><h2>Product not found</h2><p><a href="index.html">Back to all finds</a></p></div>'; return; }
-  document.title = clean(p.brand+" "+p.name+" - Ohhgood!");
-  const benefits=(p.benefits||[]).map(b=>"<li>"+clean(b)+"</li>").join("");
-  const how=(p.how_to||"Pick your spot on a flat, clean surface. Set it up without tools. Test it with your daily items. Use it for a few days and adjust the position if needed.").split("\n").filter(Boolean);
-  const howHtml=how.map((s,i)=>"<li><strong>Step "+(i+1)+":</strong> "+clean(s)+"</li>").join("");
-  const whoFor=(p.who_for||"You use this spot every day. You want a calmer, tidier space. You prefer simple tools that do one job well.").split("\n").filter(Boolean).map(s=>"<li>"+clean(s)+"</li>").join("");
-  const whoSkip=(p.who_skip||"You need a heavy duty solution. Your surface is rough or curved. You need to hide a lot of cables at once.").split("\n").filter(Boolean).map(s=>"<li>"+clean(s)+"</li>").join("");
-  const check=(p.check_before||"Count your items first. Check the size and material. Check the surface where you will place it. Check the color against your desk.").split("\n").filter(Boolean).map(s=>"<li>"+clean(s)+"</li>").join("");
-  const faqs=p.faq||[{q:"Will it fit my desk?",a:"In most cases yes, if your desk is flat and you have a small spot for it. Measure your space first, then check the size on Amazon."},{q:"Is it good for renters?",a:"Yes, most of these finds are renter friendly. No drill, no holes, easy to remove."},{q:"What if I do not like it?",a:"Check the return policy on Amazon before you buy. Keep the box until you are sure."}];
-  const faqHtml=faqs.map(f=>"<h3>"+clean(f.q)+"</h3><p>"+clean(f.a)+"</p>").join("");
-  const related=data.filter(x=>x.category===p.category && x.id!==p.id).slice(0,3);
-  const relHtml=related.map(r=>'<a href="product.html?id='+encodeURIComponent(r.id)+'"><img src="'+clean(r.image)+'" alt="'+clean(r.name)+'"><span>'+clean(r.brand+" "+r.name)+'</span></a>').join("");
-  app.innerHTML = `
-  <p class="crumb"><a href="index.html">Home</a> / <a href="index.html#featured">${catLabel(p.category)}</a> / ${clean(p.name)}</p>
-  <p class="eyebrow">${catLabel(p.category)} - Desk Finds</p>
-  <h1>${clean(p.brand)} ${clean(p.name)}</h1>
-  <p class="disclosure">(paid link) As an Amazon Associate I earn from qualifying purchases. Check price, stock, and details on Amazon before buying, listings can change.</p>
-  <p class="intro">${clean(p.description)}</p>
-  <img class="product-hero" src="${clean(p.image)}" alt="${clean(p.name)}">
-  <a class="cta-below-img" href="${clean(p.retailer_url)}" target="_blank" rel="nofollow sponsored noopener">View at Retailer</a>
-  <p class="cta-note">Opens Amazon in a new tab. Price and stock are on Amazon.</p>
-  <div class="box"><h2 style="margin-top:0">Why we like it</h2><ul>${benefits}</ul></div>
-  <h2>How it actually works on a real desk</h2><p>This is a simple, low effort find. It does one job well, and it fits a calm home without adding clutter. Set it up once, then forget about it.</p><ol>${howHtml}</ol>
-  <h2>Who it is for, and who should skip it</h2><div class="two-col"><div class="box"><h3 style="margin-top:0">Good for you if:</h3><ul>${whoFor}</ul></div><div class="box"><h3 style="margin-top:0">Skip it if:</h3><ul>${whoSkip}</ul></div></div>
-  <h2>What to check before buying</h2><ul>${check}</ul>
-  <h2>Quick specs</h2><table class="spec-table"><tr><td>Brand</td><td>${clean(p.brand)}</td></tr><tr><td>Category</td><td>${catLabel(p.category)}</td></tr><tr><td>Best for</td><td>${clean(p.description)}</td></tr><tr><td>Install</td><td>No drill, renter friendly in most cases</td></tr></table>
-  <h2>FAQ</h2>${faqHtml}
-  <h2>Related finds in ${catLabel(p.category)}</h2><div class="related">${relHtml || "<p>No related finds yet.</p>"}</div>
-  <p style="margin-top:28px"><a href="index.html#featured">Back to all finds</a></p>`;
+"use strict";
+const CATEGORY_LABELS={tidy:"Tidy Space",cozy:"Cozy Ambience",ritual:"Slow Ritual",green:"Green Corner"};
+const escapeHTML=(value)=>String(value??"").replace(/[&<>"']/g,(char)=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
+const safeImage=(value)=>typeof value==="string"&&/^assets\/[a-zA-Z0-9_./% -]+$/.test(value)&&!value.includes("..")?value:"";
+const safeRetailer=(value)=>{try{const url=new URL(value);return url.protocol==="https:"?url.href:"";}catch{return "";}};
+const listItems=(value)=>Array.isArray(value)?value.filter((item)=>typeof item==="string"&&item.trim()).map((item)=>"<li>"+escapeHTML(item)+"</li>").join(""):"";
+function updateMeta(selector,attribute,value){const element=document.querySelector(selector);if(element)element.setAttribute(attribute,value);}
+function showNotFound(message){const app=document.getElementById("app");app.replaceChildren();const wrap=document.createElement("div");wrap.className="notfound";const heading=document.createElement("h2");heading.textContent=message;const back=document.createElement("a");back.href="index.html#featured";back.textContent="Back to all finds";wrap.append(heading,back);app.appendChild(wrap);}
+async function loadProduct(){
+ const app=document.getElementById("app");const id=new URLSearchParams(location.search).get("id")||"";
+ if(!/^[a-z0-9-]+$/.test(id)){showNotFound("Product not found");return;}
+ try{
+  const response=await fetch("content/products.json",{headers:{Accept:"application/json"}});
+  if(!response.ok)throw new Error("Product data request failed ("+response.status+").");
+  const data=await response.json();if(!Array.isArray(data))throw new Error("Invalid product data.");
+  const product=data.find((item)=>item&&item.id===id&&item.status==="published");
+  if(!product){showNotFound("Product not found");return;}
+  const title=product.brand+" "+product.name+" | Ohhgood!";const description=product.description||"An independent find from Ohhgood!";
+  document.title=title;updateMeta('meta[name="description"]',"content",description.slice(0,160));
+  updateMeta('meta[property="og:title"]',"content",title);updateMeta('meta[property="og:description"]',"content",description.slice(0,200));
+  updateMeta('meta[property="og:url"]',"content",location.href);
+  const canonical=document.querySelector('link[rel="canonical"]');if(canonical)canonical.href=location.href.split("#")[0];
+  const image=safeImage(product.image);const retailer=safeRetailer(product.retailer_url);const category=CATEGORY_LABELS[product.category]||"Find";
+  const benefits=listItems(product.benefits);
+  const related=data.filter((item)=>item&&item.status==="published"&&item.category===product.category&&item.id!==product.id).slice(0,3);
+  const relatedHTML=related.map((item)=>{
+   const src=safeImage(item.image);
+   return '<a href="product.html?id='+encodeURIComponent(item.id)+'">'+(src?'<img src="'+escapeHTML(src)+'" alt="'+escapeHTML(item.name)+'" loading="lazy">':"")+'<span>'+escapeHTML(item.brand+" "+item.name)+'</span></a>';
+  }).join("");
+  const ctaHTML=retailer?'<a class="cta-below-img" href="'+escapeHTML(retailer)+'" target="_blank" rel="nofollow sponsored noopener noreferrer">View at Retailer</a><p class="cta-note">Opens the retailer in a new tab. Check current price, availability, and details before buying.</p>':'<p class="cta-note">A retailer link has not been verified for this find yet.</p>';
+  const imageHTML=image?'<img class="product-hero" src="'+escapeHTML(image)+'" alt="'+escapeHTML(product.name)+'" loading="eager" decoding="async">':"";
+  const optionalSection=(heading,value)=>{
+   const items=Array.isArray(value)?value:(typeof value==="string"?value.split("\n").filter(Boolean):[]);
+   if(!items.length)return "";
+   return "<h2>"+heading+"</h2><ul>"+listItems(items)+"</ul>";
+  };
+  const faqHTML=Array.isArray(product.faq)?product.faq.filter((faq)=>faq&&typeof faq.q==="string"&&typeof faq.a==="string").map((faq)=>"<h3>"+escapeHTML(faq.q)+"</h3><p>"+escapeHTML(faq.a)+"</p>").join(""):"";
+  app.innerHTML=
+   '<p class="crumb"><a href="index.html">Home</a> / <a href="index.html#featured">'+escapeHTML(category)+'</a> / '+escapeHTML(product.name)+'</p>'+
+   '<p class="eyebrow">'+escapeHTML(category)+'</p><h1>'+escapeHTML(product.brand)+" "+escapeHTML(product.name)+'</h1>'+
+   '<p class="disclosure">(paid link) As an Amazon Associate I earn from qualifying purchases. Check price, stock, and details on the retailer site before buying.</p>'+
+   '<p class="intro">'+escapeHTML(description)+'</p>'+imageHTML+ctaHTML+
+   (benefits?'<div class="box"><h2 style="margin-top:0">Why we like it</h2><ul>'+benefits+'</ul></div>':"")+
+   optionalSection("How to use it",product.how_to)+optionalSection("Who it may suit",product.who_for)+
+   optionalSection("Who may want to skip it",product.who_skip)+optionalSection("What to check before buying",product.check_before)+
+   (faqHTML?"<h2>FAQ</h2>"+faqHTML:"")+
+   (relatedHTML?'<h2>Related finds in '+escapeHTML(category)+'</h2><div class="related">'+relatedHTML+'</div>':"")+
+   '<p style="margin-top:28px"><a href="index.html#featured">Back to all finds</a></p>';
+  const schema={"@context":"https://schema.org","@type":"Product","name":product.brand+" "+product.name,"description":description,"category":category,"brand":{"@type":"Brand","name":product.brand},...(image?{"image":new URL(image,location.href).href}:{})};
+  const jsonLd=document.createElement("script");jsonLd.type="application/ld+json";jsonLd.textContent=JSON.stringify(schema);document.head.appendChild(jsonLd);
+ }catch(error){console.error("Ohhgood! product could not be loaded:",error);showNotFound("This find could not be loaded right now");}
 }
-load();
+loadProduct();
 </script>
 </body></html>
