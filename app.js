@@ -44,7 +44,7 @@ function renderGrid() {
   visible.forEach((product) => {
     const link = document.createElement("a");
     link.className = "product-card";
-    link.href = "product.html?id=" + encodeURIComponent(product.id);
+    link.href = "/product/" + encodeURIComponent(product.id);
     const imageWrap = document.createElement("div");
     imageWrap.className = "product-image-wrap";
     const catPeek = document.createElement("span");
