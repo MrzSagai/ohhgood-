@@ -89,8 +89,6 @@ async function loadProduct(){
    (faqHTML?"<h2>FAQ</h2>"+faqHTML:"")+
    (relatedHTML?'<h2>Related finds in '+escapeHTML(category)+'</h2><div class="related">'+relatedHTML+'</div>':"")+
    '<p style="margin-top:28px"><a href="index.html#featured">Back to all finds</a></p>';
-  const schema={"@context":"https://schema.org","@type":"Product","name":product.brand+" "+product.name,"description":description,"category":category,"brand":{"@type":"Brand","name":product.brand},...(image?{"image":new URL(image,location.href).href}:{})};
-  const jsonLd=document.createElement("script");jsonLd.type="application/ld+json";jsonLd.textContent=JSON.stringify(schema);document.head.appendChild(jsonLd);
  }catch(error){console.error("Ohhgood! product could not be loaded:",error);showNotFound("This find could not be loaded right now");}
 }
 loadProduct();
