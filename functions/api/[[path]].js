@@ -131,6 +131,7 @@ async function githubFile(token, path) {
   return { sha: data.sha, text: new TextDecoder().decode(bytes) };
 }
 async function api(request, env, path) {
+  if (request.method === "PUT" && request.headers.get("Origin") !== new URL(request.url).origin) return json({ error: "Cross-origin write rejected." }, 403);
   const auth = await session(request, env);
   if (!auth) return json({ error: "Unauthorized. Sign in with the approved GitHub account." }, 401, { "set-cookie": cookie(SESSION_COOKIE, "", { maxAge: 0 }) });
   if (!ALLOWED_FILES.has(path)) return json({ error: "File is not editable." }, 404);
@@ -193,7 +194,10 @@ export async function onRequest(context) {
     const value = await seal(JSON.stringify({ login: user.login, avatar_url: user.avatar_url || "", exp: Date.now() + SESSION_TTL * 1000 }), env.SESSION_SECRET);
     return redirect(new URL("/admin/", url.origin).toString(), [cookie(SESSION_COOKIE, value, { maxAge: SESSION_TTL }), clearState]);
   }
-  if (path === "/api/auth/logout" && request.method === "POST") return json({ ok: true }, 200, { "set-cookie": cookie(SESSION_COOKIE, "", { maxAge: 0 }) });
+  if (path === "/api/auth/logout" && request.method === "POST") {
+    if (request.headers.get("Origin") !== url.origin) return json({ error: "Cross-origin logout rejected." }, 403);
+    return json({ ok: true }, 200, { "set-cookie": cookie(SESSION_COOKIE, "", { maxAge: 0 }) });
+  }
   if (path === "/api/session" && request.method === "GET") {
     const auth = await session(request, env);
     return auth ? json({ authenticated: true, user: auth.user, branch: BRANCH }) : json({ authenticated: false }, 401);
