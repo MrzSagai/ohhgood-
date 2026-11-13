@@ -30,8 +30,7 @@ function render(product, products, url) {
     (faq ? "<h2>FAQ</h2>" + faq : "") +
     (relatedHTML ? '<h2>Related finds in ' + esc(category) + '</h2><div class="related">' + relatedHTML + '</div>' : "") +
     '<p style="margin-top:28px"><a href="/#featured">Back to all finds</a></p>';
-  const schema = { "@context":"https://schema.org", "@type":"Product", name:product.brand + " " + product.name, description, category, brand:{ "@type":"Brand", name:product.brand }, ...(image ? { image:url.origin + image } : {}) };
-  return { title, description, canonical, image: image ? url.origin + image : "", body, schema };
+  return { title, description, canonical, image: image ? url.origin + image : "", body };
 }
 export async function onRequest({ request, env }) {
   const url = new URL(request.url);
@@ -62,7 +61,6 @@ export async function onRequest({ request, env }) {
       .replace('<link rel="canonical" href="https://ohhgood.store/product.html">', '<link rel="canonical" href="' + esc(meta.canonical) + '">')
       .replace('<meta property="og:type" content="product">', '<meta property="og:type" content="product"><meta property="og:url" content="' + esc(meta.canonical) + '"><meta property="og:image" content="' + esc(meta.image) + '"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="' + esc(meta.title) + '"><meta name="twitter:description" content="' + esc(meta.description) + '"><meta name="twitter:image" content="' + esc(meta.image) + '">')
       .replace('<main class="product-page" id="app"><p style="padding:40px 0;text-align:center">Loading product...</p></main>', '<main class="product-page" id="app">' + meta.body + '</main>');
-    output = output.replace('</head>', '<script type="application/ld+json">' + JSON.stringify(meta.schema).replace(/</g, "\\u003c") + '</script></head>');
     return new Response(output, { headers:{ "content-type":"text/html; charset=utf-8", "cache-control":"public, max-age=300, s-maxage=900", "x-content-type-options":"nosniff" } });
   } catch (error) {
     return new Response("Product page temporarily unavailable", { status:503, headers:{ "content-type":"text/plain; charset=utf-8", "cache-control":"no-store" } });
