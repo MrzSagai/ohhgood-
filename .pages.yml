@@ -31,12 +31,14 @@ content:
         required: true
         options:
           values:
-            - name: desk
-              label: Desk
-            - name: go
-              label: On the Go
-            - name: break
-              label: Desk Break
+            - name: tidy
+              label: Tidy Space
+            - name: cozy
+              label: Cozy Ambience
+            - name: ritual
+              label: Slow Ritual
+            - name: green
+              label: Green Corner
       - name: description
         label: Short description
         type: text
