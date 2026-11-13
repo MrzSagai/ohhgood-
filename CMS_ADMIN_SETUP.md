@@ -51,7 +51,7 @@ In the Cloudflare dashboard, open the Pages project connected to this repository
 
 For \`GITHUB_APP_PRIVATE_KEY\`, paste the complete PEM including the BEGIN/END lines. Cloudflare secret values must be entered in the dashboard; never commit them to the repository. Generate \`SESSION_SECRET\` with a password manager or a cryptographically secure random generator.
 
-After adding or changing variables, redeploy the branch preview so the Pages Function receives them.
+After adding or changing variables, redeploy the Production deployment so the Pages Function receives them.
 
 ## Open the admin
 
