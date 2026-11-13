@@ -3,9 +3,9 @@
 ## Where publishing happens
 - The public website remains a static HTML/CSS/JavaScript site.
 - A custom admin dashboard is available at `/admin/` after its GitHub App and Cloudflare Pages secrets are configured; see `CMS_ADMIN_SETUP.md` for the one-time setup.
-- The custom admin authenticates an allowlisted GitHub user and uses a repository-scoped GitHub App installation token on the server to read and commit changes to `MrzSagai-Dev`.
-- Pages CMS remains available as a fallback editor. Select this repository and the `MrzSagai-Dev` branch when editing this development version.
-- Changes saved through either CMS become Git commits. Cloudflare Pages deploys them when this branch is connected to a deployment environment.
+- The custom admin authenticates an allowlisted GitHub user and uses a repository-scoped GitHub App installation token on the server to read and commit changes to `main`.
+- Pages CMS remains available as a fallback editor. Select this repository and the `main` branch when editing the production site.
+- Changes saved through either CMS become Git commits. Cloudflare Pages deploys them when `main` is deployed to Production.
 
 ## Custom admin scope
 - The first admin release supports dashboard overview, product and journal lists, search, status filters, add, and edit.
@@ -30,7 +30,7 @@
 - Published article URLs use `journal.html?slug=your-story-slug`; the sitemap is updated alongside article publication.
 
 ## Before publishing
-1. Preview the changed record on the development deployment.
+1. Preview the changed record on the production site after deployment.
 2. Check product name, brand, category, description, image, benefits, and retailer destination.
 3. Check the affiliate disclosure and ensure the destination is genuinely the retailer listing.
 4. Check the article title, summary, body, cover image, and links.
