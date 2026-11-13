@@ -17,7 +17,7 @@
   {
     "id": "joyroom-cable-organizer",
     "brand": "JOYROOM",
-    "name": "Magnetic Cable Organizer , 6 Pack",
+    "name": "Magnetic Cable Organizer , 9 Pack",
     "category": "tidy",
     "description": "Magnetic cable clips that keep chargers tidy on your desk.",
     "benefits": [
@@ -26,8 +26,8 @@
       "Keeps cables tidy"
     ],
     "image": "assets/Joyroom.webp",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/s?k=JOYROOM+magnetic+cable+organizer&tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/s?k=JOYROOM+magnetic+cable+organizer&tag=ohhgood0c-20",
+    "status": "published"
   },
   {
     "id": "bagsmart-electronics-organizer",
