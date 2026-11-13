@@ -711,3 +711,62 @@ main > article > div p{font-size:13px !important;line-height:1.45 !important;mar
 .category-photo-cozy { background-image: url('assets/category-cozy.webp'); }
 .category-photo-ritual { background-image: url('assets/category-ritual.webp'); }
 .category-photo-green { background-image: url('assets/category-green.webp'); }
+/* Ohhgood grid fix - paste at END of styles.css, timpa yang lama */
+/* Grid: 4 kolom desktop, 2 kolom HP, rata semua */
+#product-grid, .product-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 16px !important;
+  align-items: start !important;
+}
+/* Card: flex column, tinggi ngikutin isi, tapi gambar dipaksa 1:1 */
+.product-card {
+  display: flex !important;
+  flex-direction: column !important;
+  text-decoration: none !important;
+  color: inherit !important;
+  background: #fff !important;
+  border: 1px solid #E8E0D6 !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  height: 100% !important;
+}
+.product-card img {
+  width: 100% !important;
+  aspect-ratio: 1 / 1 !important;
+  object-fit: cover !important;
+  display: block !important;
+  height: auto !important;
+  max-height: none !important;
+  background: #F7F0E6 !important;
+}
+/* Nama: bar hitam kayak footer yang lu mau, biar rapi */
+.product-name, .product-card span {
+  display: block !important;
+  background: #121212 !important;
+  color: #fff !important;
+  font-size: 13px !important;
+  line-height: 1.35 !important;
+  padding: 10px 12px !important;
+  min-height: 56px !important;
+}
+.product-cat, .product-card small {
+  display: block !important;
+  background: #121212 !important;
+  color: #C9BBA6 !important;
+  font-size: 11px !important;
+  padding: 0 12px 10px 12px !important;
+}
+/* Category cards juga dipaksa 1:1 biar ga melar */
+.cat-card img {
+  width: 100% !important;
+  aspect-ratio: 1 / 1 !important;
+  object-fit: cover !important;
+}
+@media (max-width: 900px) {
+  #product-grid, .product-grid { grid-template-columns: repeat(3, 1fr) !important; }
+}
+@media (max-width: 600px) {
+  #product-grid, .product-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
+  .product-name, .product-card span { font-size: 12px !important; min-height: 48px !important; }
+}
