@@ -49,10 +49,10 @@ const listItems=(value)=>Array.isArray(value)?value.filter((item)=>typeof item==
 function updateMeta(selector,attribute,value){const element=document.querySelector(selector);if(element)element.setAttribute(attribute,value);}
 function showNotFound(message){const app=document.getElementById("app");app.replaceChildren();const wrap=document.createElement("div");wrap.className="notfound";const heading=document.createElement("h2");heading.textContent=message;const back=document.createElement("a");back.href="index.html#featured";back.textContent="Back to all finds";wrap.append(heading,back);app.appendChild(wrap);}
 async function loadProduct(){
- const app=document.getElementById("app");const id=new URLSearchParams(location.search).get("id")||"";
+ const app=document.getElementById("app");const pathMatch=location.pathname.match(/^\/product\/([a-z0-9-]+)\/?$/);const id=(pathMatch&&pathMatch[1])||new URLSearchParams(location.search).get("id")||"";
  if(!/^[a-z0-9-]+$/.test(id)){showNotFound("Product not found");return;}
  try{
-  const response=await fetch("content/products.json",{headers:{Accept:"application/json"}});
+  const response=await fetch("/content/products.json",{headers:{Accept:"application/json"}});
   if(!response.ok)throw new Error("Product data request failed ("+response.status+").");
   const data=await response.json();if(!Array.isArray(data))throw new Error("Invalid product data.");
   const product=data.find((item)=>item&&item.id===id&&item.status==="published");
@@ -67,7 +67,7 @@ async function loadProduct(){
   const related=data.filter((item)=>item&&item.status==="published"&&item.category===product.category&&item.id!==product.id).slice(0,3);
   const relatedHTML=related.map((item)=>{
    const src=safeImage(item.image);
-   return '<a href="product.html?id='+encodeURIComponent(item.id)+'">'+(src?'<img src="'+escapeHTML(src)+'" alt="'+escapeHTML(item.name)+'" loading="lazy">':"")+'<span>'+escapeHTML(item.brand+" "+item.name)+'</span></a>';
+   return '<a href="/product/'+encodeURIComponent(item.id)+'">'+(src?'<img src="'+escapeHTML(src)+'" alt="'+escapeHTML(item.name)+'" loading="lazy">':"")+'<span>'+escapeHTML(item.brand+" "+item.name)+'</span></a>';
   }).join("");
   const ctaHTML=retailer?'<a class="cta-below-img" href="'+escapeHTML(retailer)+'" target="_blank" rel="nofollow sponsored noopener noreferrer">View at Retailer</a><p class="cta-note">Opens the retailer in a new tab. Check current price, availability, and details before buying.</p>':'<p class="cta-note">A retailer link has not been verified for this find yet.</p>';
   const imageHTML=image?'<img class="product-hero" src="'+escapeHTML(image)+'" alt="'+escapeHTML(product.name)+'" loading="eager" decoding="async">':"";
