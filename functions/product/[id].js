@@ -49,6 +49,12 @@ export async function onRequest({ request, env }) {
     if (!product) return new Response("Product not found", { status:404, headers:{ "content-type":"text/plain; charset=utf-8" } });
     const meta = render(product, products, url);
     let output = template
+      .replace('href="styles.css"', 'href="/styles.css"')
+      .replace('href="index.html"', 'href="/"')
+      .replace('href="index.html#categories"', 'href="/#categories"')
+      .replace('href="index.html#featured"', 'href="/#featured"')
+      .replace('href="index.html#journal"', 'href="/#journal"')
+      .replace('href="standards.html"', 'href="/standards.html"')
       .replace('<title>Product - Ohhgood!</title>', '<title>' + esc(meta.title) + '</title>')
       .replace('<meta name="description" content="Independent product finds from Ohhgood!, with useful details and honest considerations.">', '<meta name="description" content="' + esc(meta.description) + '">')
       .replace('<meta property="og:title" content="Product finds — Ohhgood!">', '<meta property="og:title" content="' + esc(meta.title) + '">')
