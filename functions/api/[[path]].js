@@ -1,6 +1,6 @@
 const OWNER = "MrzSagai";
 const REPO = "ohhgood-";
-const BRANCH = "MrzSagai-Dev";
+const BRANCH = "main";
 const ALLOWED_FILES = new Set(["content/products.json", "content/articles.json"]);
 const SESSION_COOKIE = "ohhgood_admin";
 const STATE_COOKIE = "ohhgood_oauth_state";
