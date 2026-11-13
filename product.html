@@ -43,7 +43,7 @@
 "use strict";
 const CATEGORY_LABELS={tidy:"Tidy Space",cozy:"Cozy Ambience",ritual:"Slow Ritual",green:"Green Corner"};
 const escapeHTML=(value)=>String(value??"").replace(/[&<>"']/g,(char)=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
-const safeImage=(value)=>typeof value==="string"&&/^assets\/[a-zA-Z0-9_./% -]+$/.test(value)&&!value.includes("..")?value:"";
+const safeImage=(value)=>typeof value==="string"&&/^assets\/[a-zA-Z0-9_./% -]+$/.test(value)&&!value.includes("..")?"/"+value:"";
 const safeRetailer=(value)=>{try{const url=new URL(value);return url.protocol==="https:"?url.href:"";}catch{return "";}};
 const listItems=(value)=>Array.isArray(value)?value.filter((item)=>typeof item==="string"&&item.trim()).map((item)=>"<li>"+escapeHTML(item)+"</li>").join(""):"";
 function updateMeta(selector,attribute,value){const element=document.querySelector(selector);if(element)element.setAttribute(attribute,value);}
