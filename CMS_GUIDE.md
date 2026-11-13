@@ -1,9 +1,15 @@
 # Ohhgood! CMS workflow
 
 ## Where publishing happens
-- The website is a static HTML/CSS/JavaScript site. It does not have its own admin login, database, or server-side API.
-- Pages CMS authenticates with GitHub. Select this repository and the `MrzSagai-Dev` branch when editing this development version.
-- Changes saved in Pages CMS are Git commits. Cloudflare Pages deploys them when this branch is connected to a deployment environment.
+- The public website remains a static HTML/CSS/JavaScript site.
+- A custom admin dashboard is available at `/admin/` after its GitHub App and Cloudflare Pages secrets are configured; see `CMS_ADMIN_SETUP.md` for the one-time setup.
+- The custom admin authenticates an allowlisted GitHub user and uses a repository-scoped GitHub App installation token on the server to read and commit changes to `MrzSagai-Dev`.
+- Pages CMS remains available as a fallback editor. Select this repository and the `MrzSagai-Dev` branch when editing this development version.
+- Changes saved through either CMS become Git commits. Cloudflare Pages deploys them when this branch is connected to a deployment environment.
+
+## Custom admin scope
+- The first admin release supports dashboard overview, product and journal lists, search, status filters, add, and edit.
+- It does not yet provide media upload, delete, category/settings screens, revision restore, or a visual rich-text editor. Use draft status to temporarily unpublish content.
 
 ## Products
 - Product records live in `content/products.json`.
