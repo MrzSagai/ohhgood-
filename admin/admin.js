@@ -40,8 +40,8 @@
   function imageUrl(path) {
     const value = String(path || "").trim();
     if (!value) return "";
-    if (/^(?:https?:)?\\/\\//i.test(value) || value.startsWith("data:") || value.startsWith("/")) return value;
-    return "/" + value.replace(/^\\.\\/+/, "");
+    if (/^(?:https?:)?\/\//i.test(value) || value.startsWith("data:") || value.startsWith("/")) return value;
+    return "/" + value.replace(/^\.\//, "");
   }
   function statusTag(status) { return '<span class="status ' + (status === "published" ? "published" : "draft") + '">' + esc(status || "draft") + '</span>'; }
   function render() {
