@@ -7,10 +7,12 @@ const STATE_COOKIE = "ohhgood_oauth_state";
 const SESSION_TTL = 8 * 60 * 60;
 
 function json(data, status = 200, headers = {}) {
-  return new Response(JSON.stringify(data), {
-    status,
-    headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store", ...headers }
-  });
+  return new Response(JSON.stringify(data), { status, headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store", ...headers } });
+}
+function redirect(url, cookies = []) {
+  const headers = new Headers({ Location: url, "Cache-Control": "no-store" });
+  for (const value of cookies) headers.append("Set-Cookie", value);
+  return new Response(null, { status: 302, headers });
 }
 function cookieValue(request, name) {
   const part = (request.headers.get("Cookie") || "").split(";").map(v => v.trim()).find(v => v.startsWith(name + "="));
@@ -36,47 +38,64 @@ async function cryptoKey(secret) {
 }
 async function seal(value, secret) {
   const iv = crypto.getRandomValues(new Uint8Array(12));
-  const key = await cryptoKey(secret);
-  const encrypted = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, new TextEncoder().encode(value));
+  const encrypted = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, await cryptoKey(secret), new TextEncoder().encode(value));
   return base64url(new Uint8Array([...iv, ...new Uint8Array(encrypted)]));
 }
 async function unseal(value, secret) {
   try {
     const packed = unbase64url(value);
-    const key = await cryptoKey(secret);
-    const plain = await crypto.subtle.decrypt({ name: "AES-GCM", iv: packed.slice(0, 12) }, key, packed.slice(12));
+    const plain = await crypto.subtle.decrypt({ name: "AES-GCM", iv: packed.slice(0, 12) }, await cryptoKey(secret), packed.slice(12));
     return new TextDecoder().decode(plain);
   } catch { return ""; }
 }
 function allowedUsers(env) {
   return (env.ADMIN_GITHUB_USERS || "").split(",").map(v => v.trim().toLowerCase()).filter(Boolean);
 }
+function githubHeaders(token) {
+  return { Authorization: "Bearer " + token, Accept: "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28", "User-Agent": "Ohhgood-CMS" };
+}
+async function appJwt(env) {
+  const pem = String(env.GITHUB_APP_PRIVATE_KEY || "").replace(/\\n/g, "\n").replace(/-----BEGIN PRIVATE KEY-----|-----END PRIVATE KEY-----|\s/g, "");
+  if (!env.GITHUB_APP_ID || !pem) throw new Error("GitHub App credentials are not configured.");
+  const binary = atob(pem);
+  const keyBytes = Uint8Array.from(binary, c => c.charCodeAt(0));
+  const key = await crypto.subtle.importKey("pkcs8", keyBytes, { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" }, false, ["sign"]);
+  const now = Math.floor(Date.now() / 1000);
+  const head = base64url(new TextEncoder().encode(JSON.stringify({ alg: "RS256", typ: "JWT" })));
+  const body = base64url(new TextEncoder().encode(JSON.stringify({ iat: now - 60, exp: now + 540, iss: String(env.GITHUB_APP_ID) })));
+  const unsigned = head + "." + body;
+  const signature = await crypto.subtle.sign("RSASSA-PKCS1-v1_5", key, new TextEncoder().encode(unsigned));
+  return unsigned + "." + base64url(new Uint8Array(signature));
+}
+async function installationToken(env) {
+  if (!env.GITHUB_APP_INSTALLATION_ID) throw new Error("GitHub App installation ID is not configured.");
+  const jwt = await appJwt(env);
+  const response = await fetch("https://api.github.com/app/installations/" + env.GITHUB_APP_INSTALLATION_ID + "/access_tokens", {
+    method: "POST",
+    headers: { ...githubHeaders(jwt), "content-type": "application/json" },
+    body: JSON.stringify({ permissions: { contents: "write" } })
+  });
+  const data = await response.json();
+  if (!response.ok || !data.token) throw new Error("Could not create a repository-scoped GitHub token: " + (data.message || response.status));
+  return data.token;
+}
 async function session(request, env) {
-  if (!env.SESSION_SECRET || !env.GITHUB_CLIENT_ID || !env.GITHUB_CLIENT_SECRET) return null;
+  if (!env.SESSION_SECRET) return null;
   const raw = cookieValue(request, SESSION_COOKIE);
   if (!raw) return null;
   const decoded = await unseal(raw, env.SESSION_SECRET);
   if (!decoded) return null;
   try {
     const data = JSON.parse(decoded);
-    if (!data.token || !data.exp || data.exp < Date.now()) return null;
-    const response = await fetch("https://api.github.com/user", {
-      headers: { Authorization: "Bearer " + data.token, Accept: "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28", "User-Agent": "Ohhgood-CMS" }
-    });
-    if (!response.ok) return null;
-    const user = await response.json();
-    if (!allowedUsers(env).includes(String(user.login || "").toLowerCase())) return null;
-    return { token: data.token, user: { login: user.login, avatar_url: user.avatar_url } };
+    if (!data.login || !data.exp || data.exp < Date.now()) return null;
+    if (!allowedUsers(env).includes(String(data.login).toLowerCase())) return null;
+    return { user: { login: data.login, avatar_url: data.avatar_url || "" } };
   } catch { return null; }
-}
-function githubHeaders(token) {
-  return { Authorization: "Bearer " + token, Accept: "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28", "User-Agent": "Ohhgood-CMS" };
 }
 function validate(path, records) {
   if (!Array.isArray(records)) return "Content must be a JSON array.";
   if (path === "content/products.json") {
-    const ids = new Set();
-    const categories = new Set(["tidy", "cozy", "ritual", "green"]);
+    const ids = new Set(), categories = new Set(["tidy", "cozy", "ritual", "green"]);
     for (const item of records) {
       if (!item || typeof item !== "object") return "Each product must be an object.";
       if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(item.id || "") || ids.has(item.id)) return "Product IDs must be unique lowercase slugs.";
@@ -115,9 +134,10 @@ async function api(request, env, path) {
   const auth = await session(request, env);
   if (!auth) return json({ error: "Unauthorized. Sign in with the approved GitHub account." }, 401, { "set-cookie": cookie(SESSION_COOKIE, "", { maxAge: 0 }) });
   if (!ALLOWED_FILES.has(path)) return json({ error: "File is not editable." }, 404);
+  const token = await installationToken(env);
   const url = "https://api.github.com/repos/" + OWNER + "/" + REPO + "/contents/" + path + "?ref=" + encodeURIComponent(BRANCH);
   if (request.method === "GET") {
-    const file = await githubFile(auth.token, path);
+    const file = await githubFile(token, path);
     return json({ path, sha: file.sha, data: JSON.parse(file.text), branch: BRANCH, user: auth.user });
   }
   if (request.method !== "PUT") return json({ error: "Method not allowed." }, 405, { Allow: "GET, PUT" });
@@ -125,7 +145,7 @@ async function api(request, env, path) {
   if (!body || !Array.isArray(body.data) || typeof body.sha !== "string") return json({ error: "Invalid request body." }, 400);
   const problem = validate(path, body.data);
   if (problem) return json({ error: problem }, 422);
-  const current = await githubFile(auth.token, path);
+  const current = await githubFile(token, path);
   if (current.sha !== body.sha) return json({ error: "This file changed on GitHub since it was opened. Reload before saving." }, 409);
   const content = JSON.stringify(body.data, null, 2) + "\n";
   const bytes = new TextEncoder().encode(content);
@@ -133,7 +153,7 @@ async function api(request, env, path) {
   for (let i = 0; i < bytes.length; i += 0x8000) binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
   const response = await fetch(url, {
     method: "PUT",
-    headers: { ...githubHeaders(auth.token), "content-type": "application/json" },
+    headers: { ...githubHeaders(token), "content-type": "application/json" },
     body: JSON.stringify({ message: "CMS: update " + path.split("/").pop(), content: btoa(binary), sha: current.sha, branch: BRANCH })
   });
   const result = await response.json();
@@ -142,34 +162,36 @@ async function api(request, env, path) {
 }
 export async function onRequest(context) {
   const { request, env } = context;
-  const url = new URL(request.url);
-  const path = url.pathname;
+  const url = new URL(request.url), path = url.pathname;
   if (path === "/api/auth/login" && request.method === "GET") {
-    if (!env.GITHUB_CLIENT_ID || !env.SESSION_SECRET || !allowedUsers(env).length) return json({ error: "CMS auth is not configured. Set GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, SESSION_SECRET, and ADMIN_GITHUB_USERS." }, 503);
+    if (!env.GITHUB_APP_CLIENT_ID || !env.GITHUB_APP_CLIENT_SECRET || !env.SESSION_SECRET || !env.GITHUB_APP_ID || !env.GITHUB_APP_PRIVATE_KEY || !env.GITHUB_APP_INSTALLATION_ID || !allowedUsers(env).length) {
+      return json({ error: "CMS auth is not configured. Add the GitHub App and Cloudflare secrets listed in CMS_ADMIN_SETUP.md." }, 503);
+    }
     const state = base64url(crypto.getRandomValues(new Uint8Array(24)));
     const callback = new URL("/api/auth/callback", url.origin).toString();
     const authorize = new URL("https://github.com/login/oauth/authorize");
-    authorize.searchParams.set("client_id", env.GITHUB_CLIENT_ID);
+    authorize.searchParams.set("client_id", env.GITHUB_APP_CLIENT_ID);
     authorize.searchParams.set("redirect_uri", callback);
-    authorize.searchParams.set("scope", "public_repo read:user");
+    authorize.searchParams.set("scope", "read:user");
     authorize.searchParams.set("state", state);
-    return Response.redirect(authorize.toString(), 302, { headers: { "set-cookie": cookie(STATE_COOKIE, state, { path: "/api/auth/callback", maxAge: 600 }) } });
+    return redirect(authorize.toString(), [cookie(STATE_COOKIE, state, { path: "/api/auth/callback", maxAge: 600 })]);
   }
   if (path === "/api/auth/callback" && request.method === "GET") {
     const state = url.searchParams.get("state") || "";
-    if (!state || state !== cookieValue(request, STATE_COOKIE) || url.searchParams.has("error")) return Response.redirect(new URL("/admin/?auth=failed", url.origin), 302, { headers: { "set-cookie": cookie(STATE_COOKIE, "", { path: "/api/auth/callback", maxAge: 0 }) } });
+    const clearState = cookie(STATE_COOKIE, "", { path: "/api/auth/callback", maxAge: 0 });
+    if (!state || state !== cookieValue(request, STATE_COOKIE) || url.searchParams.has("error")) return redirect(new URL("/admin/?auth=failed", url.origin).toString(), [clearState]);
     const tokenResponse = await fetch("https://github.com/login/oauth/access_token", {
       method: "POST",
       headers: { Accept: "application/json", "content-type": "application/json" },
-      body: JSON.stringify({ client_id: env.GITHUB_CLIENT_ID, client_secret: env.GITHUB_CLIENT_SECRET, code: url.searchParams.get("code"), redirect_uri: new URL("/api/auth/callback", url.origin).toString(), state })
+      body: JSON.stringify({ client_id: env.GITHUB_APP_CLIENT_ID, client_secret: env.GITHUB_APP_CLIENT_SECRET, code: url.searchParams.get("code"), redirect_uri: new URL("/api/auth/callback", url.origin).toString(), state })
     });
     const tokenData = await tokenResponse.json();
-    if (!tokenResponse.ok || !tokenData.access_token) return Response.redirect(new URL("/admin/?auth=failed", url.origin), 302);
+    if (!tokenResponse.ok || !tokenData.access_token) return redirect(new URL("/admin/?auth=failed", url.origin).toString(), [clearState]);
     const userResponse = await fetch("https://api.github.com/user", { headers: githubHeaders(tokenData.access_token) });
     const user = userResponse.ok ? await userResponse.json() : {};
-    if (!allowedUsers(env).includes(String(user.login || "").toLowerCase())) return Response.redirect(new URL("/admin/?auth=denied", url.origin), 302, { headers: { "set-cookie": cookie(STATE_COOKIE, "", { path: "/api/auth/callback", maxAge: 0 }) } });
-    const value = await seal(JSON.stringify({ token: tokenData.access_token, exp: Date.now() + SESSION_TTL * 1000 }), env.SESSION_SECRET);
-    return Response.redirect(new URL("/admin/", url.origin), 302, { headers: { "set-cookie": [cookie(SESSION_COOKIE, value, { maxAge: SESSION_TTL }), cookie(STATE_COOKIE, "", { path: "/api/auth/callback", maxAge: 0 })] } });
+    if (!allowedUsers(env).includes(String(user.login || "").toLowerCase())) return redirect(new URL("/admin/?auth=denied", url.origin).toString(), [clearState]);
+    const value = await seal(JSON.stringify({ login: user.login, avatar_url: user.avatar_url || "", exp: Date.now() + SESSION_TTL * 1000 }), env.SESSION_SECRET);
+    return redirect(new URL("/admin/", url.origin).toString(), [cookie(SESSION_COOKIE, value, { maxAge: SESSION_TTL }), clearState]);
   }
   if (path === "/api/auth/logout" && request.method === "POST") return json({ ok: true }, 200, { "set-cookie": cookie(SESSION_COOKIE, "", { maxAge: 0 }) });
   if (path === "/api/session" && request.method === "GET") {
