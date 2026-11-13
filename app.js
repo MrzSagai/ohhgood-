@@ -1,63 +1,109 @@
-'use strict';
-const $=(selector,scope=document)=>scope.querySelector(selector);
-const $$=(selector,scope=document)=>Array.from(scope.querySelectorAll(selector));
-const host=location.hostname.toLowerCase();const isCloudflarePreview=host.endsWith('.ohhgood2.pages.dev')&&host!=='ohhgood2.pages.dev';const showDraftPreviews=isCloudflarePreview;let products=[];let selectedFilter='all';let searchQuery='';let previouslyFocused=null;
-const escapeHTML=(input)=>String(input??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
-// Mapping product id -> finds/ page slug (SEO, no date/price/ID)
-const FINDS_SLUG={
-  'yecaye-cable-tray':'yecaye-under-desk-cable-tray-l-clamp',
-  'joyroom':'joyroom-magnetic-cable-organizer-9-pack',
-  'lamicall':'lamicall-adjustable-cell-phone-stand',
-  'oxo':'oxo-sweep-swipe-laptop-cleaner',
-  'bagsmart':'bagsmart-electronics-organizer-travel-case',
-  'yecaye':'yecaye-under-desk-cable-tray-all-metal-clamp-mount',
-  'bamboo-dividers':'s-and-c-living-bamboo-drawer-dividers-4-pack',
-  'homeify-drawer':'homeify-under-desk-drawer-organizer-2-drawer',
-  'felt-mat':'dawntrees-large-felt-desk-mat-40x16',
-  'weenson-stand':'weenson-dual-monitor-stand-white-bamboo',
-  'rocdeer-shelf':'rocdeer-bamboo-dual-monitor-shelf',
-  'mind-design-purpose-planner':'mind-design-purpose-planner-walnut-holder',
-  'nuvograin-vertical-stand':'nuvograin-adjustable-vertical-laptop-stand-walnut',
-  'maxgear-mesh-3pack':'maxgear-mesh-pen-holder-3-pack',
-  'benq-screenbar-halo':'benq-screenbar-halo-monitor-light'
-};
-function findsUrl(p){ const slug=FINDS_SLUG[p.id]; return slug ? `finds/${slug}.html` : null; }
-function renderProducts(){
-  const matches=products.filter(p=>(selectedFilter==='all'||p.category===selectedFilter)&&(!searchQuery||[p.brand,p.name,p.description,...p.benefits].join(' ').toLocaleLowerCase().includes(searchQuery)));
-  $('#product-grid').innerHTML=matches.length?matches.map(p=>{ const url=findsUrl(p); return `<article class="product-card"><div class="product-image-wrap"><span class="product-peek" aria-hidden="true"><img src="assets/CTA-product%20card.webp" alt="" loading="lazy" width="105" height="105"></span>${p.status!=="published"?"<span class=\"draft-flag\">Preview · draft</span>":""}<img src="${escapeHTML(p.image)}" alt="Editorial concept of ${escapeHTML(p.brand+' '+p.name)}" loading="lazy" decoding="async" width="400" height="400"/><button type="button" class="product-image-hit" data-open="${escapeHTML(p.id)}" aria-label="Quick Look at ${escapeHTML(p.brand+' '+p.name)}"></button></div><div class="product-card-footer"><a class="product-title-hit" href="${url}"><h3>${escapeHTML(p.brand+' '+p.name)}</h3><span class="product-title-arrow" aria-hidden="true">→</span></a></div></article>`}).join(''):`<div class="empty-list"><h3>Good things are being curated.</h3><p>${searchQuery?'Try a different search term or clear the search.':'New finds will appear here once they are ready to share.'}</p><button type="button" class="filter" data-reset>View all finds</button></div>`;
-  $$('[data-open]',$('#product-grid')).forEach(button=>button.addEventListener('click',()=>openModal(button.dataset.open)));
-  $('[data-reset]',$('#product-grid'))?.addEventListener('click',()=>changeFilter('all'));
+/* Ohhgood! catalog controller — data-driven, fail-closed, and CMS-safe. */
+"use strict";
+const CATEGORY_LABELS = Object.freeze({tidy:"Tidy Space",cozy:"Cozy Ambience",ritual:"Slow Ritual",green:"Green Corner"});
+const VALID_CATEGORIES = new Set(Object.keys(CATEGORY_LABELS));
+let allProducts = [];
+let activeCategory = "all";
+let searchTerm = "";
+function safeImagePath(value) {
+  return typeof value === "string" && /^assets\/[a-zA-Z0-9_./% -]+$/.test(value) && !value.includes("..") ? value : "";
 }
-function changeFilter(next){selectedFilter=next;$$('[data-filter]').forEach(b=>{const current=b.dataset.filter===next;b.classList.toggle('active',current);b.setAttribute('aria-pressed',String(current))});renderProducts()}
-function openModal(id){const product=products.find(p=>p.id===id);if(!product)return;previouslyFocused=document.activeElement;$('#quicklook-image').src=product.image;$('#quicklook-image').alt=`Editorial concept of ${product.brand} ${product.name}`;$('#quicklook-brand').textContent=product.brand;$('#quicklook-title').textContent=product.name;$('#quicklook-desc').textContent=product.description;$('#quicklook-benefits').replaceChildren(...product.benefits.map(item=>{const li=document.createElement('li');li.textContent=item;return li}));const cta=$('#retailer-cta');cta.removeAttribute('href');cta.removeAttribute('target');cta.removeAttribute('rel');cta.textContent=product.status==='draft'?'Preview only — not published':'Retailer link coming soon ↗';cta.classList.add('is-disabled');cta.setAttribute('aria-disabled','true');cta.tabIndex=-1;if(product.status==='published'&&product.retailer_url){try{const u=new URL(product.retailer_url);if(u.protocol==='https:'){cta.href=u.href;cta.textContent='View at Retailer ↗';cta.classList.remove('is-disabled');cta.removeAttribute('aria-disabled');cta.tabIndex=0;cta.target='_blank';cta.rel='noopener noreferrer sponsored'}}catch{}}const retailerCat=document.createElement('span');retailerCat.className='cta-retailer-cat';retailerCat.setAttribute('aria-hidden','true');retailerCat.innerHTML='<img src="assets/CTA-secondary.webp" alt="" width="110" height="110" loading="lazy">';cta.appendChild(retailerCat);$('#modal-backdrop').hidden=false;document.body.classList.add('modal-open');$('.quicklook').scrollTop=0;$('.modal-close').focus()}
-function closeModal(){$('#modal-backdrop').hidden=true;document.body.classList.remove('modal-open');previouslyFocused?.focus()}
-function initialize(){const storedTheme=(()=>{try{return localStorage.getItem('ohhgood-theme')}catch{return null}})();setTheme(storedTheme==='dark'?'dark':'light');$('.theme-toggle').addEventListener('click',()=>{const theme=document.documentElement.dataset.theme==='dark'?'light':'dark';setTheme(theme);try{localStorage.setItem('ohhgood-theme',theme)}catch{}});$('.menu-toggle').addEventListener('click',()=>{const button=$('.menu-toggle');const open=button.getAttribute('aria-expanded')!=='true';button.setAttribute('aria-expanded',String(open));button.setAttribute('aria-label',open?'Close menu':'Open menu');$('#mobile-nav').hidden=!open});$$('#mobile-nav a').forEach(a=>a.addEventListener('click',()=>{$('#mobile-nav').hidden=true;$('.menu-toggle').setAttribute('aria-expanded','false');$('.menu-toggle').setAttribute('aria-label','Open menu')}));$$('[data-filter]').forEach(button=>button.addEventListener('click',()=>changeFilter(button.dataset.filter)));$$('[data-category]').forEach(button=>button.addEventListener('click',()=>{changeFilter(button.dataset.category);$('#featured').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})}));$('.modal-close').addEventListener('click',closeModal);$('#modal-backdrop').addEventListener('click',event=>{if(event.target.id==='modal-backdrop')closeModal()});document.addEventListener('keydown',event=>{if($('#modal-backdrop').hidden){if(event.key==='Escape'&&!$('#mobile-nav').hidden){$('#mobile-nav').hidden=true;$('.menu-toggle').setAttribute('aria-expanded','false');$('.menu-toggle').setAttribute('aria-label','Open menu');$('.menu-toggle').focus()}return}if(event.key==='Escape'){closeModal();return}if(event.key==='Tab'){const focusables=$$('button:not([disabled]),a[href]', $('.quicklook')).filter(x=>x.tabIndex!==-1);if(!focusables.length)return;const first=focusables[0],last=focusables.at(-1);if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}}});const search=$('#find-search-input');const clear=$('#clear-find-search');search?.addEventListener('input',()=>{searchQuery=search.value.trim().toLocaleLowerCase();clear.hidden=!searchQuery;renderProducts()});clear?.addEventListener('click',()=>{search.value='';searchQuery='';clear.hidden=true;renderProducts();search.focus()});
- const heroCTA=$('.mascot-trigger');
- if(heroCTA&&window.matchMedia('(hover: none)').matches){
-   let activeTimeout;
-   const peek=()=>{heroCTA.classList.add('mobile-peek-visible');window.clearTimeout(activeTimeout);activeTimeout=window.setTimeout(()=>heroCTA.classList.remove('mobile-peek-visible'),1050)};
-   heroCTA.addEventListener('pointerdown',peek,{passive:true});
-   if('IntersectionObserver' in window&&!window.matchMedia('(hover: none)').matches){
-     const observer=new IntersectionObserver(entries=>{for(const e of entries){if(e.isIntersecting){peek();observer.disconnect();break}}},{threshold:.55});
-     observer.observe(heroCTA);
-   }
- }
- $('#year').textContent=new Date().getFullYear();loadProducts();loadJournal()}
-function setTheme(theme){document.documentElement.dataset.theme=theme;$('.theme-toggle').textContent=theme==='dark'?'Light mode':'Dark mode';$('.theme-toggle').setAttribute('aria-label',`Switch to ${theme==='dark'?'light':'dark'} mode`)}
-async function loadProducts(){try{const response=await fetch('content/products.json');if(!response.ok)throw Error(response.status);const result=await response.json();if(!Array.isArray(result))throw Error('Invalid products list');products=result.filter(p=>p&&typeof p.id==='string'&&typeof p.name==='string'&&typeof p.brand==='string'&&typeof p.image==='string'&&['desk','go','break'].includes(p.category)&&((p.status==='published'&&typeof p.retailer_url==='string'&&/^https:\/\//i.test(p.retailer_url))||(showDraftPreviews&&p.status==='draft'))).map(p=>({...p,benefits:Array.isArray(p.benefits)?p.benefits.filter(x=>typeof x==='string'):[],description:typeof p.description==='string'?p.description:''}));renderProducts()}catch(error){console.error('Unable to load products:',error);$('#product-grid').innerHTML='<div class="empty-list">Unable to load products. Please refresh.</div>'}}
-async function loadJournal(){
-  const root=$('#journal-content');if(!root)return;
-  // Do not overwrite static journal list in index.html (SEO) - it already has 3 articles linking to journal.html?slug=
-  if(root.querySelector('.journal-link-list')) return;
-  try{
-    const response=await fetch('content/articles.json');
-    if(!response.ok)throw Error(response.status);
-    const items=await response.json();
-    if(!Array.isArray(items))throw Error('Invalid articles');
-    const live=items.filter(a=>a&&a.status==='published'&&typeof a.slug==='string'&&/^[a-z0-9-]+$/.test(a.slug)&&typeof a.title==='string');
-    if(!live.length)return;
-    root.className='journal-grid';
-    root.innerHTML=live.map(a=>`<a class="journal-card" href="journal.html?slug=${encodeURIComponent(a.slug)}">${/^(https:\/\/images\.unsplash\.com\/photo-[a-zA-Z0-9-]+\?|\/?assets\/[a-zA-Z0-9_./-]+$)/.test(a.cover_image||"")?`<img class="journal-cover" src="${escapeHTML(a.cover_image)}" alt="" loading="lazy" decoding="async">`:""}<span class="eyebrow">GOOD JOURNAL</span><h3>${escapeHTML(a.title)}</h3><p>${escapeHTML(a.summary||'A little something worth reading.')}</p><span class="journal-read">Read story ↗</span></a>`).join('');
-  }catch(error){console.error('Unable to load journal:',error)}
+function isValidProduct(product) {
+  return product && typeof product === "object" &&
+    typeof product.id === "string" && /^[a-z0-9-]+$/.test(product.id) &&
+    typeof product.brand === "string" && product.brand.trim() &&
+    typeof product.name === "string" && product.name.trim() &&
+    VALID_CATEGORIES.has(product.category) &&
+    typeof product.description === "string" && safeImagePath(product.image) !== "";
 }
-document.addEventListener('DOMContentLoaded',initialize);
+function matchesSearch(product) {
+  if (!searchTerm) return true;
+  return [product.brand,product.name,product.description,...(Array.isArray(product.benefits)?product.benefits:[])]
+    .join(" ").toLocaleLowerCase().includes(searchTerm);
+}
+function setFilterUI() {
+  document.querySelectorAll("[data-filter]").forEach((button) => {
+    const selected = button.dataset.filter === activeCategory;
+    button.classList.toggle("active", selected);
+    button.setAttribute("aria-pressed", String(selected));
+  });
+}
+function renderGrid() {
+  const grid = document.getElementById("product-grid");
+  if (!grid) return;
+  const visible = allProducts.filter((product) =>
+    (activeCategory === "all" || product.category === activeCategory) && matchesSearch(product));
+  grid.replaceChildren();
+  if (!visible.length) {
+    const message = document.createElement("p");
+    message.textContent = searchTerm ? "No finds match your search. Try another keyword." : "No finds in this category yet.";
+    grid.appendChild(message);
+    return;
+  }
+  const fragment = document.createDocumentFragment();
+  visible.forEach((product) => {
+    const link = document.createElement("a");
+    link.className = "product-card";
+    link.href = "product.html?id=" + encodeURIComponent(product.id);
+    const image = document.createElement("img");
+    image.src = safeImagePath(product.image);
+    image.alt = product.name;
+    image.loading = "lazy";
+    image.decoding = "async";
+    image.addEventListener("error", () => { image.hidden = true; }, { once: true });
+    const name = document.createElement("span");
+    name.className = "product-name";
+    name.textContent = product.brand + " " + product.name;
+    const category = document.createElement("small");
+    category.className = "product-cat";
+    category.textContent = CATEGORY_LABELS[product.category];
+    link.append(image,name,category);
+    fragment.appendChild(link);
+  });
+  grid.appendChild(fragment);
+}
+async function loadProducts() {
+  const grid = document.getElementById("product-grid");
+  if (!grid) return;
+  try {
+    const response = await fetch("content/products.json",{headers:{Accept:"application/json"}});
+    if (!response.ok) throw new Error("Product data request failed (" + response.status + ").");
+    const data = await response.json();
+    if (!Array.isArray(data)) throw new Error("Product data must be a JSON array.");
+    const seenIds = new Set();
+    allProducts = [];
+    data.forEach((product,index) => {
+      if (!isValidProduct(product) || seenIds.has(product.id)) {
+        console.warn("Skipping invalid or duplicate product record at index",index);
+        return;
+      }
+      seenIds.add(product.id);
+      if (product.status === "published") allProducts.push(product);
+    });
+    renderGrid();
+  } catch (error) {
+    console.error("Ohhgood! could not load catalog:",error);
+    grid.replaceChildren();
+    const message = document.createElement("p");
+    message.textContent = "Finds could not be loaded right now. Please refresh in a moment.";
+    grid.appendChild(message);
+  }
+}
+document.addEventListener("DOMContentLoaded",() => {
+  document.querySelectorAll("[data-filter]").forEach((button) => {
+    button.addEventListener("click",() => { activeCategory=button.dataset.filter||"all";setFilterUI();renderGrid(); });
+  });
+  document.querySelectorAll("[data-category]").forEach((button) => {
+    button.addEventListener("click",() => {
+      activeCategory=VALID_CATEGORIES.has(button.dataset.category)?button.dataset.category:"all";
+      setFilterUI();renderGrid();
+      document.getElementById("featured")?.scrollIntoView({behavior:"smooth",block:"start"});
+    });
+  });
+  const search=document.getElementById("find-search-input");
+  const clear=document.getElementById("clear-find-search");
+  if(search) search.addEventListener("input",() => {searchTerm=search.value.trim().toLocaleLowerCase();if(clear)clear.hidden=!search.value;renderGrid();});
+  if(clear&&search) clear.addEventListener("click",() => {search.value="";searchTerm="";clear.hidden=true;search.focus();renderGrid();});
+  setFilterUI();
+  loadProducts();
+});

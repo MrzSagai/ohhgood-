@@ -1,164 +1,253 @@
 [
   {
-    "id": "joyroom",
-    "brand": "JOYROOM",
-    "name": "JR-ZS368 Magnetic Cable Organizer (White 9-Pack)",
-    "category": "desk",
-    "description": "A small magnetic cable holder designed to keep everyday charging cords accessible and off your desk.",
+    "id": "maxgear-mesh-3pack",
+    "brand": "MaxGear",
+    "name": "Mesh Pen Holder , 3 Pack Black",
+    "category": "tidy",
+    "description": "Premium mesh metal pencil holders with non-slip EVA pad. 3.7\" tall, round, for desk organization.",
     "benefits": [
-      "Magnetic clips open for quick cable access",
-      "Adhesive-backed bases for desktop cable routing",
-      "Designed for cables less than 7.5 mm in diameter"
+      "3 pack, mesh metal",
+      "Non-slip EVA pad",
+      "3.7\" tall, holds 30+ pens"
+    ],
+    "image": "assets/maxgear.webp",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/B0756X76P5?tag=ohhgood0c-20"
+  },
+  {
+    "id": "joyroom-cable-organizer",
+    "brand": "JOYROOM",
+    "name": "Magnetic Cable Organizer , 6 Pack",
+    "category": "tidy",
+    "description": "Magnetic cable clips that keep chargers tidy on your desk.",
+    "benefits": [
+      "Magnetic, easy snap",
+      "6 pack for desk + nightstand",
+      "Keeps cables tidy"
     ],
     "image": "assets/Joyroom.webp",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B0CH159ZNT?tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/s?k=JOYROOM+magnetic+cable+organizer&tag=ohhgood0c-20"
   },
   {
-    "id": "lamicall",
-    "brand": "Lamicall",
-    "name": "Adjustable Cell Phone Stand — A-Black",
-    "category": "desk",
-    "description": "An aluminum desk stand that gives your phone a dedicated spot for viewing calls, recipes, and reminders.",
+    "id": "bagsmart-electronics-organizer",
+    "brand": "BAGSMART",
+    "name": "Electronics Organizer , Travel Pouch",
+    "category": "tidy",
+    "description": "Double-layer pouch for cables, chargers and small tech.",
     "benefits": [
-      "Designed for phones with 4–8-inch screens",
-      "14 mm hook width; check case thickness before buying",
-      "Designed for tabletop portrait or landscape viewing"
+      "Double layer, padded",
+      "Fits cables + power bank",
+      "Travel-friendly"
+    ],
+    "image": "assets/Bagsmart.webp",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/s?k=BAGSMART+electronics+organizer&tag=ohhgood0c-20"
+  },
+  {
+    "id": "yecaye-cable-tray-l-clamp",
+    "brand": "YECAYE",
+    "name": "Under Desk Cable Tray (L-Clamp) - No-Drill Cable Management",
+    "category": "tidy",
+    "description": "Metal cable tray with L-clamp, open wire design for under-desk cable management. No drill needed.",
+    "benefits": [
+      "Metal wire tray, open design",
+      "L-clamp, no drill",
+      "Holds power strip + cables"
+    ],
+    "image": "assets/yecaye.webp",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/B0953L1ML6?tag=ohhgood0c-20"
+  },
+  {
+    "id": "nuvograin-laptop-stand",
+    "brand": "Nuvograin",
+    "name": "Adjustable Vertical Laptop Stand , Walnut",
+    "category": "tidy",
+    "description": "Faceted diamond-cut walnut vertical laptop stand, adjustable width, saves desk space.",
+    "benefits": [
+      "Faceted diamond-cut walnut",
+      "Adjustable width",
+      "Vertical, saves desk space"
+    ],
+    "image": "assets/nuvograin.webp",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/B0FL6B9MDD?tag=ohhgood0c-20"
+  },
+  {
+    "id": "lamicall-phone-stand",
+    "brand": "Lamicall",
+    "name": "Adjustable Cell Phone Stand - A-Black",
+    "category": "tidy",
+    "description": "Adjustable cell phone stand, stable aluminum, for desk.",
+    "benefits": [
+      "Adjustable angle",
+      "Stable aluminum",
+      "For phone + tablet"
     ],
     "image": "assets/Lamicall.webp",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/B01M7U6F8T?tag=ohhgood0c-20"
   },
   {
-    "id": "oxo",
-    "brand": "OXO Good Grips",
-    "name": "Sweep & Swipe Laptop Cleaner — White",
-    "category": "desk",
-    "description": "A compact two-in-one cleaning tool for brushing away desk debris and wiping fingerprints from devices.",
+    "id": "oxo-laptop-cleaner",
+    "brand": "OXO",
+    "name": "Sweep & Swipe Laptop Cleaner - White",
+    "category": "tidy",
+    "description": "OXO Good Grips Sweep & Swipe laptop cleaner for screen and keyboard.",
     "benefits": [
-      "Retractable soft brush for dust and crumbs",
-      "Microfiber pad for smudges and fingerprints",
-      "Protective cap for storage between uses"
+      "Sweep + swipe 2-in-1",
+      "Retractable brush",
+      "For laptop screen"
     ],
     "image": "assets/Oxodesk.webp",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/B07W1L7TCF?tag=ohhgood0c-20"
   },
   {
-    "id": "bagsmart",
-    "brand": "BAGSMART",
-    "name": "Electronics Organizer Travel Case — B-Grey",
-    "category": "go",
-    "description": "A compact zippered tech pouch to keep cables, chargers, and small electronics organized when you're on the go.",
+    "id": "yecaye-cable-tray-all-metal",
+    "brand": "YECAYE",
+    "name": "Under Desk Cable Tray (All-Metal Clamp Mount)",
+    "category": "tidy",
+    "description": "All-metal clamp mount cable tray, second variant for heavier power strips.",
     "benefits": [
-      "Multiple compartments for organizing cables and small accessories",
-      "Top handle and zippered closure for convenient travel",
-      "Approx. 7.9 × 4.7 × 2.4 inches; confirm details on Amazon"
+      "All-metal clamp",
+      "No drill",
+      "Holds heavy power strip"
     ],
-    "image": "assets/Bagsmart.webp",
+    "image": "assets/yecaye-metal.webp",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B0D3XFN86F?tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/s?k=YECAYE+under+desk+cable+tray+all+metal&tag=ohhgood0c-20"
   },
   {
-    "id": "yecaye",
-    "brand": "YECAYE",
-    "name": "Under Desk Cable Management Tray — All-Metal Clamp Mount",
-    "category": "desk",
-    "description": "All-metal clamp-mount organizer with dual bars to keep power strips and excess cords off the floor — no drilling needed.",
-    "benefits": [
-      "F-clamp mount fits desks 0.2–1.85 in, no drilling, protective pads to prevent scratches",
-      "Dual-bar design: lower shelf for power strip, upper bars for coiled cables",
-      "Includes hook-and-loop straps for routers or small hubs"
-    ],
-    "image": "assets/yecaye.webp",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B0FCS7QGNT?tag=ohhgood0c-20"
-  },
-    {
-    "id": "bamboo-dividers",
+    "id": "s-and-c-living-bamboo-dividers",
     "brand": "S & C Living",
-    "name": "Bamboo Drawer Dividers — 4-Pack Adjustable",
-    "category": "desk",
-    "description": "Spring-loaded bamboo dividers to keep desk drawers tidy without extra boxes.",
+    "name": "Bamboo Drawer Dividers - 4-Pack Adjustable",
+    "category": "tidy",
+    "description": "Adjustable bamboo drawer dividers, 4-pack, with felt pads and slot adjust.",
     "benefits": [
-      "Adjusts 17.5–22 inches, spring-loaded for snug fit",
-      "Natural bamboo, no tools needed",
-      "Ideal for desk drawers, stationery and small supplies"
+      "4 pack, adjustable",
+      "Bamboo, felt pads",
+      "For drawer organization"
     ],
     "image": "assets/bamboo-dividers.webp",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/B08CQ8HRVG?tag=ohhgood0c-20"
   },
   {
-    "id": "homeify-drawer",
+    "id": "homeify-under-desk-drawer",
     "brand": "Homeify",
-    "name": "Under Desk Drawer Organizer — Clamp-On 2-Drawer",
-    "category": "desk",
-    "description": "Mesh metal drawer that clamps under your desk to hide pens, notepads and small office supplies.",
+    "name": "Under Desk Drawer Organizer - Clamp-On 2-Drawer",
+    "category": "tidy",
+    "description": "Clamp-on under desk drawer organizer with 2 drawers for small essentials.",
     "benefits": [
-      "Clamp-on install, no drilling, holds up to 15 lbs",
-      "2 slide-out drawers, can also sit on desktop",
-      "Powder-coated metal, 11.8 x 18.5 x 4.5 inches"
+      "Clamp-on, no drill",
+      "2 drawers",
+      "For small essentials"
     ],
-    "image": "assets/homeify-drawer.webp",
+    "image": "assets/homeify.webp",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B0BR4K8HCZ?tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/s?k=Homeify+under+desk+drawer+organizer&tag=ohhgood0c-20"
   },
   {
-    "id": "felt-mat",
+    "id": "dawntrees-felt-desk-mat",
     "brand": "DAWNTREES",
-    "name": "Large Felt Desk Mat — 40x16 inches",
-    "category": "desk",
-    "description": "Non-slip felt mat that protects your desk and gives mouse and keyboard a soft base.",
+    "name": "Large Felt Desk Mat - 40x16 inches",
+    "category": "tidy",
+    "description": "Large felt desk mat, soft wool felt, protects desk and dampens sound.",
     "benefits": [
-      "40x16 inches, covers full keyboard + mouse area",
-      "Felt with non-slip backing, protects desk surface",
-      "Minimal look, easy to clean and roll up"
+      "40x16 inches",
+      "Wool felt, soft",
+      "Protects desk"
     ],
-    "image": "assets/felt-mat.webp",
+    "image": "assets/dawntrees.webp",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B096S2Z9Q7?tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/s?k=DAWNTREES+felt+desk+mat&tag=ohhgood0c-20"
   },
   {
-    "id": "weenson-stand",
+    "id": "weenson-dual-monitor-stand",
     "brand": "Weenson",
-    "name": "Dual Monitor Stand — White Bamboo",
-    "category": "desk",
-    "description": "Bamboo riser for two monitors with adjustable metal legs to free up desk space underneath.",
+    "name": "Dual Monitor Stand - White Bamboo",
+    "category": "tidy",
+    "description": "Dual monitor stand in white bamboo, raises monitors for better posture.",
     "benefits": [
-      "White bamboo top, 3 height settings with metal legs",
-      "Creates storage space underneath for keyboard or notebooks",
-      "No tools setup for home office"
+      "White bamboo",
+      "Dual monitor",
+      "Ergonomic height"
     ],
-    "image": "assets/weenson-stand.webp",
+    "image": "assets/weenson.webp",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B0BD4CSSRG?tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/s?k=Weenson+dual+monitor+stand+white+bamboo&tag=ohhgood0c-20"
   },
   {
-    "id": "rocdeer-shelf",
+    "id": "rocdeer-bamboo-monitor-shelf",
     "brand": "ROCDEER",
-    "name": "Bamboo Dual Monitor Shelf — Natural",
-    "category": "desk",
-    "description": "Sturdy bamboo shelf that holds monitors and hides office supplies underneath.",
+    "name": "Bamboo Dual Monitor Shelf - Natural",
+    "category": "tidy",
+    "description": "Bamboo dual monitor shelf in natural finish, with storage underneath.",
     "benefits": [
-      "Supports up to 300 lbs, natural bamboo finish",
-      "Underneath storage for desk essentials",
-      "Minimal design that matches calm desk setup"
+      "Natural bamboo",
+      "Dual monitor shelf",
+      "Storage underneath"
     ],
-    "image": "assets/rocdeer-shelf.webp",
+    "image": "assets/rocdeer.webp",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B09BYFR44J?tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/s?k=ROCDEER+bamboo+monitor+shelf&tag=ohhgood0c-20"
+  },
+  {
+    "id": "benq-screenbar-halo",
+    "brand": "BenQ",
+    "name": "ScreenBar Halo Monitor Light",
+    "category": "cozy",
+    "description": "Wireless controller, adjustable brightness and color temperature, eye-care monitor light bar with no screen glare.",
+    "benefits": [
+      "Wireless dial controller",
+      "Auto brightness + hue adjust",
+      "No screen glare, eye-care"
+    ],
+    "image": "assets/benq.webp",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/B08WT889V3?tag=ohhgood0c-20"
+  },
+  {
+    "id": "amber-sandalwood-candle",
+    "brand": "Aredenua",
+    "name": "Amber Sandalwood Candle , 7oz Soy",
+    "category": "cozy",
+    "description": "7oz soy candle in amber glass jar. Warm woody fragrance, clean burn.",
+    "benefits": [
+      "Soy wax, 50h burn",
+      "Amber glass jar, cozy glow",
+      "Warm woody scent"
+    ],
+    "image": "assets/candle-amber.webp",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/s?k=amber+sandalwood+candle+soy&tag=ohhgood0c-20"
+  },
+  {
+    "id": "candle-warmer-lamp",
+    "brand": "Marycele",
+    "name": "Candle Warmer Lamp , Dimmable Amber",
+    "category": "cozy",
+    "description": "Dimmable wax melt warmer with amber lampshade. Vintage nightstand lamp.",
+    "benefits": [
+      "Dimmable, timer",
+      "Amber lampshade, warm light",
+      "No flame, safe"
+    ],
+    "image": "assets/candle-warmer.webp",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/s?k=candle+warmer+lamp+dimmable+amber&tag=ohhgood0c-20"
   },
   {
     "id": "mind-design-purpose-planner",
     "brand": "Mind Design",
-    "name": "Purpose Planner — Solid Walnut Holder",
-    "category": "desk",
-    "description": "Analog system with 120 Today cards and walnut tray that holds the stack and displays today's focus. Includes slate gift box and black metal divider.",
+    "name": "Purpose Planner , Solid Walnut Holder",
+    "category": "ritual",
+    "description": "Analog system with 120 Today cards and walnut tray that holds the stack.",
     "benefits": [
-      "Solid walnut tray holds full stack",
-      "120 Today cards (4 months)",
-      "Task Signal Key on every card",
+      "Solid walnut tray holds stack",
+      "120 Today cards",
       "Slate gift box + metal divider"
     ],
     "image": "assets/mind-design.webp",
@@ -166,67 +255,78 @@
     "retailer_url": "https://www.amazon.com/dp/B0BT73XYQG?tag=ohhgood0c-20"
   },
   {
-    "id": "nuvograin-vertical-stand",
-    "brand": "Nuvograin",
-    "name": "Adjustable Vertical Laptop Stand — Walnut",
-    "category": "desk",
-    "description": "Faceted geometric walnut stand with soft inner padding and width-adjustable slot for MacBook, Surface and more. Solid wood, hand-polished.",
+    "id": "linen-journal-a5",
+    "brand": "Paper Peony Press",
+    "name": "Reading Journal , Linen Cover",
+    "category": "ritual",
+    "description": "Linen-wrapped hardcover journal with minimal pages for tracking books.",
     "benefits": [
-      "Faceted walnut, hand-polished",
-      "H 1.77\" x L 7.08\" x W 3.62\"",
-      "Soft inner padding protects laptop",
-      "Width adjustable, vertical storage"
+      "Linen-wrapped hardcover",
+      "Minimal layout, 52 books",
+      "Gold foil, satin marker"
     ],
-    "image": "assets/nuvograin.webp",
+    "image": "assets/journal-linen.webp",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B0FL6B9MDD?tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/s?k=linen+journal+reading+journal&tag=ohhgood0c-20"
   },
   {
-    "id": "yecaye-cable-tray",
-    "brand": "YECAYE",
-    "name": "Under Desk Cable Management Tray — L-Clamp",
-    "category": "desk",
-    "description": "Open-wire tray with L-shaped clamps and bonus clips that hides power strips and cables for a zero-wire look.",
+    "id": "herbal-tea-ritual-set",
+    "brand": "Vahdam",
+    "name": "Herbal Tea Ritual Set , Calm Blend",
+    "category": "ritual",
+    "description": "Herbal tea for slow evenings. Chamomile and mint blend.",
     "benefits": [
-      "No-drill L-clamp mount",
-      "Open wire design, airflow",
-      "Includes 4 round + 2 multi clips",
-      "Holds power strip under desk"
+      "Herbal, caffeine-free",
+      "Calm evening ritual",
+      "Easy to brew"
     ],
-    "image": "assets/YECAYE Cable Tray.webp",
+    "image": "assets/tea-ritual.webp",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B0953L1ML6?tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/s?k=herbal+tea+calm+chamomile&tag=ohhgood0c-20"
   },
   {
-    "id": "maxgear-mesh-3pack",
-    "brand": "MaxGear",
-    "name": "Mesh Pen Holder — 3 Pack Black",
-    "category": "desk",
-    "description": "Premium mesh metal pencil holders with non-slip EVA pad. 3.7\" tall, round, for desk organization.",
+    "id": "omysa-midcentury-planter",
+    "brand": "OMYSA",
+    "name": "Mid Century Planter , Walnut Stand + White Ceramic",
+    "category": "green",
+    "description": "10 inch white ceramic planter with American Black Walnut stand.",
     "benefits": [
-      "3 pack, mesh metal",
-      "Non-slip EVA pad",
-      "3.7\" tall, holds 30+ pens",
-      "Black, minimal desk look"
+      "American Black Walnut stand",
+      "White ceramic, drainage",
+      "10 inch, for snake plant / fiddle leaf"
     ],
-    "image": "assets/maxgear.webp",
+    "image": "assets/planter-omysa.webp",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B0756X76P5?tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/s?k=OMYSA+mid+century+planter+walnut+stand&tag=ohhgood0c-20"
   },
   {
-    "id": "benq-screenbar-halo",
-    "brand": "BenQ",
-    "name": "ScreenBar Halo Monitor Light",
-    "category": "desk",
-    "description": "Wireless controller, adjustable brightness and color temperature, eye-care monitor light bar with no screen glare. Space saving.",
+    "id": "ceramic-planter-stand-set",
+    "brand": "OMYSA",
+    "name": "Ceramic Planter Set , 2 Pack Walnut Stand",
+    "category": "green",
+    "description": "Set of 2 ceramic planters with walnut stands for small monstera, pothos, peace lily.",
     "benefits": [
-      "Wireless dial controller",
-      "Auto brightness + hue adjust",
-      "No screen glare, eye-care",
-      "Fits curved monitors, USB powered"
+      "2 pack, walnut stands",
+      "Ceramic, drainage",
+      "For small indoor plants"
     ],
-    "image": "assets/benq.webp",
+    "image": "assets/planter-set.webp",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B08WT889V3?tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/s?k=ceramic+planter+walnut+stand+set&tag=ohhgood0c-20"
+  },
+  {
+    "id": "monstera-starter-plant",
+    "brand": "Costa Farms",
+    "name": "Monstera Deliciosa , Live Plant",
+    "category": "green",
+    "description": "Live monstera for Green Corner.",
+    "benefits": [
+      "Live plant, easy care",
+      "Biophilic, air purifying",
+      "Iconic monstera leaves"
+    ],
+    "image": "assets/monstera.webp",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/s?k=monstera+deliciosa+live+plant&tag=ohhgood0c-20"
   }
 ]

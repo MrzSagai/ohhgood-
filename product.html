@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Product - Ohhgood!</title>
+<meta name="description" content="Independent product finds from Ohhgood!, with useful details and honest considerations.">
+<meta property="og:type" content="product">
+<meta property="og:site_name" content="Ohhgood!">
+<meta property="og:title" content="Product finds — Ohhgood!">
+<meta property="og:description" content="Independent product finds from Ohhgood!.">
+<link rel="canonical" href="https://ohhgood.store/product.html">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .product-page{max-width:760px;margin:0 auto;padding:24px 18px 64px;background:#FFFDF8}
+  .crumb{font-size:13px;opacity:.7;margin-bottom:16px}.crumb a{color:inherit}
+  .eyebrow{font-size:12px;letter-spacing:.14em;font-weight:700;opacity:.7;text-transform:uppercase}
+  .product-page h1{font-size:30px;line-height:1.2;margin:8px 0 10px;font-family:Georgia,serif}
+  .disclosure{font-size:12px;line-height:1.5;opacity:.65;margin:0 0 18px}
+  .intro{font-size:16px;line-height:1.65;margin:0 0 20px}
+  .product-hero{width:100%;border-radius:16px;display:block;margin:0 0 16px;aspect-ratio:16/10;object-fit:cover;background:#F7F0E6}
+  .cta-below-img{display:block;text-align:center;background:#121212;color:#fff;text-decoration:none;font-weight:700;padding:16px 20px;border-radius:999px;margin:0 0 8px}
+  .cta-note{font-size:12px;text-align:center;opacity:.65;margin:0 0 32px}
+  .product-page h2{font-size:20px;margin:36px 0 10px;font-family:Georgia,serif}
+  .product-page h3{font-size:16px;margin:20px 0 8px}
+  .product-page p,.product-page li{font-size:15px;line-height:1.65}
+  .product-page ul,.product-page ol{padding-left:20px;margin:0 0 16px}.product-page li{margin-bottom:8px}
+  .box{border:1px solid #E8E0D6;border-radius:14px;padding:18px;margin:0 0 20px;background:#fff}
+  .spec-table{width:100%;border-collapse:collapse;font-size:14px}.spec-table td{padding:10px 0;border-bottom:1px solid #eee;vertical-align:top}.spec-table td:first-child{font-weight:700;width:38%;padding-right:12px}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .related{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+  .related a{text-decoration:none;color:inherit;display:block;border-radius:12px;overflow:hidden;border:1px solid #eee}
+  .related img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+  .related span{display:block;background:#121212;color:#fff;font-size:13px;line-height:1.35;padding:10px 12px}
+  .notfound{text-align:center;padding:60px 20px}
+  @media(max-width:600px){.two-col,.related{grid-template-columns:1fr}.product-page h1{font-size:24px}}
+</style>
+</head>
+<body>
+<header class="site-header"><div class="container header-inner"><a href="index.html" class="logo">Back to Ohhgood!</a><nav class="desktop-nav"><a href="index.html#categories">Categories</a><a href="index.html#featured">Finds</a><a href="index.html#journal">Journal</a></nav></div></header>
+<main class="product-page" id="app"><p style="padding:40px 0;text-align:center">Loading product...</p></main>
+<footer class="footer"><div class="container footer-inner"><p>Ohhgood! Independent discoveries. No pressure, no made-up ratings.</p><a href="standards.html">Editorial standards and disclosures</a></div></footer>
+<script>
+"use strict";
+const CATEGORY_LABELS={tidy:"Tidy Space",cozy:"Cozy Ambience",ritual:"Slow Ritual",green:"Green Corner"};
+const escapeHTML=(value)=>String(value??"").replace(/[&<>"']/g,(char)=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
+const safeImage=(value)=>typeof value==="string"&&/^assets\/[a-zA-Z0-9_./% -]+$/.test(value)&&!value.includes("..")?value:"";
+const safeRetailer=(value)=>{try{const url=new URL(value);return url.protocol==="https:"?url.href:"";}catch{return "";}};
+const listItems=(value)=>Array.isArray(value)?value.filter((item)=>typeof item==="string"&&item.trim()).map((item)=>"<li>"+escapeHTML(item)+"</li>").join(""):"";
+function updateMeta(selector,attribute,value){const element=document.querySelector(selector);if(element)element.setAttribute(attribute,value);}
+function showNotFound(message){const app=document.getElementById("app");app.replaceChildren();const wrap=document.createElement("div");wrap.className="notfound";const heading=document.createElement("h2");heading.textContent=message;const back=document.createElement("a");back.href="index.html#featured";back.textContent="Back to all finds";wrap.append(heading,back);app.appendChild(wrap);}
+async function loadProduct(){
+ const app=document.getElementById("app");const id=new URLSearchParams(location.search).get("id")||"";
+ if(!/^[a-z0-9-]+$/.test(id)){showNotFound("Product not found");return;}
+ try{
+  const response=await fetch("content/products.json",{headers:{Accept:"application/json"}});
+  if(!response.ok)throw new Error("Product data request failed ("+response.status+").");
+  const data=await response.json();if(!Array.isArray(data))throw new Error("Invalid product data.");
+  const product=data.find((item)=>item&&item.id===id&&item.status==="published");
+  if(!product){showNotFound("Product not found");return;}
+  const title=product.brand+" "+product.name+" | Ohhgood!";const description=product.description||"An independent find from Ohhgood!";
+  document.title=title;updateMeta('meta[name="description"]',"content",description.slice(0,160));
+  updateMeta('meta[property="og:title"]',"content",title);updateMeta('meta[property="og:description"]',"content",description.slice(0,200));
+  updateMeta('meta[property="og:url"]',"content",location.href);
+  const canonical=document.querySelector('link[rel="canonical"]');if(canonical)canonical.href=location.href.split("#")[0];
+  const image=safeImage(product.image);const retailer=safeRetailer(product.retailer_url);const category=CATEGORY_LABELS[product.category]||"Find";
+  const benefits=listItems(product.benefits);
+  const related=data.filter((item)=>item&&item.status==="published"&&item.category===product.category&&item.id!==product.id).slice(0,3);
+  const relatedHTML=related.map((item)=>{
+   const src=safeImage(item.image);
+   return '<a href="product.html?id='+encodeURIComponent(item.id)+'">'+(src?'<img src="'+escapeHTML(src)+'" alt="'+escapeHTML(item.name)+'" loading="lazy">':"")+'<span>'+escapeHTML(item.brand+" "+item.name)+'</span></a>';
+  }).join("");
+  const ctaHTML=retailer?'<a class="cta-below-img" href="'+escapeHTML(retailer)+'" target="_blank" rel="nofollow sponsored noopener noreferrer">View at Retailer</a><p class="cta-note">Opens the retailer in a new tab. Check current price, availability, and details before buying.</p>':'<p class="cta-note">A retailer link has not been verified for this find yet.</p>';
+  const imageHTML=image?'<img class="product-hero" src="'+escapeHTML(image)+'" alt="'+escapeHTML(product.name)+'" loading="eager" decoding="async">':"";
+  const optionalSection=(heading,value)=>{
+   const items=Array.isArray(value)?value:(typeof value==="string"?value.split("\n").filter(Boolean):[]);
+   if(!items.length)return "";
+   return "<h2>"+heading+"</h2><ul>"+listItems(items)+"</ul>";
+  };
+  const faqHTML=Array.isArray(product.faq)?product.faq.filter((faq)=>faq&&typeof faq.q==="string"&&typeof faq.a==="string").map((faq)=>"<h3>"+escapeHTML(faq.q)+"</h3><p>"+escapeHTML(faq.a)+"</p>").join(""):"";
+  app.innerHTML=
+   '<p class="crumb"><a href="index.html">Home</a> / <a href="index.html#featured">'+escapeHTML(category)+'</a> / '+escapeHTML(product.name)+'</p>'+
+   '<p class="eyebrow">'+escapeHTML(category)+'</p><h1>'+escapeHTML(product.brand)+" "+escapeHTML(product.name)+'</h1>'+
+   '<p class="disclosure">(paid link) As an Amazon Associate I earn from qualifying purchases. Check price, stock, and details on the retailer site before buying.</p>'+
+   '<p class="intro">'+escapeHTML(description)+'</p>'+imageHTML+ctaHTML+
+   (benefits?'<div class="box"><h2 style="margin-top:0">Why we like it</h2><ul>'+benefits+'</ul></div>':"")+
+   optionalSection("How to use it",product.how_to)+optionalSection("Who it may suit",product.who_for)+
+   optionalSection("Who may want to skip it",product.who_skip)+optionalSection("What to check before buying",product.check_before)+
+   (faqHTML?"<h2>FAQ</h2>"+faqHTML:"")+
+   (relatedHTML?'<h2>Related finds in '+escapeHTML(category)+'</h2><div class="related">'+relatedHTML+'</div>':"")+
+   '<p style="margin-top:28px"><a href="index.html#featured">Back to all finds</a></p>';
+  const schema={"@context":"https://schema.org","@type":"Product","name":product.brand+" "+product.name,"description":description,"category":category,"brand":{"@type":"Brand","name":product.brand},...(image?{"image":new URL(image,location.href).href}:{})};
+  const jsonLd=document.createElement("script");jsonLd.type="application/ld+json";jsonLd.textContent=JSON.stringify(schema);document.head.appendChild(jsonLd);
+ }catch(error){console.error("Ohhgood! product could not be loaded:",error);showNotFound("This find could not be loaded right now");}
+}
+loadProduct();
+</script>
+</body></html>

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#f4f6fa">
+  <title>Ohhgood! Admin</title>
+  <link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+  <div id="login-screen" class="login-screen" hidden>
+    <div class="login-card">
+      <div class="brand-mark"><span class="brand-dot">o</span>hhgood<span class="brand-pop">!</span></div>
+      <p class="eyebrow">CONTENT MANAGEMENT</p>
+      <h1>Welcome back.</h1>
+      <p class="muted">Sign in with the approved GitHub account to manage Ohhgood! content.</p>
+      <a class="button primary full" href="/api/auth/login">Continue with GitHub</a>
+      <p id="login-error" class="notice" aria-live="polite"></p>
+      <p class="tiny">Private admin area · Changes are committed to the development branch.</p>
+    </div>
+  </div>
+  <div id="app" class="app-shell" hidden>
+    <aside class="sidebar">
+      <a class="brand" href="/admin/"><span class="brand-dot">o</span>hhgood<span class="brand-pop">!</span><small>STUDIO</small></a>
+      <div class="side-label">WORKSPACE</div>
+      <button class="nav-item active" data-view="overview"><span>▦</span> Overview</button>
+      <button class="nav-item" data-view="products"><span>◫</span> Products <b id="nav-products">0</b></button>
+      <button class="nav-item" data-view="articles"><span>▤</span> Journal <b id="nav-articles">0</b></button>
+      <div class="side-label">QUICK LINKS</div>
+      <a class="nav-item" href="/" target="_blank" rel="noopener"><span>↗</span> View storefront</a>
+      <a class="nav-item" href="https://github.com/MrzSagai/ohhgood-/tree/MrzSagai-Dev" target="_blank" rel="noopener"><span>⌘</span> GitHub branch</a>
+      <div class="sidebar-bottom"><span class="status-dot"></span> Connected to GitHub <small>MRZ SAGAI DEV</small></div>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <div><span class="crumb">Ohhgood! /</span> <strong id="page-title">Overview</strong></div>
+        <div class="top-actions"><span class="branch-pill">● MrzSagai-Dev</span><div class="user-chip"><img id="user-avatar" alt=""><span id="user-login">Admin</span></div><button id="logout" class="icon-button" title="Sign out" aria-label="Sign out">↪</button></div>
+      </header>
+      <section class="page-content">
+        <div id="toast" class="toast" role="status" aria-live="polite"></div>
+        <section id="view-overview" class="view">
+          <div class="welcome-row"><div><p class="eyebrow">YOUR CONTENT, AT A GLANCE</p><h1>Good to see you.</h1><p class="muted">A little overview of what's happening across your store.</p></div><span class="date-chip" id="today"></span></div>
+          <div class="stat-grid">
+            <article class="stat-card"><div class="stat-top"><span>Total products</span><span class="stat-icon lilac">◫</span></div><strong id="stat-products">—</strong><small>Across all categories</small></article>
+            <article class="stat-card"><div class="stat-top"><span>Published products</span><span class="stat-icon mint">↗</span></div><strong id="stat-published">—</strong><small>Visible in the catalog</small></article>
+            <article class="stat-card"><div class="stat-top"><span>Journal stories</span><span class="stat-icon peach">▤</span></div><strong id="stat-articles">—</strong><small>Drafts and published</small></article>
+            <article class="stat-card"><div class="stat-top"><span>Needs attention</span><span class="stat-icon yellow">!</span></div><strong id="stat-drafts">—</strong><small>Draft content to review</small></article>
+          </div>
+          <div class="panel-grid">
+            <article class="panel"><div class="panel-heading"><div><p class="eyebrow">CONTENT MANAGEMENT</p><h2>Recent products</h2></div><button class="text-button" data-go="products">View all →</button></div><div id="recent-products" class="recent-list"></div></article>
+            <article class="panel"><div class="panel-heading"><div><p class="eyebrow">PUBLISHING</p><h2>Content health</h2></div><span class="soft-badge">Live data</span></div><div id="health-list" class="health-list"></div></article>
+          </div>
+        </section>
+        <section id="view-products" class="view" hidden>
+          <div class="section-heading"><div><p class="eyebrow">CATALOG MANAGEMENT</p><h1>Products</h1><p class="muted">Manage the finds that appear on your storefront.</p></div><button id="add-product" class="button primary">＋ Add product</button></div>
+          <div class="toolbar"><input id="product-search" type="search" placeholder="Search products..." aria-label="Search products"><select id="product-filter" aria-label="Filter products"><option value="all">All statuses</option><option value="published">Published</option><option value="draft">Draft</option></select><span id="product-count" class="muted"></span></div>
+          <div class="table-wrap"><table><thead><tr><th>PRODUCT</th><th>CATEGORY</th><th>STATUS</th><th>RETAILER LINK</th><th></th></tr></thead><tbody id="products-table"></tbody></table></div>
+        </section>
+        <section id="view-articles" class="view" hidden>
+          <div class="section-heading"><div><p class="eyebrow">EDITORIAL WORKSPACE</p><h1>Journal</h1><p class="muted">Create and maintain stories for the Ohhgood! journal.</p></div><button id="add-article" class="button primary">＋ Add article</button></div>
+          <div class="toolbar"><input id="article-search" type="search" placeholder="Search stories..." aria-label="Search articles"><select id="article-filter" aria-label="Filter articles"><option value="all">All statuses</option><option value="published">Published</option><option value="draft">Draft</option></select><span id="article-count" class="muted"></span></div>
+          <div class="table-wrap"><table><thead><tr><th>STORY</th><th>SLUG</th><th>STATUS</th><th>UPDATED IN BRANCH</th><th></th></tr></thead><tbody id="articles-table"></tbody></table></div>
+        </section>
+      </section>
+    </main>
+  </div>
+  <dialog id="editor" class="editor-dialog"><form id="editor-form" method="dialog"><div class="dialog-head"><div><p class="eyebrow" id="editor-kicker">CONTENT EDITOR</p><h2 id="editor-title">Edit content</h2></div><button type="button" id="close-editor" class="icon-button" aria-label="Close">×</button></div><div id="editor-fields" class="editor-fields"></div><div class="dialog-foot"><span id="editor-hint" class="muted tiny">Changes are saved as a Git commit.</span><div><button type="button" id="cancel-editor" class="button subtle">Cancel</button><button id="save-editor" type="submit" class="button primary">Save changes</button></div></div></form></dialog>
+  <script src="/admin/admin.js" defer></script>
+</body>
+</html>
