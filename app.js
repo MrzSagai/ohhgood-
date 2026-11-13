@@ -1,383 +1,109 @@
-// Ohhgood! app.js v3 - with EMBEDDED FALLBACK, so grid never blank even if content/products.json missing
-const CAT_LABEL = { tidy:"Tidy Space", cozy:"Cozy Ambience", ritual:"Slow Ritual", green:"Green Corner" };
-const CAT_IMG = { tidy:"assets/category-tidy.webp", cozy:"assets/category-cozy.webp", ritual:"assets/category-ritual.webp", green:"assets/category-green.webp" };
-let ALL = [];
-let activeCat = "all";
-function clean(s){ if(!s) return ""; return String(s).replace(/—/g, ",").replace(/–/g, "-").replace(/\[entity-[^\]]+\]/g, "Amazon"); }
-// FALLBACK_DATA is injected below by build
-async function loadProducts(){
+/* Ohhgood! catalog controller — data-driven, fail-closed, and CMS-safe. */
+"use strict";
+const CATEGORY_LABELS = Object.freeze({tidy:"Tidy Space",cozy:"Cozy Ambience",ritual:"Slow Ritual",green:"Green Corner"});
+const VALID_CATEGORIES = new Set(Object.keys(CATEGORY_LABELS));
+let allProducts = [];
+let activeCategory = "all";
+let searchTerm = "";
+function safeImagePath(value) {
+  return typeof value === "string" && /^assets\/[a-zA-Z0-9_./% -]+$/.test(value) && !value.includes("..") ? value : "";
+}
+function isValidProduct(product) {
+  return product && typeof product === "object" &&
+    typeof product.id === "string" && /^[a-z0-9-]+$/.test(product.id) &&
+    typeof product.brand === "string" && product.brand.trim() &&
+    typeof product.name === "string" && product.name.trim() &&
+    VALID_CATEGORIES.has(product.category) &&
+    typeof product.description === "string" && safeImagePath(product.image) !== "";
+}
+function matchesSearch(product) {
+  if (!searchTerm) return true;
+  return [product.brand,product.name,product.description,...(Array.isArray(product.benefits)?product.benefits:[])]
+    .join(" ").toLocaleLowerCase().includes(searchTerm);
+}
+function setFilterUI() {
+  document.querySelectorAll("[data-filter]").forEach((button) => {
+    const selected = button.dataset.filter === activeCategory;
+    button.classList.toggle("active", selected);
+    button.setAttribute("aria-pressed", String(selected));
+  });
+}
+function renderGrid() {
   const grid = document.getElementById("product-grid");
-  if(!grid) return;
-  let data = null;
-  const tries = ["content/products.json", "products.json", "./content/products.json", "/content/products.json"];
-  for(const url of tries){
-    try{ const r = await fetch(url); if(r.ok){ data = await r.json(); console.log("Loaded from", url); break; } else { console.log("Not found:", url, r.status); } }catch(e){ console.log("Fetch fail:", url, e.message); }
+  if (!grid) return;
+  const visible = allProducts.filter((product) =>
+    (activeCategory === "all" || product.category === activeCategory) && matchesSearch(product));
+  grid.replaceChildren();
+  if (!visible.length) {
+    const message = document.createElement("p");
+    message.textContent = searchTerm ? "No finds match your search. Try another keyword." : "No finds in this category yet.";
+    grid.appendChild(message);
+    return;
   }
-  if(!data || !data.length){
-    console.log("Using embedded fallback data");
-    data = FALLBACK_DATA;
-    const warn = document.getElementById("json-warn");
-    if(warn) warn.style.display = "block";
-  }
-  ALL = data.filter(p=>p.status!=="draft");
-  renderCategories();
-  renderGrid();
+  const fragment = document.createDocumentFragment();
+  visible.forEach((product) => {
+    const link = document.createElement("a");
+    link.className = "product-card";
+    link.href = "product.html?id=" + encodeURIComponent(product.id);
+    const image = document.createElement("img");
+    image.src = safeImagePath(product.image);
+    image.alt = product.name;
+    image.loading = "lazy";
+    image.decoding = "async";
+    image.addEventListener("error", () => { image.hidden = true; }, { once: true });
+    const name = document.createElement("span");
+    name.className = "product-name";
+    name.textContent = product.brand + " " + product.name;
+    const category = document.createElement("small");
+    category.className = "product-cat";
+    category.textContent = CATEGORY_LABELS[product.category];
+    link.append(image,name,category);
+    fragment.appendChild(link);
+  });
+  grid.appendChild(fragment);
 }
-function renderCategories(){
-  const wrap = document.getElementById("category-cards");
-  if(!wrap) return;
-  wrap.innerHTML = Object.keys(CAT_LABEL).map(c=>{
-    const count = ALL.filter(p=>p.category===c).length;
-    return `<a class="cat-card" href="#featured" data-cat="${c}"><img src="${CAT_IMG[c]}" alt="${CAT_LABEL[c]}" onerror="this.style.display='none'"><span>${CAT_LABEL[c]}</span><small>${count} finds</small></a>`;
-  }).join("");
-  wrap.querySelectorAll(".cat-card").forEach(el=>el.addEventListener("click",()=>{ activeCat=el.dataset.cat; renderGrid(); setFilterUI(); }));
-}
-function renderGrid(){
+async function loadProducts() {
   const grid = document.getElementById("product-grid");
-  const list = activeCat==="all" ? ALL : ALL.filter(p=>p.category===activeCat);
-  if(!list.length){ grid.innerHTML="<p>No finds in this category yet.</p>"; return; }
-  grid.innerHTML = list.map(p=>`
-    <a class="product-card" href="product.html?id=${encodeURIComponent(p.id)}">
-      <img src="${clean(p.image)}" alt="${clean(p.name)}" loading="lazy">
-      <span class="product-name">${clean(p.brand)} ${clean(p.name)}</span>
-      <small class="product-cat">${CAT_LABEL[p.category]||p.category}</small>
-    </a>`).join("");
+  if (!grid) return;
+  try {
+    const response = await fetch("content/products.json",{headers:{Accept:"application/json"}});
+    if (!response.ok) throw new Error("Product data request failed (" + response.status + ").");
+    const data = await response.json();
+    if (!Array.isArray(data)) throw new Error("Product data must be a JSON array.");
+    const seenIds = new Set();
+    allProducts = [];
+    data.forEach((product,index) => {
+      if (!isValidProduct(product) || seenIds.has(product.id)) {
+        console.warn("Skipping invalid or duplicate product record at index",index);
+        return;
+      }
+      seenIds.add(product.id);
+      if (product.status === "published") allProducts.push(product);
+    });
+    renderGrid();
+  } catch (error) {
+    console.error("Ohhgood! could not load catalog:",error);
+    grid.replaceChildren();
+    const message = document.createElement("p");
+    message.textContent = "Finds could not be loaded right now. Please refresh in a moment.";
+    grid.appendChild(message);
+  }
 }
-function setFilterUI(){ document.querySelectorAll("[data-filter]").forEach(b=>{ b.classList.toggle("active", b.dataset.filter===activeCat); }); }
-document.addEventListener("DOMContentLoaded", ()=>{
-  document.querySelectorAll("[data-filter]").forEach(b=>b.addEventListener("click",()=>{ activeCat=b.dataset.filter; renderGrid(); setFilterUI(); }));
+document.addEventListener("DOMContentLoaded",() => {
+  document.querySelectorAll("[data-filter]").forEach((button) => {
+    button.addEventListener("click",() => { activeCategory=button.dataset.filter||"all";setFilterUI();renderGrid(); });
+  });
+  document.querySelectorAll("[data-category]").forEach((button) => {
+    button.addEventListener("click",() => {
+      activeCategory=VALID_CATEGORIES.has(button.dataset.category)?button.dataset.category:"all";
+      setFilterUI();renderGrid();
+      document.getElementById("featured")?.scrollIntoView({behavior:"smooth",block:"start"});
+    });
+  });
+  const search=document.getElementById("find-search-input");
+  const clear=document.getElementById("clear-find-search");
+  if(search) search.addEventListener("input",() => {searchTerm=search.value.trim().toLocaleLowerCase();if(clear)clear.hidden=!search.value;renderGrid();});
+  if(clear&&search) clear.addEventListener("click",() => {search.value="";searchTerm="";clear.hidden=true;search.focus();renderGrid();});
+  setFilterUI();
   loadProducts();
 });
-
-const FALLBACK_DATA = [
-  {
-    "id": "maxgear-mesh-3pack",
-    "brand": "MaxGear",
-    "name": "Mesh Pen Holder , 3 Pack Black",
-    "category": "tidy",
-    "description": "Premium mesh metal pencil holders with non-slip EVA pad. 3.7\" tall, round, for desk organization.",
-    "benefits": [
-      "3 pack, mesh metal",
-      "Non-slip EVA pad",
-      "3.7\" tall, holds 30+ pens"
-    ],
-    "image": "assets/maxgear.webp",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B0756X76P5?tag=ohhgood0c-20"
-  },
-  {
-    "id": "joyroom-cable-organizer",
-    "brand": "JOYROOM",
-    "name": "Magnetic Cable Organizer , 6 Pack",
-    "category": "tidy",
-    "description": "Magnetic cable clips that keep chargers tidy on your desk.",
-    "benefits": [
-      "Magnetic, easy snap",
-      "6 pack for desk + nightstand",
-      "Keeps cables tidy"
-    ],
-    "image": "assets/Joyroom.webp",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/s?k=JOYROOM+magnetic+cable+organizer&tag=ohhgood0c-20"
-  },
-  {
-    "id": "bagsmart-electronics-organizer",
-    "brand": "BAGSMART",
-    "name": "Electronics Organizer , Travel Pouch",
-    "category": "tidy",
-    "description": "Double-layer pouch for cables, chargers and small tech.",
-    "benefits": [
-      "Double layer, padded",
-      "Fits cables + power bank",
-      "Travel-friendly"
-    ],
-    "image": "assets/Bagsmart.webp",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/s?k=BAGSMART+electronics+organizer&tag=ohhgood0c-20"
-  },
-  {
-    "id": "yecaye-cable-tray-l-clamp",
-    "brand": "YECAYE",
-    "name": "Under Desk Cable Tray (L-Clamp) - No-Drill Cable Management",
-    "category": "tidy",
-    "description": "Metal cable tray with L-clamp, open wire design for under-desk cable management. No drill needed.",
-    "benefits": [
-      "Metal wire tray, open design",
-      "L-clamp, no drill",
-      "Holds power strip + cables"
-    ],
-    "image": "assets/yecaye.webp",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B0953L1ML6?tag=ohhgood0c-20"
-  },
-  {
-    "id": "nuvograin-laptop-stand",
-    "brand": "Nuvograin",
-    "name": "Adjustable Vertical Laptop Stand , Walnut",
-    "category": "tidy",
-    "description": "Faceted diamond-cut walnut vertical laptop stand, adjustable width, saves desk space.",
-    "benefits": [
-      "Faceted diamond-cut walnut",
-      "Adjustable width",
-      "Vertical, saves desk space"
-    ],
-    "image": "assets/nuvograin.webp",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B0FL6B9MDD?tag=ohhgood0c-20"
-  },
-  {
-    "id": "lamicall-phone-stand",
-    "brand": "Lamicall",
-    "name": "Adjustable Cell Phone Stand - A-Black",
-    "category": "tidy",
-    "description": "Adjustable cell phone stand, stable aluminum, for desk.",
-    "benefits": [
-      "Adjustable angle",
-      "Stable aluminum",
-      "For phone + tablet"
-    ],
-    "image": "assets/Lamicall.webp",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B01M7U6F8T?tag=ohhgood0c-20"
-  },
-  {
-    "id": "oxo-laptop-cleaner",
-    "brand": "OXO",
-    "name": "Sweep & Swipe Laptop Cleaner - White",
-    "category": "tidy",
-    "description": "OXO Good Grips Sweep & Swipe laptop cleaner for screen and keyboard.",
-    "benefits": [
-      "Sweep + swipe 2-in-1",
-      "Retractable brush",
-      "For laptop screen"
-    ],
-    "image": "assets/Oxodesk.webp",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B07W1L7TCF?tag=ohhgood0c-20"
-  },
-  {
-    "id": "yecaye-cable-tray-all-metal",
-    "brand": "YECAYE",
-    "name": "Under Desk Cable Tray (All-Metal Clamp Mount)",
-    "category": "tidy",
-    "description": "All-metal clamp mount cable tray, second variant for heavier power strips.",
-    "benefits": [
-      "All-metal clamp",
-      "No drill",
-      "Holds heavy power strip"
-    ],
-    "image": "assets/vecaye-metal.webp",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/s?k=YECAYE+under+desk+cable+tray+all+metal&tag=ohhgood0c-20"
-  },
-  {
-    "id": "s-and-c-living-bamboo-dividers",
-    "brand": "S & C Living",
-    "name": "Bamboo Drawer Dividers - 4-Pack Adjustable",
-    "category": "tidy",
-    "description": "Adjustable bamboo drawer dividers, 4-pack, with felt pads and slot adjust.",
-    "benefits": [
-      "4 pack, adjustable",
-      "Bamboo, felt pads",
-      "For drawer organization"
-    ],
-    "image": "assets/bamboo-dividers.webp",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B08CQ8HRVG?tag=ohhgood0c-20"
-  },
-  {
-    "id": "homeify-under-desk-drawer",
-    "brand": "Homeify",
-    "name": "Under Desk Drawer Organizer - Clamp-On 2-Drawer",
-    "category": "tidy",
-    "description": "Clamp-on under desk drawer organizer with 2 drawers for small essentials.",
-    "benefits": [
-      "Clamp-on, no drill",
-      "2 drawers",
-      "For small essentials"
-    ],
-    "image": "assets/homeify.webp",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/s?k=Homeify+under+desk+drawer+organizer&tag=ohhgood0c-20"
-  },
-  {
-    "id": "dawntrees-felt-desk-mat",
-    "brand": "DAWNTREES",
-    "name": "Large Felt Desk Mat - 40x16 inches",
-    "category": "tidy",
-    "description": "Large felt desk mat, soft wool felt, protects desk and dampens sound.",
-    "benefits": [
-      "40x16 inches",
-      "Wool felt, soft",
-      "Protects desk"
-    ],
-    "image": "assets/dawntrees.webp",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/s?k=DAWNTREES+felt+desk+mat&tag=ohhgood0c-20"
-  },
-  {
-    "id": "weenson-dual-monitor-stand",
-    "brand": "Weenson",
-    "name": "Dual Monitor Stand - White Bamboo",
-    "category": "tidy",
-    "description": "Dual monitor stand in white bamboo, raises monitors for better posture.",
-    "benefits": [
-      "White bamboo",
-      "Dual monitor",
-      "Ergonomic height"
-    ],
-    "image": "assets/weenson.webp",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/s?k=Weenson+dual+monitor+stand+white+bamboo&tag=ohhgood0c-20"
-  },
-  {
-    "id": "rocdeer-bamboo-monitor-shelf",
-    "brand": "ROCDEER",
-    "name": "Bamboo Dual Monitor Shelf - Natural",
-    "category": "tidy",
-    "description": "Bamboo dual monitor shelf in natural finish, with storage underneath.",
-    "benefits": [
-      "Natural bamboo",
-      "Dual monitor shelf",
-      "Storage underneath"
-    ],
-    "image": "assets/rocdeer.webp",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/s?k=ROCDEER+bamboo+monitor+shelf&tag=ohhgood0c-20"
-  },
-  {
-    "id": "benq-screenbar-halo",
-    "brand": "BenQ",
-    "name": "ScreenBar Halo Monitor Light",
-    "category": "cozy",
-    "description": "Wireless controller, adjustable brightness and color temperature, eye-care monitor light bar with no screen glare.",
-    "benefits": [
-      "Wireless dial controller",
-      "Auto brightness + hue adjust",
-      "No screen glare, eye-care"
-    ],
-    "image": "assets/benq.webp",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B08WT889V3?tag=ohhgood0c-20"
-  },
-  {
-    "id": "amber-sandalwood-candle",
-    "brand": "Aredenua",
-    "name": "Amber Sandalwood Candle , 7oz Soy",
-    "category": "cozy",
-    "description": "7oz soy candle in amber glass jar. Warm woody fragrance, clean burn.",
-    "benefits": [
-      "Soy wax, 50h burn",
-      "Amber glass jar, cozy glow",
-      "Warm woody scent"
-    ],
-    "image": "assets/candle-amber.webp",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/s?k=amber+sandalwood+candle+soy&tag=ohhgood0c-20"
-  },
-  {
-    "id": "candle-warmer-lamp",
-    "brand": "Marycele",
-    "name": "Candle Warmer Lamp , Dimmable Amber",
-    "category": "cozy",
-    "description": "Dimmable wax melt warmer with amber lampshade. Vintage nightstand lamp.",
-    "benefits": [
-      "Dimmable, timer",
-      "Amber lampshade, warm light",
-      "No flame, safe"
-    ],
-    "image": "assets/candle-warmer.webp",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/s?k=candle+warmer+lamp+dimmable+amber&tag=ohhgood0c-20"
-  },
-  {
-    "id": "mind-design-purpose-planner",
-    "brand": "Mind Design",
-    "name": "Purpose Planner , Solid Walnut Holder",
-    "category": "ritual",
-    "description": "Analog system with 120 Today cards and walnut tray that holds the stack.",
-    "benefits": [
-      "Solid walnut tray holds stack",
-      "120 Today cards",
-      "Slate gift box + metal divider"
-    ],
-    "image": "assets/mind-design.webp",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B0BT73XYQG?tag=ohhgood0c-20"
-  },
-  {
-    "id": "linen-journal-a5",
-    "brand": "Paper Peony Press",
-    "name": "Reading Journal , Linen Cover",
-    "category": "ritual",
-    "description": "Linen-wrapped hardcover journal with minimal pages for tracking books.",
-    "benefits": [
-      "Linen-wrapped hardcover",
-      "Minimal layout, 52 books",
-      "Gold foil, satin marker"
-    ],
-    "image": "assets/journal-linen.webp",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/s?k=linen+journal+reading+journal&tag=ohhgood0c-20"
-  },
-  {
-    "id": "herbal-tea-ritual-set",
-    "brand": "Vahdam",
-    "name": "Herbal Tea Ritual Set , Calm Blend",
-    "category": "ritual",
-    "description": "Herbal tea for slow evenings. Chamomile and mint blend.",
-    "benefits": [
-      "Herbal, caffeine-free",
-      "Calm evening ritual",
-      "Easy to brew"
-    ],
-    "image": "assets/tea-ritual.webp",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/s?k=herbal+tea+calm+chamomile&tag=ohhgood0c-20"
-  },
-  {
-    "id": "omysa-midcentury-planter",
-    "brand": "OMYSA",
-    "name": "Mid Century Planter , Walnut Stand + White Ceramic",
-    "category": "green",
-    "description": "10 inch white ceramic planter with American Black Walnut stand.",
-    "benefits": [
-      "American Black Walnut stand",
-      "White ceramic, drainage",
-      "10 inch, for snake plant / fiddle leaf"
-    ],
-    "image": "assets/planter-omysa.webp",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/s?k=OMYSA+mid+century+planter+walnut+stand&tag=ohhgood0c-20"
-  },
-  {
-    "id": "ceramic-planter-stand-set",
-    "brand": "OMYSA",
-    "name": "Ceramic Planter Set , 2 Pack Walnut Stand",
-    "category": "green",
-    "description": "Set of 2 ceramic planters with walnut stands for small monstera, pothos, peace lily.",
-    "benefits": [
-      "2 pack, walnut stands",
-      "Ceramic, drainage",
-      "For small indoor plants"
-    ],
-    "image": "assets/planter-set.webp",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/s?k=ceramic+planter+walnut+stand+set&tag=ohhgood0c-20"
-  },
-  {
-    "id": "monstera-starter-plant",
-    "brand": "Costa Farms",
-    "name": "Monstera Deliciosa , Live Plant",
-    "category": "green",
-    "description": "Live monstera for Green Corner.",
-    "benefits": [
-      "Live plant, easy care",
-      "Biophilic, air purifying",
-      "Iconic monstera leaves"
-    ],
-    "image": "assets/monstera.webp",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/s?k=monstera+deliciosa+live+plant&tag=ohhgood0c-20"
-  }
-];
