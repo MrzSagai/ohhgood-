@@ -60,8 +60,9 @@ async function loadProduct(){
   const title=product.brand+" "+product.name+" | Ohhgood!";const description=product.description||"An independent find from Ohhgood!";
   document.title=title;updateMeta('meta[name="description"]',"content",description.slice(0,160));
   updateMeta('meta[property="og:title"]',"content",title);updateMeta('meta[property="og:description"]',"content",description.slice(0,200));
-  updateMeta('meta[property="og:url"]',"content",location.href);
-  const canonical=document.querySelector('link[rel="canonical"]');if(canonical)canonical.href=location.href.split("#")[0];
+  const canonicalURL="https://ohhgood.store/product/"+encodeURIComponent(id);
+  updateMeta('meta[property="og:url"]',"content",canonicalURL);
+  const canonical=document.querySelector('link[rel="canonical"]');if(canonical)canonical.href=canonicalURL;
   const image=safeImage(product.image);const retailer=safeRetailer(product.retailer_url);const category=CATEGORY_LABELS[product.category]||"Find";
   const benefits=listItems(product.benefits);
   const related=data.filter((item)=>item&&item.status==="published"&&item.category===product.category&&item.id!==product.id).slice(0,3);
