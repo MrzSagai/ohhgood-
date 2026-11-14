@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-labelledby="title desc">
+<title id="title">Amber candle warmer lamp</title><desc id="desc">Dimmable candle warmer lamp with amber shade and walnut-toned base</desc>
+<defs>
+ <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#f7f2e9"/><stop offset="1" stop-color="#e9e0d1"/></linearGradient>
+ <linearGradient id="surface" x2="0" y2="1"><stop stop-color="#fffdf8"/><stop offset="1" stop-color="#e8dfd1"/></linearGradient>
+ <linearGradient id="wood" x2="1" y2="1"><stop stop-color="#9b704c"/><stop offset=".5" stop-color="#69452f"/><stop offset="1" stop-color="#b4875d"/></linearGradient>
+ <filter id="shadow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="18"/></filter>
+ <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="7"/></filter>
+ </defs>
+ <rect width="800" height="800" rx="36" fill="url(#bg)"/>
+ <circle cx="620" cy="175" r="120" fill="#fffaf0" opacity=".35"/>
+ <path d="M0 630 Q210 580 410 625 T800 600 V800 H0Z" fill="#d9cdbb" opacity=".42"/>
+ <ellipse cx="402" cy="660" rx="230" ry="34" fill="#6c5742" opacity=".17" filter="url(#shadow)"/>
+ 
+ <path d="M250 580 H550" stroke="#b8a58e" stroke-width="10" stroke-linecap="round"/>
+ <rect x="365" y="520" width="70" height="85" rx="14" fill="url(#wood)"/>
+ <ellipse cx="400" cy="520" rx="115" ry="28" fill="#76543b"/><ellipse cx="400" cy="514" rx="105" ry="20" fill="#a67b55"/>
+ <path d="M395 515 C390 425 390 340 405 270" fill="none" stroke="#654a35" stroke-width="22" stroke-linecap="round"/>
+ <path d="M405 290 Q260 265 285 160 Q400 95 515 160 Q540 265 405 290Z" fill="#b66f43"/>
+ <path d="M405 270 Q310 245 320 170 Q400 125 490 170 Q500 245 405 270Z" fill="#d9955f" opacity=".8"/>
+ <ellipse cx="400" cy="275" rx="105" ry="18" fill="#75452f"/>
+ <path d="M345 290 L455 290 L430 505 H370Z" fill="#f2c47b" opacity=".16" filter="url(#soft)"/>
+ <circle cx="435" cy="560" r="8" fill="#d9bd8e"/>
+ <path d="M405 510 Q420 455 440 430" fill="none" stroke="#f0d7a2" stroke-width="3" opacity=".55"/>
+
+ <text x="400" y="746" text-anchor="middle" fill="#756451" font-family="Georgia,serif" font-size="20" letter-spacing="5" opacity=".8">OHHGOOD  •  EVERYDAY FINDS</text>
+</svg>
