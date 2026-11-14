@@ -220,7 +220,7 @@
       "Amber glass jar, cozy glow",
       "Warm woody scent"
     ],
-    "image": "assets/candle-amber.webp",
+    "image": "assets/candle-amber.webp.svg",
     "status": "published",
     "retailer_url": "https://www.amazon.com/s?k=amber+sandalwood+candle+soy&tag=ohhgood0c-20"
   },
@@ -235,7 +235,7 @@
       "Amber lampshade, warm light",
       "No flame, safe"
     ],
-    "image": "assets/candle-warmer.webp",
+    "image": "assets/candle-warmer.webp.svg",
     "status": "published",
     "retailer_url": "https://www.amazon.com/s?k=candle+warmer+lamp+dimmable+amber&tag=ohhgood0c-20"
   },
@@ -265,7 +265,7 @@
       "Minimal layout, 52 books",
       "Gold foil, satin marker"
     ],
-    "image": "assets/journal-linen.webp",
+    "image": "assets/journal-linen.webp.svg",
     "status": "published",
     "retailer_url": "https://www.amazon.com/s?k=linen+journal+reading+journal&tag=ohhgood0c-20"
   },
@@ -280,7 +280,7 @@
       "Calm evening ritual",
       "Easy to brew"
     ],
-    "image": "assets/tea-ritual.webp",
+    "image": "assets/tea-ritual.webp.svg",
     "status": "published",
     "retailer_url": "https://www.amazon.com/s?k=herbal+tea+calm+chamomile&tag=ohhgood0c-20"
   },
@@ -295,7 +295,7 @@
       "White ceramic, drainage",
       "10 inch, for snake plant / fiddle leaf"
     ],
-    "image": "assets/planter-omysa.webp",
+    "image": "assets/planter-omysa.webp.svg",
     "status": "published",
     "retailer_url": "https://www.amazon.com/s?k=OMYSA+mid+century+planter+walnut+stand&tag=ohhgood0c-20"
   },
@@ -310,7 +310,7 @@
       "Ceramic, drainage",
       "For small indoor plants"
     ],
-    "image": "assets/planter-set.webp",
+    "image": "assets/planter-set.webp.svg",
     "status": "published",
     "retailer_url": "https://www.amazon.com/s?k=ceramic+planter+walnut+stand+set&tag=ohhgood0c-20"
   },
@@ -325,7 +325,7 @@
       "Biophilic, air purifying",
       "Iconic monstera leaves"
     ],
-    "image": "assets/monstera.webp",
+    "image": "assets/monstera.webp.svg",
     "status": "published",
     "retailer_url": "https://www.amazon.com/s?k=monstera+deliciosa+live+plant&tag=ohhgood0c-20"
   }
