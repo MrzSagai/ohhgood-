@@ -1,7 +1,7 @@
 name: V7 launch static QA
 on:
   push:
-    branches: [development]
+    branches: [main]
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -20,7 +20,7 @@ jobs:
       - name: Verify site routes, links, CMS and release rules
         run: |
           python3 - <<'PY'
-          import json,os,re
+          import json,os,re,html
           from urllib.parse import unquote
           from html.parser import HTMLParser
           class Links(HTMLParser):
@@ -50,7 +50,7 @@ jobs:
           assert len({p['id'] for p in products})==len(products)
           assert all(p['status'] in ('draft','published') for p in products)
           assert all(p.get('retailer_url','').startswith('https://') for p in products if p['status']=='published')
-          assert 'As an Amazon Associate I earn from qualifying purchases.' in open('index.html',encoding='utf-8').read()
+          assert 'As an Amazon Associate I earn from qualifying purchases.' in html.unescape(open('index.html',encoding='utf-8').read())
           assert 'privacy.html' in open('index.html',encoding='utf-8').read()
           assert 'contact.html' in open('index.html',encoding='utf-8').read()
           articles=json.load(open('content/articles.json'))
@@ -85,13 +85,13 @@ jobs:
                   parsed=urlsplit(url)
                   assert parsed.scheme=='https' and parsed.hostname,('Bad retailer URL',product['id'])
                   if parsed.hostname in ('amazon.com','www.amazon.com'):
-                      assert parse_qs(parsed.query).get('tag')==['ohhgood-20'],('Unexpected Amazon tracking ID',product['id'])
+                      assert parse_qs(parsed.query).get('tag')==['ohhgood0c-20'],('Unexpected Amazon tracking ID',product['id'])
           for article in articles:
               cover=article.get('cover_image','')
               if cover and not cover.startswith(('https://','http://')):
                   assert os.path.isfile(unquote(cover.lstrip('/'))),('Article cover missing',article['slug'])
-          assert open('robots.txt',encoding='utf-8').read().strip().endswith('Disallow: /'), 'Staging robots should block indexing'
+          assert 'Allow: /' in open('robots.txt',encoding='utf-8').read() and 'Disallow: /' not in open('robots.txt',encoding='utf-8').read(), 'Production robots must allow crawling'
           for name in ('index.html','journal.html','standards.html','privacy.html','contact.html'):
-              assert 'noindex' in open(name,encoding='utf-8').read().lower(),('Noindex missing',name)
-          print('V7 static QA passed: routes, CMS, image assets, affiliate tags, prelaunch noindex')
+              assert 'noindex' not in open(name,encoding='utf-8').read().lower(),('Unexpected noindex on production page',name)
+          print('V7 static QA passed: routes, CMS, image assets, affiliate tags, production indexability')
           PY
