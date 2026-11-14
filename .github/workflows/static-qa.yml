@@ -102,7 +102,7 @@ jobs:
           assert 'Allow: /' in open('robots.txt',encoding='utf-8').read() and 'Disallow: /' not in open('robots.txt',encoding='utf-8').read(), 'Production robots must allow crawling'
           for name in ('index.html','journal.html','standards.html','privacy.html','contact.html'):
               source=open(name,encoding='utf-8').read().lower()
-              initial_robots=re.search(r'<meta[^>]+name=["\\']robots["\\'][^>]+>',source)
-              assert not initial_robots or 'noindex' not in initial_robots.group(0),('Unexpected initial noindex on production page',name)
+              head=source.split('</head>',1)[0]
+              assert 'noindex' not in head,('Unexpected initial noindex on production page',name)
           print('V7 static QA passed: routes, CMS, image assets, affiliate tags, production indexability')
           PY
