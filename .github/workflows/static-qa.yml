@@ -39,7 +39,8 @@ jobs:
               for ref in parsed.links:
                   if not ref or ref.startswith(('http:','https:','data:','mailto:','#')):continue
                   dest=ref.split('?')[0].split('#')[0]
-                  if dest:assert os.path.exists(unquote(dest)),(name,ref)
+                  if dest.startswith('/product/') and os.path.isfile('functions/product/[id].js'):continue
+              if dest:assert os.path.exists(unquote(dest)),(name,ref)
           home=pages['index.html']
           for target in ['featured','categories','journal','about','product-grid','modal-backdrop','mobile-nav']:
               assert target in home.ids,target
@@ -48,6 +49,12 @@ jobs:
               assert isinstance(data,list),name
           products=json.load(open('content/products.json'))
           assert len({p['id'] for p in products})==len(products)
+          assert os.path.isfile('functions/product/[id].js'), 'Dynamic product route handler missing'
+          product_ids={p['id'] for p in products}
+          for parsed in pages.values():
+              for ref in parsed.links:
+                  if ref.startswith('/product/'):
+                      assert ref.split('/')[2] in product_ids,('Unknown product route',ref)
           assert all(p['status'] in ('draft','published') for p in products)
           assert all(p.get('retailer_url','').startswith('https://') for p in products if p['status']=='published')
           assert 'As an Amazon Associate I earn from qualifying purchases.' in html.unescape(open('index.html',encoding='utf-8').read())
