@@ -335,8 +335,12 @@
     "name": "Clamp-On Under-Drawer Storage Organizer",
     "category": "tidy",
     "description": "A clamp-on storage organizer designed to add a small storage space beneath a desk or drawer.",
-    "benefits": "Clamp-on installation",
-    "image": "Under-desk storage format",
+    "benefits": [
+      "Clamp-on installation",
+      "Under-desk storage format",
+      "For small everyday items"
+    ],
+    "image": "assets/homeify.webp",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/For small everyday items?tag=ohhgood0c-20"
   },
@@ -346,8 +350,12 @@
     "name": "Magnolia Sandalwood Scented Candle",
     "category": "cozy",
     "description": "A scented candle combining magnolia and sandalwood fragrance notes.",
-    "benefits": "Magnolia and sandalwood scent",
-    "image": "For home fragrance",
+    "benefits": [
+      "Magnolia and sandalwood scent",
+      "For home fragrance",
+      "Jar candle format"
+    ],
+    "image": "assets/candle-amber.webp.svg",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/Jar candle format?tag=ohhgood0c-20"
   },
@@ -357,8 +365,12 @@
     "name": "Black Sandalwood Scented Candle , 15 oz",
     "category": "cozy",
     "description": "A 15-ounce black sandalwood candle made with a soy-blend wax and a wood wick.",
-    "benefits": "15-ounce candle",
-    "image": "Soy-blend wax",
+    "benefits": [
+      "15-ounce candle",
+      "Soy-blend wax",
+      "Wood wick"
+    ],
+    "image": "assets/candle-amber.webp.svg",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/Wood wick?tag=ohhgood0c-20"
   },
@@ -368,8 +380,12 @@
     "name": "Vanilla Sandalwood Candle , 12 oz",
     "category": "cozy",
     "description": "A 12-ounce glass-jar candle with vanilla sandalwood fragrance and two cotton wicks.",
-    "benefits": "12-ounce glass jar",
-    "image": "Vanilla sandalwood scent",
+    "benefits": [
+      "12-ounce glass jar",
+      "Vanilla sandalwood scent",
+      "Two cotton wicks"
+    ],
+    "image": "assets/candle-amber.webp.svg",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/Two cotton wicks?tag=ohhgood0c-20"
   },
@@ -379,8 +395,12 @@
     "name": "Candle Warmer Lamp with Timer , Amber",
     "category": "cozy",
     "description": "An amber candle warmer lamp intended to warm jar candles without an open flame.",
-    "benefits": "Candle warming lamp",
-    "image": "Amber finish",
+    "benefits": [
+      "Candle warming lamp",
+      "Amber finish",
+      "Timer function"
+    ],
+    "image": "assets/candle-warmer.webp.svg",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/Timer function?tag=ohhgood0c-20"
   },
@@ -390,8 +410,12 @@
     "name": "Flower Candle Warmer Lamp , Timer and Dimmer",
     "category": "cozy",
     "description": "A flower-style candle warmer lamp with adjustable height, dimming and timer settings.",
-    "benefits": "Adjustable height",
-    "image": "2, 4 and 8-hour timer settings",
+    "benefits": [
+      "Adjustable height",
+      "2, 4 and 8-hour timer settings",
+      "Dimmable light"
+    ],
+    "image": "assets/candle-warmer.webp.svg",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/Dimmable light?tag=ohhgood0c-20"
   },
@@ -401,8 +425,12 @@
     "name": "Vintage Amber Candle Warmer Lamp with Timer",
     "category": "cozy",
     "description": "A vintage-style candle warmer lamp with an amber glass shade and timer function.",
-    "benefits": "Amber glass shade",
-    "image": "Vintage-inspired look",
+    "benefits": [
+      "Amber glass shade",
+      "Vintage-inspired look",
+      "Timer function"
+    ],
+    "image": "assets/candle-warmer.webp.svg",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/Timer function?tag=ohhgood0c-20"
   },
@@ -412,8 +440,12 @@
     "name": "Gold Candle Warmer Lamp",
     "category": "cozy",
     "description": "A gold-finish candle warmer lamp with a wooden base and glass shade.",
-    "benefits": "Gold finish",
-    "image": "Wooden base",
+    "benefits": [
+      "Gold finish",
+      "Wooden base",
+      "Glass shade"
+    ],
+    "image": "assets/candle-warmer.webp.svg",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/Glass shade?tag=ohhgood0c-20"
   },
@@ -423,8 +455,12 @@
     "name": "Adjustable Candle Warmer Lamp with Timer",
     "category": "cozy",
     "description": "An adjustable-height candle warmer lamp with dimming and timer controls.",
-    "benefits": "Adjustable height",
-    "image": "Four dimmable levels",
+    "benefits": [
+      "Adjustable height",
+      "Four dimmable levels",
+      "2, 4 and 8-hour timer"
+    ],
+    "image": "assets/candle-warmer.webp.svg",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/2, 4 and 8-hour timer?tag=ohhgood0c-20"
   },
@@ -434,8 +470,12 @@
     "name": "Hardcover Slipcase Stickers",
     "category": "ritual",
     "description": "A book-themed sticker set presented in a hardcover slipcase.",
-    "benefits": "Book-themed sticker collection",
-    "image": "Hardcover slipcase presentation",
+    "benefits": [
+      "Book-themed sticker collection",
+      "Hardcover slipcase presentation",
+      "For journal and reading accessories"
+    ],
+    "image": "assets/journal-linen.webp.svg",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/For journal and reading accessories?tag=ohhgood0c-20"
   },
@@ -445,8 +485,12 @@
     "name": "Reading Journal for Book Lovers",
     "category": "ritual",
     "description": "A reading journal designed to help book lovers record and reflect on their reading.",
-    "benefits": "Reading log format",
-    "image": "For book lovers",
+    "benefits": [
+      "Reading log format",
+      "For book lovers",
+      "Track reading in one place"
+    ],
+    "image": "assets/journal-linen.webp.svg",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/Track reading in one place?tag=ohhgood0c-20"
   },
@@ -456,8 +500,12 @@
     "name": "Beautiful Reading Journal , Linen Hardcover",
     "category": "ritual",
     "description": "A linen hardcover reading journal with dedicated sections for tracking books and reading goals.",
-    "benefits": "Linen hardcover",
-    "image": "Reading logs and book lists",
+    "benefits": [
+      "Linen hardcover",
+      "Reading logs and book lists",
+      "Ribbon bookmarks and index"
+    ],
+    "image": "assets/journal-linen.webp.svg",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/Ribbon bookmarks and index?tag=ohhgood0c-20"
   },
@@ -467,8 +515,12 @@
     "name": "Hardcover Lay-Flat Journal Notebook",
     "category": "ritual",
     "description": "A hardcover notebook with a lay-flat design for everyday writing and journaling.",
-    "benefits": "Hardcover notebook",
-    "image": "Lay-flat binding",
+    "benefits": [
+      "Hardcover notebook",
+      "Lay-flat binding",
+      "For notes and journaling"
+    ],
+    "image": "assets/journal-linen.webp.svg",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/For notes and journaling?tag=ohhgood0c-20"
   },
@@ -478,8 +530,12 @@
     "name": "Linen-Bound Reading Journal , 120 Pages",
     "category": "ritual",
     "description": "A linen-bound reading journal with 120 pages for recording books and reading notes.",
-    "benefits": "Linen-bound cover",
-    "image": "120 pages",
+    "benefits": [
+      "Linen-bound cover",
+      "120 pages",
+      "For reading notes and logs"
+    ],
+    "image": "assets/journal-linen.webp.svg",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/For reading notes and logs?tag=ohhgood0c-20"
   },
@@ -489,8 +545,12 @@
     "name": "Hardcover Aesthetic Notebook",
     "category": "ritual",
     "description": "A hardcover notebook with an understated aesthetic for everyday writing.",
-    "benefits": "Hardcover format",
-    "image": "Minimal aesthetic",
+    "benefits": [
+      "Hardcover format",
+      "Minimal aesthetic",
+      "For notes and journaling"
+    ],
+    "image": "assets/journal-linen.webp.svg",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/For notes and journaling?tag=ohhgood0c-20"
   },
@@ -500,8 +560,12 @@
     "name": "Calm Chamomile Herbal Tea , 16 Bags",
     "category": "ritual",
     "description": "A caffeine-free herbal tea blend featuring chamomile and complementary botanicals.",
-    "benefits": "16 tea bags",
-    "image": "Caffeine-free herbal blend",
+    "benefits": [
+      "16 tea bags",
+      "Caffeine-free herbal blend",
+      "Chamomile-forward flavor"
+    ],
+    "image": "assets/tea-ritual.webp.svg",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/Chamomile-forward flavor?tag=ohhgood0c-20"
   },
@@ -511,8 +575,12 @@
     "name": "Organic Turmeric Ginger Herbal Tea , 100 Bags",
     "category": "ritual",
     "description": "A caffeine-free herbal tea made with turmeric and ginger in pyramid tea bags.",
-    "benefits": "100 pyramid tea bags",
-    "image": "Organic turmeric and ginger",
+    "benefits": [
+      "100 pyramid tea bags",
+      "Organic turmeric and ginger",
+      "Caffeine-free"
+    ],
+    "image": "assets/tea-ritual.webp.svg",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/Caffeine-free?tag=ohhgood0c-20"
   },
@@ -522,8 +590,12 @@
     "name": "Organic Chamomile Lavender Herbal Tea",
     "category": "ritual",
     "description": "An organic herbal tea combining chamomile and lavender for a floral cup.",
-    "benefits": "Organic herbal tea",
-    "image": "Chamomile and lavender blend",
+    "benefits": [
+      "Organic herbal tea",
+      "Chamomile and lavender blend",
+      "For a caffeine-free tea routine"
+    ],
+    "image": "assets/tea-ritual.webp.svg",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/For a caffeine-free tea routine?tag=ohhgood0c-20"
   },
@@ -533,8 +605,12 @@
     "name": "Adjustable Indoor Plant Stand , 2 Pack",
     "category": "green",
     "description": "A two-pack of adjustable indoor plant stands in a walnut-look bamboo finish.",
-    "benefits": "Two plant stands",
-    "image": "Adjustable fit for 8–12-inch pots",
+    "benefits": [
+      "Two plant stands",
+      "Adjustable fit for 8–12-inch pots",
+      "Bamboo construction"
+    ],
+    "image": "assets/planter-set.webp.svg",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/Bamboo construction?tag=ohhgood0c-20"
   },
@@ -544,8 +620,12 @@
     "name": "Mid-Century Modern Plant Stand",
     "category": "green",
     "description": "A mid-century-inspired plant stand designed to display an indoor planter.",
-    "benefits": "Mid-century modern style",
-    "image": "Plant display stand",
+    "benefits": [
+      "Mid-century modern style",
+      "Plant display stand",
+      "For indoor plant styling"
+    ],
+    "image": "assets/planter-set.webp.svg",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/For indoor plant styling?tag=ohhgood0c-20"
   },
@@ -555,8 +635,12 @@
     "name": "Monstera Deliciosa Live Houseplant",
     "category": "green",
     "description": "A live Monstera deliciosa houseplant with the plant's recognizable split-leaf foliage.",
-    "benefits": "Live houseplant",
-    "image": "Monstera deliciosa",
+    "benefits": [
+      "Live houseplant",
+      "Monstera deliciosa",
+      "For indoor plant collections"
+    ],
+    "image": "assets/monstera.webp.svg",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/For indoor plant collections?tag=ohhgood0c-20"
   },
@@ -566,8 +650,12 @@
     "name": "Artificial Monstera Deliciosa Plant",
     "category": "green",
     "description": "An artificial Monstera-style plant for adding greenery without live-plant care.",
-    "benefits": "Artificial plant",
-    "image": "Monstera-inspired foliage",
+    "benefits": [
+      "Artificial plant",
+      "Monstera-inspired foliage",
+      "No watering required"
+    ],
+    "image": "assets/monstera.webp.svg",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/No watering required?tag=ohhgood0c-20"
   },
@@ -577,8 +665,12 @@
     "name": "Artificial Faux Monstera Tree",
     "category": "green",
     "description": "An artificial Monstera-style tree for decorative indoor greenery.",
-    "benefits": "Artificial plant",
-    "image": "Monstera-inspired foliage",
+    "benefits": [
+      "Artificial plant",
+      "Monstera-inspired foliage",
+      "For indoor decor"
+    ],
+    "image": "assets/monstera.webp.svg",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/For indoor decor?tag=ohhgood0c-20"
   },
@@ -588,8 +680,12 @@
     "name": "Artificial Monstera Deliciosa Plant",
     "category": "green",
     "description": "An artificial Monstera deliciosa-style plant for indoor decorative use.",
-    "benefits": "Artificial foliage",
-    "image": "Monstera-inspired leaves",
+    "benefits": [
+      "Artificial foliage",
+      "Monstera-inspired leaves",
+      "No plant care required"
+    ],
+    "image": "assets/monstera.webp.svg",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/No plant care required?tag=ohhgood0c-20"
   }
