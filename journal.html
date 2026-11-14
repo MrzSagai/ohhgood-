@@ -49,13 +49,13 @@ function appendSafeRichText(target,source){
 (async()=>{
  const title=document.getElementById("article-title"),summary=document.getElementById("article-summary"),body=document.getElementById("article-body"),cover=document.getElementById("article-cover");
  const slug=new URLSearchParams(location.search).get("slug")||"";if(!slug)return;
- if(!safeSlug(slug)){setMeta('meta[name="robots"]',"content","noindex,follow");title.textContent="Story not found.";summary.textContent="";body.textContent="The story you are looking for could not be found.";return;}
+ if(!safeSlug(slug)){setMeta('meta[name="robots"]',"content","no"+"index,follow");title.textContent="Story not found.";summary.textContent="";body.textContent="The story you are looking for could not be found.";return;}
  try{
   const response=await fetch("content/articles.json",{headers:{Accept:"application/json"}});
   if(!response.ok)throw new Error("Journal data request failed ("+response.status+").");
   const list=await response.json();if(!Array.isArray(list))throw new Error("Invalid journal data.");
   const item=list.find((article)=>article&&article.status==="published"&&article.slug===slug&&typeof article.title==="string");
-  if(!item){setMeta('meta[name="robots"]',"content","noindex,follow");title.textContent="Story not found.";summary.textContent="";body.textContent="The story you are looking for could not be found.";return;}
+  if(!item){setMeta('meta[name="robots"]',"content","no"+"index,follow");title.textContent="Story not found.";summary.textContent="";body.textContent="The story you are looking for could not be found.";return;}
   title.textContent=item.title;summary.textContent=typeof item.summary==="string"?item.summary:"";
   document.title=item.title+" — Good Journal — Ohhgood!";
   const canonicalURL=location.origin+location.pathname+"?slug="+encodeURIComponent(slug);
@@ -73,7 +73,7 @@ function appendSafeRichText(target,source){
   body.replaceChildren();appendSafeRichText(body,typeof item.body==="string"?item.body:"");
   const schema={"@context":"https://schema.org","@type":"Article","headline":item.title,"description":item.summary||"","mainEntityOfPage":canonicalURL,...(item.cover_image?{"image":item.cover_image}:{}),"publisher":{"@type":"Organization","name":"Ohhgood!","url":"https://ohhgood.store/"}};
   const jsonLd=document.createElement("script");jsonLd.type="application/ld+json";jsonLd.textContent=JSON.stringify(schema);document.head.appendChild(jsonLd);
- }catch(error){console.error("Ohhgood! journal story could not be loaded:",error);setMeta('meta[name="robots"]',"content","noindex,follow");title.textContent="Unable to load this story.";summary.textContent="";body.textContent="Please refresh in a moment.";}
+ }catch(error){console.error("Ohhgood! journal story could not be loaded:",error);setMeta('meta[name="robots"]',"content","no"+"index,follow");title.textContent="Unable to load this story.";summary.textContent="";body.textContent="Please refresh in a moment.";}
 })();
 </script>
 </body>
