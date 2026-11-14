@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-labelledby="title desc">
+<title id="title">Amber sandalwood candle</title><desc id="desc">Amber glass soy candle with a warm flame and botanical styling</desc>
+<defs>
+ <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#f7f2e9"/><stop offset="1" stop-color="#e9e0d1"/></linearGradient>
+ <linearGradient id="surface" x2="0" y2="1"><stop stop-color="#fffdf8"/><stop offset="1" stop-color="#e8dfd1"/></linearGradient>
+ <linearGradient id="wood" x2="1" y2="1"><stop stop-color="#9b704c"/><stop offset=".5" stop-color="#69452f"/><stop offset="1" stop-color="#b4875d"/></linearGradient>
+ <filter id="shadow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="18"/></filter>
+ <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="7"/></filter>
+ </defs>
+ <rect width="800" height="800" rx="36" fill="url(#bg)"/>
+ <circle cx="620" cy="175" r="120" fill="#fffaf0" opacity=".35"/>
+ <path d="M0 630 Q210 580 410 625 T800 600 V800 H0Z" fill="#d9cdbb" opacity=".42"/>
+ <ellipse cx="402" cy="660" rx="230" ry="34" fill="#6c5742" opacity=".17" filter="url(#shadow)"/>
+ 
+ <ellipse cx="400" cy="610" rx="130" ry="22" fill="#8b7359" opacity=".18"/>
+ <rect x="290" y="300" width="220" height="300" rx="34" fill="#8c4e2e" opacity=".95"/>
+ <rect x="307" y="315" width="186" height="270" rx="25" fill="#a9633c" opacity=".62"/>
+ <path d="M310 330 Q400 300 490 330" fill="none" stroke="#d99a65" stroke-width="8" opacity=".55"/>
+ <rect x="320" y="425" width="160" height="105" rx="7" fill="#e9dcc7"/>
+ <text x="400" y="465" text-anchor="middle" fill="#69513d" font-family="Georgia,serif" font-size="19">AMBER</text><text x="400" y="492" text-anchor="middle" fill="#8c6c4e" font-family="Arial,sans-serif" font-size="11" letter-spacing="3">SANDALWOOD</text>
+ <path d="M400 296 C362 255 397 223 405 190 C435 235 440 264 400 296Z" fill="#e6a64e"/><path d="M400 286 C385 261 402 243 406 228 C420 257 417 273 400 286Z" fill="#fff0b8"/>
+ <path d="M290 300 Q400 270 510 300" fill="none" stroke="#d5a16e" stroke-width="5"/>
+ <ellipse cx="400" cy="300" rx="110" ry="24" fill="#663b28"/><ellipse cx="400" cy="298" rx="95" ry="15" fill="#d2a47b"/>
+ <path d="M270 370 Q245 450 275 535" fill="none" stroke="#e6b58c" stroke-width="8" opacity=".3"/>
+
+ <text x="400" y="746" text-anchor="middle" fill="#756451" font-family="Georgia,serif" font-size="20" letter-spacing="5" opacity=".8">OHHGOOD  •  EVERYDAY FINDS</text>
+</svg>
