@@ -205,7 +205,7 @@
       "Amber and sandalwood scent",
       "Jar format for home fragrance"
     ],
-    "image": "assets/candle-amber.webp.svg",
+    "image": "assets/AmberCandle.webp",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/B0FR42GPV1?tag=ohhgood0c-20"
   },
@@ -235,7 +235,7 @@
       "Includes a plant stand",
       "For indoor plant styling"
     ],
-    "image": "assets/planter-set.webp.svg",
+    "image": "assets/CeramicPlanter.webp",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/B0CFZPZTMC?tag=ohhgood0c-20"
   },
@@ -265,7 +265,7 @@
       "For home fragrance",
       "Jar candle format"
     ],
-    "image": "assets/candle-amber.webp.svg",
+    "image": "assets/MagnoliaCandle.webp",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/B0DRJRPDZ1?tag=ohhgood0c-20"
   },
@@ -280,7 +280,7 @@
       "Soy-blend wax",
       "Wood wick"
     ],
-    "image": "assets/candle-amber.webp.svg",
+    "image": "assets/BlackCandle.webp",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/B07Z844M1F?tag=ohhgood0c-20"
   },
@@ -295,7 +295,7 @@
       "Vanilla sandalwood scent",
       "Two cotton wicks"
     ],
-    "image": "assets/candle-amber.webp.svg",
+    "image": "assets/VanillaCandle.webp",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/B08RBBKC51?tag=ohhgood0c-20"
   },
@@ -310,7 +310,7 @@
       "Amber finish",
       "Timer function"
     ],
-    "image": "assets/candle-warmer.webp.svg",
+    "image": "assets/AmberWarmer.webp",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/B0GWLLNZ3T?tag=ohhgood0c-20"
   },
@@ -325,7 +325,7 @@
       "2, 4 and 8-hour timer settings",
       "Dimmable light"
     ],
-    "image": "assets/candle-warmer.webp.svg",
+    "image": "assets/FlowerWarmer.webp",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/B0DWMNVVQV?tag=ohhgood0c-20"
   },
@@ -340,7 +340,7 @@
       "Vintage-inspired look",
       "Timer function"
     ],
-    "image": "assets/candle-warmer.webp.svg",
+    "image": "assets/VintageWarmer.webp",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/B0DZCFP556?tag=ohhgood0c-20"
   },
@@ -355,7 +355,7 @@
       "Wooden base",
       "Glass shade"
     ],
-    "image": "assets/candle-warmer.webp.svg",
+    "image": "assets/GoldWarmer.webp",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/B0FKBD74L6?tag=ohhgood0c-20"
   },
@@ -370,7 +370,7 @@
       "Four dimmable levels",
       "2, 4 and 8-hour timer"
     ],
-    "image": "assets/candle-warmer.webp.svg",
+    "image": "assets/AdjustableWarmer.webp",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/B0CT274BX5?tag=ohhgood0c-20"
   },
@@ -385,7 +385,7 @@
       "Hardcover slipcase presentation",
       "For journal and reading accessories"
     ],
-    "image": "assets/journal-linen.webp.svg",
+    "image": "assets/BookishStickers.webp",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/B0H9S7GXPW?tag=ohhgood0c-20"
   },
@@ -400,7 +400,7 @@
       "For book lovers",
       "Track reading in one place"
     ],
-    "image": "assets/journal-linen.webp.svg",
+    "image": "assets/ReadingJournal.webp",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/B0FH4BD4J4?tag=ohhgood0c-20"
   },
