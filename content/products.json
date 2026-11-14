@@ -135,21 +135,6 @@
     "retailer_url": "https://www.amazon.com/dp/B08CQ8HRVG?tag=ohhgood0c-20"
   },
   {
-    "id": "homeify-under-desk-drawer",
-    "brand": "Homeify",
-    "name": "Under Desk Drawer Organizer - Clamp-On 2-Drawer",
-    "category": "tidy",
-    "description": "Clamp-on under desk drawer organizer with 2 drawers for small essentials.",
-    "benefits": [
-      "Clamp-on, no drill",
-      "2 drawers",
-      "For small essentials"
-    ],
-    "image": "assets/homeify.webp",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/s?k=Homeify+under+desk+drawer+organizer&tag=ohhgood0c-20"
-  },
-  {
     "id": "dawntrees-felt-desk-mat",
     "brand": "DAWNTREES",
     "name": "Felt Desk Mat , 36 × 12 Inches",
@@ -225,21 +210,6 @@
     "retailer_url": "https://www.amazon.com/dp/B0FR42GPV1?tag=ohhgood0c-20"
   },
   {
-    "id": "candle-warmer-lamp",
-    "brand": "Marycele",
-    "name": "Candle Warmer Lamp , Dimmable Amber",
-    "category": "cozy",
-    "description": "Dimmable wax melt warmer with amber lampshade. Vintage nightstand lamp.",
-    "benefits": [
-      "Dimmable, timer",
-      "Amber lampshade, warm light",
-      "No flame, safe"
-    ],
-    "image": "assets/candle-warmer.webp.svg",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/s?k=candle+warmer+lamp+dimmable+amber&tag=ohhgood0c-20"
-  },
-  {
     "id": "mind-design-purpose-planner",
     "brand": "Mind Design",
     "name": "Purpose Planner , Solid Walnut Holder",
@@ -255,51 +225,6 @@
     "retailer_url": "https://www.amazon.com/dp/B0BT73XYQG?tag=ohhgood0c-20"
   },
   {
-    "id": "linen-journal-a5",
-    "brand": "Paper Peony Press",
-    "name": "Reading Journal , Linen Cover",
-    "category": "ritual",
-    "description": "Linen-wrapped hardcover journal with minimal pages for tracking books.",
-    "benefits": [
-      "Linen-wrapped hardcover",
-      "Minimal layout, 52 books",
-      "Gold foil, satin marker"
-    ],
-    "image": "assets/journal-linen.webp.svg",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/s?k=linen+journal+reading+journal&tag=ohhgood0c-20"
-  },
-  {
-    "id": "herbal-tea-ritual-set",
-    "brand": "Vahdam",
-    "name": "Herbal Tea Ritual Set , Calm Blend",
-    "category": "ritual",
-    "description": "Herbal tea for slow evenings. Chamomile and mint blend.",
-    "benefits": [
-      "Herbal, caffeine-free",
-      "Calm evening ritual",
-      "Easy to brew"
-    ],
-    "image": "assets/tea-ritual.webp.svg",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/s?k=herbal+tea+calm+chamomile&tag=ohhgood0c-20"
-  },
-  {
-    "id": "omysa-midcentury-planter",
-    "brand": "OMYSA",
-    "name": "Mid Century Planter , Walnut Stand + White Ceramic",
-    "category": "green",
-    "description": "10 inch white ceramic planter with American Black Walnut stand.",
-    "benefits": [
-      "American Black Walnut stand",
-      "White ceramic, drainage",
-      "10 inch, for snake plant / fiddle leaf"
-    ],
-    "image": "assets/planter-omysa.webp.svg",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/s?k=OMYSA+mid+century+planter+walnut+stand&tag=ohhgood0c-20"
-  },
-  {
     "id": "ceramic-planter-stand-set",
     "brand": "Dvine Dev",
     "name": "Ceramic Planter with Stand",
@@ -313,21 +238,6 @@
     "image": "assets/planter-set.webp.svg",
     "status": "published",
     "retailer_url": "https://www.amazon.com/dp/B0CFZPZTMC?tag=ohhgood0c-20"
-  },
-  {
-    "id": "monstera-starter-plant",
-    "brand": "Costa Farms",
-    "name": "Monstera Deliciosa , Live Plant",
-    "category": "green",
-    "description": "Live monstera for Green Corner.",
-    "benefits": [
-      "Live plant, easy care",
-      "Biophilic, air purifying",
-      "Iconic monstera leaves"
-    ],
-    "image": "assets/monstera.webp.svg",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/s?k=monstera+deliciosa+live+plant&tag=ohhgood0c-20"
   },
   {
     "id": "under-drawer-clamp-organizer",
