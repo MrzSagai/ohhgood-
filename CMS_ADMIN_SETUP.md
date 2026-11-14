@@ -21,7 +21,7 @@ Use a GitHub App rather than a broad personal access token or an OAuth token wit
 
 1. Open GitHub **Settings → Developer settings → GitHub Apps → New GitHub App**.
 2. Set a recognizable name such as **Ohhgood CMS**.
-3. Set the Homepage URL to the deployed Ohhgood! site or the branch preview URL used for admin.
+3. Set the Homepage URL to `https://ohhgood.store/` for the production admin.
 4. Enable **User authorization (OAuth) flow**.
 5. Add the callback URL:
    \`https://YOUR-ADMIN-HOST/api/auth/callback\`
