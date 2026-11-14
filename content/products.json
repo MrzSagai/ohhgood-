@@ -17,47 +17,47 @@
   {
     "id": "joyroom-cable-organizer",
     "brand": "JOYROOM",
-    "name": "Magnetic Cable Organizer , 6 Pack",
+    "name": "Magnetic Cable Clips , 9 Pack",
     "category": "tidy",
-    "description": "Magnetic cable clips that keep chargers tidy on your desk.",
+    "description": "Magnetic cable clips designed to keep charging cables organized on a desk or nightstand.",
     "benefits": [
-      "Magnetic, easy snap",
-      "6 pack for desk + nightstand",
-      "Keeps cables tidy"
+      "9 magnetic cable clips",
+      "Helps keep charging cables within reach",
+      "Useful for desk and nightstand setups"
     ],
     "image": "assets/Joyroom.webp",
-    "retailer_url": "https://www.amazon.com/s?k=JOYROOM+magnetic+cable+organizer&tag=ohhgood0c-20",
+    "retailer_url": "https://www.amazon.com/dp/B0CGRQYCPT?tag=ohhgood0c-20",
     "status": "published"
   },
   {
     "id": "bagsmart-electronics-organizer",
     "brand": "BAGSMART",
-    "name": "Electronics Organizer , Travel Pouch",
+    "name": "Electronics Organizer Travel Case , 17 Compartments",
     "category": "tidy",
-    "description": "Double-layer pouch for cables, chargers and small tech.",
+    "description": "A double-layer electronics pouch for organizing cables, chargers, adapters and other small tech accessories.",
     "benefits": [
-      "Double layer, padded",
-      "Fits cables + power bank",
-      "Travel-friendly"
+      "17 storage compartments",
+      "Double-layer organizer design",
+      "Compact travel-friendly format"
     ],
     "image": "assets/Bagsmart.webp",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/s?k=BAGSMART+electronics+organizer&tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/dp/B0D3XFN86F?tag=ohhgood0c-20"
   },
   {
     "id": "yecaye-cable-tray-l-clamp",
-    "brand": "YECAYE",
-    "name": "Under Desk Cable Tray (L-Clamp) - No-Drill Cable Management",
+    "brand": "KEEGH",
+    "name": "16-Inch Under Desk Cable Management Tray",
     "category": "tidy",
-    "description": "Metal cable tray with L-clamp, open wire design for under-desk cable management. No drill needed.",
+    "description": "A metal under-desk cable tray with clamp-on or screw-in mounting options to keep power strips and cables off the floor.",
     "benefits": [
-      "Metal wire tray, open design",
-      "L-clamp, no drill",
-      "Holds power strip + cables"
+      "16-inch metal cable tray",
+      "Clamp-on or screw-in installation",
+      "Three-hole cable routing design"
     ],
     "image": "assets/yecaye.webp",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B0953L1ML6?tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/dp/B0FX3J7CYG?tag=ohhgood0c-20"
   },
   {
     "id": "nuvograin-laptop-stand",
@@ -107,17 +107,17 @@
   {
     "id": "yecaye-cable-tray-all-metal",
     "brand": "YECAYE",
-    "name": "Under Desk Cable Tray (All-Metal Clamp Mount)",
+    "name": "All-Metal Under Desk Cable Management Tray , Clamp Mount",
     "category": "tidy",
-    "description": "All-metal clamp mount cable tray, second variant for heavier power strips.",
+    "description": "A two-tray all-metal cable management system that clamps to the desk without drilling.",
     "benefits": [
-      "All-metal clamp",
-      "No drill",
-      "Holds heavy power strip"
+      "Two metal cable trays",
+      "Four desk clamps included",
+      "Fits desks approximately 0.4–2.3 inches thick"
     ],
     "image": "assets/yecaye-metal.webp",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/s?k=YECAYE+under+desk+cable+tray+all+metal&tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/dp/B0953L1ML6?tag=ohhgood0c-20"
   },
   {
     "id": "s-and-c-living-bamboo-dividers",
@@ -152,47 +152,47 @@
   {
     "id": "dawntrees-felt-desk-mat",
     "brand": "DAWNTREES",
-    "name": "Large Felt Desk Mat - 40x16 inches",
+    "name": "Felt Desk Mat , 36 × 12 Inches",
     "category": "tidy",
-    "description": "Large felt desk mat, soft wool felt, protects desk and dampens sound.",
+    "description": "A dark gray felt desk mat that adds a soft work surface and helps protect the desktop.",
     "benefits": [
-      "40x16 inches",
-      "Wool felt, soft",
-      "Protects desk"
+      "36 × 12-inch size",
+      "About 3 mm thick",
+      "Soft felt surface for everyday desk use"
     ],
     "image": "assets/dawntrees.webp",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/s?k=DAWNTREES+felt+desk+mat&tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/dp/B09MVT9Y98?tag=ohhgood0c-20"
   },
   {
     "id": "weenson-dual-monitor-stand",
-    "brand": "Weenson",
-    "name": "Dual Monitor Stand - White Bamboo",
+    "brand": "Homerays",
+    "name": "White Wooden Monitor Stand Riser with Drawer",
     "category": "tidy",
-    "description": "Dual monitor stand in white bamboo, raises monitors for better posture.",
+    "description": "A white monitor riser with a built-in drawer that adds screen height and a little extra desk storage.",
     "benefits": [
-      "White bamboo",
-      "Dual monitor",
-      "Ergonomic height"
+      "White finish",
+      "Built-in storage drawer",
+      "Raises a monitor above the desktop"
     ],
     "image": "assets/weenson.webp",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/s?k=Weenson+dual+monitor+stand+white+bamboo&tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/dp/B0BM64FBBD?tag=ohhgood0c-20"
   },
   {
     "id": "rocdeer-bamboo-monitor-shelf",
     "brand": "ROCDEER",
-    "name": "Bamboo Dual Monitor Shelf - Natural",
+    "name": "Underneath Desk Shelf , Natural Finish",
     "category": "tidy",
-    "description": "Bamboo dual monitor shelf in natural finish, with storage underneath.",
+    "description": "An under-desk shelf designed to add a convenient storage surface beneath the desktop.",
     "benefits": [
-      "Natural bamboo",
-      "Dual monitor shelf",
-      "Storage underneath"
+      "Under-desk mounting format",
+      "Natural finish",
+      "Adds storage space below the desktop"
     ],
     "image": "assets/rocdeer.webp",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/s?k=ROCDEER+bamboo+monitor+shelf&tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/dp/B09BYFR44J?tag=ohhgood0c-20"
   },
   {
     "id": "benq-screenbar-halo",
@@ -211,18 +211,18 @@
   },
   {
     "id": "amber-sandalwood-candle",
-    "brand": "Aredenua",
-    "name": "Amber Sandalwood Candle , 7oz Soy",
+    "brand": "Brand not specified",
+    "name": "Amber & Sandalwood Scented Candle , 16 oz",
     "category": "cozy",
-    "description": "7oz soy candle in amber glass jar. Warm woody fragrance, clean burn.",
+    "description": "A large 16-ounce jar candle with an amber and sandalwood fragrance profile.",
     "benefits": [
-      "Soy wax, 50h burn",
-      "Amber glass jar, cozy glow",
-      "Warm woody scent"
+      "16-ounce candle",
+      "Amber and sandalwood scent",
+      "Jar format for home fragrance"
     ],
     "image": "assets/candle-amber.webp.svg",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/s?k=amber+sandalwood+candle+soy&tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/dp/B0FR42GPV1?tag=ohhgood0c-20"
   },
   {
     "id": "candle-warmer-lamp",
@@ -301,18 +301,18 @@
   },
   {
     "id": "ceramic-planter-stand-set",
-    "brand": "OMYSA",
-    "name": "Ceramic Planter Set , 2 Pack Walnut Stand",
+    "brand": "Dvine Dev",
+    "name": "Ceramic Planter with Stand",
     "category": "green",
-    "description": "Set of 2 ceramic planters with walnut stands for small monstera, pothos, peace lily.",
+    "description": "A ceramic planter paired with a stand, designed to bring a clean, elevated look to an indoor plant display.",
     "benefits": [
-      "2 pack, walnut stands",
-      "Ceramic, drainage",
-      "For small indoor plants"
+      "Ceramic planter design",
+      "Includes a plant stand",
+      "For indoor plant styling"
     ],
     "image": "assets/planter-set.webp.svg",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/s?k=ceramic+planter+walnut+stand+set&tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/dp/B0CFZPZTMC?tag=ohhgood0c-20"
   },
   {
     "id": "monstera-starter-plant",
@@ -328,5 +328,269 @@
     "image": "assets/monstera.webp.svg",
     "status": "published",
     "retailer_url": "https://www.amazon.com/s?k=monstera+deliciosa+live+plant&tag=ohhgood0c-20"
+  },
+  {
+    "id": "under-drawer-clamp-organizer",
+    "brand": "Brand not specified",
+    "name": "Clamp-On Under-Drawer Storage Organizer",
+    "category": "tidy",
+    "description": "A clamp-on storage organizer designed to add a small storage space beneath a desk or drawer.",
+    "benefits": "Clamp-on installation",
+    "image": "Under-desk storage format",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/For small everyday items?tag=ohhgood0c-20"
+  },
+  {
+    "id": "magnolia-sandalwood-candle",
+    "brand": "Brand not specified",
+    "name": "Magnolia Sandalwood Scented Candle",
+    "category": "cozy",
+    "description": "A scented candle combining magnolia and sandalwood fragrance notes.",
+    "benefits": "Magnolia and sandalwood scent",
+    "image": "For home fragrance",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/Jar candle format?tag=ohhgood0c-20"
+  },
+  {
+    "id": "manly-indulgence-black-sandalwood-candle",
+    "brand": "Manly Indulgence",
+    "name": "Black Sandalwood Scented Candle , 15 oz",
+    "category": "cozy",
+    "description": "A 15-ounce black sandalwood candle made with a soy-blend wax and a wood wick.",
+    "benefits": "15-ounce candle",
+    "image": "Soy-blend wax",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/Wood wick?tag=ohhgood0c-20"
+  },
+  {
+    "id": "sand-fog-vanilla-sandalwood-candle",
+    "brand": "Sand + Fog",
+    "name": "Vanilla Sandalwood Candle , 12 oz",
+    "category": "cozy",
+    "description": "A 12-ounce glass-jar candle with vanilla sandalwood fragrance and two cotton wicks.",
+    "benefits": "12-ounce glass jar",
+    "image": "Vanilla sandalwood scent",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/Two cotton wicks?tag=ohhgood0c-20"
+  },
+  {
+    "id": "candeldo-candle-warmer-amber",
+    "brand": "Candeldo",
+    "name": "Candle Warmer Lamp with Timer , Amber",
+    "category": "cozy",
+    "description": "An amber candle warmer lamp intended to warm jar candles without an open flame.",
+    "benefits": "Candle warming lamp",
+    "image": "Amber finish",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/Timer function?tag=ohhgood0c-20"
+  },
+  {
+    "id": "funistree-flower-candle-warmer",
+    "brand": "Funistree",
+    "name": "Flower Candle Warmer Lamp , Timer and Dimmer",
+    "category": "cozy",
+    "description": "A flower-style candle warmer lamp with adjustable height, dimming and timer settings.",
+    "benefits": "Adjustable height",
+    "image": "2, 4 and 8-hour timer settings",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/Dimmable light?tag=ohhgood0c-20"
+  },
+  {
+    "id": "vintage-amber-candle-warmer",
+    "brand": "Brand not specified",
+    "name": "Vintage Amber Candle Warmer Lamp with Timer",
+    "category": "cozy",
+    "description": "A vintage-style candle warmer lamp with an amber glass shade and timer function.",
+    "benefits": "Amber glass shade",
+    "image": "Vintage-inspired look",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/Timer function?tag=ohhgood0c-20"
+  },
+  {
+    "id": "vankada-gold-candle-warmer",
+    "brand": "Vankada",
+    "name": "Gold Candle Warmer Lamp",
+    "category": "cozy",
+    "description": "A gold-finish candle warmer lamp with a wooden base and glass shade.",
+    "benefits": "Gold finish",
+    "image": "Wooden base",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/Glass shade?tag=ohhgood0c-20"
+  },
+  {
+    "id": "adjustable-candle-warmer-lamp",
+    "brand": "Brand not specified",
+    "name": "Adjustable Candle Warmer Lamp with Timer",
+    "category": "cozy",
+    "description": "An adjustable-height candle warmer lamp with dimming and timer controls.",
+    "benefits": "Adjustable height",
+    "image": "Four dimmable levels",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/2, 4 and 8-hour timer?tag=ohhgood0c-20"
+  },
+  {
+    "id": "moncur-home-bookish-stickers",
+    "brand": "Moncur Home",
+    "name": "Hardcover Slipcase Stickers",
+    "category": "ritual",
+    "description": "A book-themed sticker set presented in a hardcover slipcase.",
+    "benefits": "Book-themed sticker collection",
+    "image": "Hardcover slipcase presentation",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/For journal and reading accessories?tag=ohhgood0c-20"
+  },
+  {
+    "id": "comkiso-reading-journal",
+    "brand": "Comkiso",
+    "name": "Reading Journal for Book Lovers",
+    "category": "ritual",
+    "description": "A reading journal designed to help book lovers record and reflect on their reading.",
+    "benefits": "Reading log format",
+    "image": "For book lovers",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/Track reading in one place?tag=ohhgood0c-20"
+  },
+  {
+    "id": "zicoto-reading-journal",
+    "brand": "ZICOTO",
+    "name": "Beautiful Reading Journal , Linen Hardcover",
+    "category": "ritual",
+    "description": "A linen hardcover reading journal with dedicated sections for tracking books and reading goals.",
+    "benefits": "Linen hardcover",
+    "image": "Reading logs and book lists",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/Ribbon bookmarks and index?tag=ohhgood0c-20"
+  },
+  {
+    "id": "ipoul-hardcover-journal",
+    "brand": "iPoul",
+    "name": "Hardcover Lay-Flat Journal Notebook",
+    "category": "ritual",
+    "description": "A hardcover notebook with a lay-flat design for everyday writing and journaling.",
+    "benefits": "Hardcover notebook",
+    "image": "Lay-flat binding",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/For notes and journaling?tag=ohhgood0c-20"
+  },
+  {
+    "id": "linen-reading-journal-120",
+    "brand": "Brand not specified",
+    "name": "Linen-Bound Reading Journal , 120 Pages",
+    "category": "ritual",
+    "description": "A linen-bound reading journal with 120 pages for recording books and reading notes.",
+    "benefits": "Linen-bound cover",
+    "image": "120 pages",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/For reading notes and logs?tag=ohhgood0c-20"
+  },
+  {
+    "id": "portage-aesthetic-notebook",
+    "brand": "Portage",
+    "name": "Hardcover Aesthetic Notebook",
+    "category": "ritual",
+    "description": "A hardcover notebook with an understated aesthetic for everyday writing.",
+    "benefits": "Hardcover format",
+    "image": "Minimal aesthetic",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/For notes and journaling?tag=ohhgood0c-20"
+  },
+  {
+    "id": "tazo-calm-chamomile-tea",
+    "brand": "TAZO",
+    "name": "Calm Chamomile Herbal Tea , 16 Bags",
+    "category": "ritual",
+    "description": "A caffeine-free herbal tea blend featuring chamomile and complementary botanicals.",
+    "benefits": "16 tea bags",
+    "image": "Caffeine-free herbal blend",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/Chamomile-forward flavor?tag=ohhgood0c-20"
+  },
+  {
+    "id": "vahdam-turmeric-ginger-tea",
+    "brand": "VAHDAM",
+    "name": "Organic Turmeric Ginger Herbal Tea , 100 Bags",
+    "category": "ritual",
+    "description": "A caffeine-free herbal tea made with turmeric and ginger in pyramid tea bags.",
+    "benefits": "100 pyramid tea bags",
+    "image": "Organic turmeric and ginger",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/Caffeine-free?tag=ohhgood0c-20"
+  },
+  {
+    "id": "traditional-medicinals-chamomile-lavender",
+    "brand": "Traditional Medicinals",
+    "name": "Organic Chamomile Lavender Herbal Tea",
+    "category": "ritual",
+    "description": "An organic herbal tea combining chamomile and lavender for a floral cup.",
+    "benefits": "Organic herbal tea",
+    "image": "Chamomile and lavender blend",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/For a caffeine-free tea routine?tag=ohhgood0c-20"
+  },
+  {
+    "id": "ziozertt-adjustable-plant-stand",
+    "brand": "ZIOZERTT",
+    "name": "Adjustable Indoor Plant Stand , 2 Pack",
+    "category": "green",
+    "description": "A two-pack of adjustable indoor plant stands in a walnut-look bamboo finish.",
+    "benefits": "Two plant stands",
+    "image": "Adjustable fit for 8–12-inch pots",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/Bamboo construction?tag=ohhgood0c-20"
+  },
+  {
+    "id": "fox-fern-plant-stand",
+    "brand": "Fox & Fern",
+    "name": "Mid-Century Modern Plant Stand",
+    "category": "green",
+    "description": "A mid-century-inspired plant stand designed to display an indoor planter.",
+    "benefits": "Mid-century modern style",
+    "image": "Plant display stand",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/For indoor plant styling?tag=ohhgood0c-20"
+  },
+  {
+    "id": "wemonakaik-live-monstera",
+    "brand": "WEMONAKAIK",
+    "name": "Monstera Deliciosa Live Houseplant",
+    "category": "green",
+    "description": "A live Monstera deliciosa houseplant with the plant's recognizable split-leaf foliage.",
+    "benefits": "Live houseplant",
+    "image": "Monstera deliciosa",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/For indoor plant collections?tag=ohhgood0c-20"
+  },
+  {
+    "id": "artificial-monstera-plant",
+    "brand": "Brand not specified",
+    "name": "Artificial Monstera Deliciosa Plant",
+    "category": "green",
+    "description": "An artificial Monstera-style plant for adding greenery without live-plant care.",
+    "benefits": "Artificial plant",
+    "image": "Monstera-inspired foliage",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/No watering required?tag=ohhgood0c-20"
+  },
+  {
+    "id": "faux-tree-monstera",
+    "brand": "Brand not specified",
+    "name": "Artificial Faux Monstera Tree",
+    "category": "green",
+    "description": "An artificial Monstera-style tree for decorative indoor greenery.",
+    "benefits": "Artificial plant",
+    "image": "Monstera-inspired foliage",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/For indoor decor?tag=ohhgood0c-20"
+  },
+  {
+    "id": "hollyone-artificial-monstera",
+    "brand": "Hollyone",
+    "name": "Artificial Monstera Deliciosa Plant",
+    "category": "green",
+    "description": "An artificial Monstera deliciosa-style plant for indoor decorative use.",
+    "benefits": "Artificial foliage",
+    "image": "Monstera-inspired leaves",
+    "status": "published",
+    "retailer_url": "https://www.amazon.com/dp/No plant care required?tag=ohhgood0c-20"
   }
 ]
