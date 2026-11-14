@@ -69,10 +69,12 @@ jobs:
           # Published articles are rendered from content/articles.json by journal.html.
           assert 'content/articles.json' in open('journal.html',encoding='utf-8').read()
           js=open('app.js',encoding='utf-8').read()
-          assert 'const showDraftPreviews=isCloudflarePreview;' in js
-          assert "p.status==='published'&&typeof p.retailer_url==='string'" in js
-          assert 'loadJournal()' in js
-          assert "cta.rel='noopener noreferrer sponsored'" in js
+          assert 'if (product.status === "published") allProducts.push(product);' in js
+          assert 'link.href = "/product/" + encodeURIComponent(product.id);' in js
+          product_page=open('product.html',encoding='utf-8').read()
+          product_function=open('functions/product/[id].js',encoding='utf-8').read()
+          assert 'rel="nofollow sponsored noopener noreferrer"' in product_page
+          assert 'rel="nofollow sponsored noopener noreferrer"' in product_function
           # V7: audit production asset paths, not only literal HTML <img> tags.
           css=open('styles.css',encoding='utf-8').read()
           from urllib.parse import urlsplit,parse_qs
