@@ -129,7 +129,7 @@
       const result = await request(path, { method:"PUT", body:JSON.stringify({ data:next, sha }) });
       if (type === "product") { state.products = next; state.productSha = result.content_sha; }
       else { state.articles = next; state.articleSha = result.content_sha; }
-      $("#editor").close(); render(); toast("Saved to MrzSagai-Dev · " + (result.commit || "").slice(0,7));
+      $("#editor").close(); render(); toast("Saved to main · " + (result.commit || "").slice(0,7));
     } catch (error) { toast(error.message, true); }
     finally { button.disabled = false; button.textContent = "Save changes"; }
   }
