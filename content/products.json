@@ -235,9 +235,9 @@
       "Includes a plant stand",
       "For indoor plant styling"
     ],
-    "image": "assets/CeramicPlanter.webp",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B0CFZPZTMC?tag=ohhgood0c-20"
+    "image": "assets/ceramic-planter-stand-set.webp",
+    "retailer_url": "https://www.amazon.com/dp/B0CFZPZTMC?tag=ohhgood0c-20",
+    "status": "published"
   },
   {
     "id": "under-drawer-clamp-organizer",
