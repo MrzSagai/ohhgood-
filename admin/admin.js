@@ -96,7 +96,7 @@
       html += selectField("category","Category",p.category,categories);
       html += field("description","Short description",p.description,"textarea",true);
       html += field("benefits","Benefits (one per line)",(p.benefits || []).join("\n"),"textarea",true);
-      html += '<div class="field full-field image-upload-field"><label>Product image</label><div class="image-upload-preview">' + (p.image ? '<img id="product-image-preview" src="' + esc(imageUrl(p.image)) + '" alt="Current product image">' : '<div id="product-image-preview" class="image-placeholder">No image selected</div>') + '</div><div class="image-upload-actions"><label class="button subtle upload-button" for="product-image-file">＋ Change image</label><input id="product-image-file" type="file" accept="image/jpeg,image/png,image/webp" hidden><span id="image-upload-status" class="hint">' + (p.image ? esc(p.image) : 'JPG, PNG, or WebP · automatically optimized') + '</span></div><input name="image" type="hidden" value="' + esc(p.image || '') + '"><span class="hint">The image is optimized to WebP and uploaded to assets/ when selected.</span></div>';
+      html += '<div class="field full-field image-upload-field"><label>Product image</label><div class="image-upload-preview">' + (p.image ? '<img id="product-image-preview" src="' + esc(imageUrl(p.image)) + '" alt="Current product image">' : '<div id="product-image-preview" class="image-placeholder">No image selected</div>') + '</div><div class="image-upload-actions"><label class="button subtle upload-button" for="product-image-file">＋ Upload new image</label><input id="product-image-file" type="file" accept="image/jpeg,image/png,image/webp" hidden><button type="button" id="browse-assets" class="button subtle">Choose from assets</button><span id="image-upload-status" class="hint">' + (p.image ? esc(p.image) : 'Select an existing asset or upload a new image.') + '</span></div><div id="asset-library" class="asset-library" hidden><input id="asset-search" type="search" placeholder="Search image filename…"><select id="asset-select" size="7" aria-label="Choose an existing image"></select><div class="asset-library-actions"><span id="asset-count" class="hint"></span><button type="button" id="use-asset" class="button primary" disabled>Use selected image</button></div></div><input name="image" type="hidden" value="' + esc(p.image || '') + '"><span class="hint">Choose an image already stored in assets/ to swap products without uploading it again.</span></div>';
       html += field("retailer_url","Retailer URL",p.retailer_url,"url",true,"Published products require a verified HTTPS destination.");
       html += selectField("status","Status",p.status,[["draft","Draft"],["published","Published"]]);
     } else {
@@ -166,6 +166,54 @@
     } finally { choose.disabled = false; }
   }
 
+  let assetLibrary = [];
+  async function loadAssetLibrary() {
+    const panel = $("#asset-library"), select = $("#asset-select"), search = $("#asset-search"), count = $("#asset-count"), use = $("#use-asset");
+    panel.hidden = false;
+    count.textContent = "Loading assets…";
+    use.disabled = true;
+    try {
+      if (!assetLibrary.length) {
+        const response = await fetch("/api/media/assets", { credentials:"same-origin" });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(result.error || "Could not load assets.");
+        assetLibrary = result.images || [];
+      }
+      const renderOptions = () => {
+        const query = search.value.trim().toLowerCase(), current = select.value;
+        const matches = assetLibrary.filter(item => item.name.toLowerCase().includes(query));
+        select.innerHTML = matches.map(item => '<option value="' + esc(item.path) + '">' + esc(item.name) + '</option>').join("");
+        if (matches.some(item => item.path === current)) select.value = current;
+        count.textContent = matches.length + " of " + assetLibrary.length + " images";
+        use.disabled = !select.value;
+      };
+      search.oninput = renderOptions;
+      select.onchange = () => { use.disabled = !select.value; };
+      renderOptions();
+      if (!assetLibrary.length) count.textContent = "No image files found in assets/.";
+    } catch (error) { count.textContent = error.message; toast(error.message, true); }
+  }
+  function useSelectedAsset() {
+    const select = $("#asset-select");
+    if (!select.value) return;
+    const path = select.value, hidden = $('#editor-fields [name="image"]');
+    hidden.value = path;
+    const preview = $("#product-image-preview");
+    if (preview) {
+      if (preview.tagName === "IMG") preview.src = imageUrl(path);
+      else {
+        const img = document.createElement("img");
+        img.id = "product-image-preview";
+        img.alt = "Selected product image";
+        img.src = imageUrl(path);
+        preview.replaceWith(img);
+      }
+    }
+    $("#image-upload-status").textContent = path + " · selected from assets";
+    $("#asset-library").hidden = true;
+    toast("Image selected · remember to save changes");
+  }
+
   function formObject(form) { return Object.fromEntries(new FormData(form).entries()); }
   async function saveEditor(event) {
     event.preventDefault();
@@ -203,6 +251,10 @@
   $("#articles-table").addEventListener("click", e => { const button = e.target.closest("[data-edit-article]"); if (button) openEditor("article", state.articles.find(a => a.slug === button.dataset.editArticle)); });
   $("#editor-form").addEventListener("submit", saveEditor);
   $("#editor-fields").addEventListener("change", async event => { if (event.target.id === "product-image-file" && event.target.files[0]) { try { await uploadProductImage(event.target.files[0]); } catch (error) { $("#image-upload-status").textContent = error.message; toast(error.message, true); } } });
+  $("#editor-fields").addEventListener("click", event => {
+    if (event.target.id === "browse-assets") loadAssetLibrary();
+    if (event.target.id === "use-asset") useSelectedAsset();
+  });
   $("#close-editor").addEventListener("click", () => $("#editor").close());
   $("#cancel-editor").addEventListener("click", () => $("#editor").close());
   $("#logout").addEventListener("click", async () => { await fetch("/api/auth/logout",{method:"POST"}); location.reload(); });
