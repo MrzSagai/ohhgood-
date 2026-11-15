@@ -13,7 +13,7 @@ The custom admin lives at \`/admin/\`. It is a separate interface and stylesheet
 - Optimistic SHA check prevents overwriting a file that changed after the editor loaded it.
 - The GitHub installation token and private key stay in Cloudflare Pages Functions; no GitHub write token is sent to the browser.
 
-Media upload, delete, categories/settings screens, revision restore, and rich-text visual editing are not part of this first admin release. Use draft status to temporarily remove content from publication. Images can currently be referenced by a path in \`assets/\` or an existing HTTPS cover image for journal stories.
+Delete, categories/settings screens, revision restore, and rich-text visual editing are not part of this admin release. Use draft status to temporarily remove content from publication. Images can currently be referenced by a path in \`assets/\` or an existing HTTPS cover image for journal stories.
 
 ## One-time GitHub App setup
 
@@ -67,5 +67,5 @@ After adding or changing variables, redeploy the Production deployment so the Pa
 - This implementation is pinned to repository \`MrzSagai/ohhgood-\` and branch \`main\`. It cannot write to another repository or branch.
 - The admin HTML/CSS/JS are public static assets, but the content APIs require an authenticated, allowlisted session.
 - Sessions are encrypted, HttpOnly, Secure, SameSite=Lax cookies and expire after eight hours.
-- The first version edits JSON records only. It does not upload files, so place images in \`assets/\` through GitHub or a future media-upload workflow.
+- Product images can be selected in the product editor; the browser optimizes them to WebP and the authenticated server uploads them to `assets/<product-id>.webp` through the repository-scoped GitHub App.
 - Keep Pages CMS as a fallback editor until the custom admin has been deployed and tested end-to-end.
