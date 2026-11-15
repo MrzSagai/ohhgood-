@@ -96,7 +96,7 @@
       html += selectField("category","Category",p.category,categories);
       html += field("description","Short description",p.description,"textarea",true);
       html += field("benefits","Benefits (one per line)",(p.benefits || []).join("\n"),"textarea",true);
-      html += field("image","Image path",p.image,"text",true,"Use a path under assets/, e.g. assets/item.webp.");
+      html += '<div class="field full-field image-upload-field"><label>Product image</label><div class="image-upload-preview">' + (p.image ? '<img id="product-image-preview" src="' + esc(imageUrl(p.image)) + '" alt="Current product image">' : '<div id="product-image-preview" class="image-placeholder">No image selected</div>') + '</div><div class="image-upload-actions"><label class="button subtle upload-button" for="product-image-file">＋ Change image</label><input id="product-image-file" type="file" accept="image/jpeg,image/png,image/webp" hidden><span id="image-upload-status" class="hint">' + (p.image ? esc(p.image) : 'JPG, PNG, or WebP · automatically optimized') + '</span></div><input name="image" type="hidden" value="' + esc(p.image || '') + '"><span class="hint">The image is optimized to WebP and uploaded to assets/ when selected.</span></div>';
       html += field("retailer_url","Retailer URL",p.retailer_url,"url",true,"Published products require a verified HTTPS destination.");
       html += selectField("status","Status",p.status,[["draft","Draft"],["published","Published"]]);
     } else {
@@ -111,6 +111,61 @@
     $("#editor-fields").innerHTML = html;
     $("#editor").showModal();
   }
+
+  async function optimizeImage(file) {
+    const objectUrl = URL.createObjectURL(file);
+    try {
+      const image = new Image();
+      image.src = objectUrl;
+      await image.decode();
+      const scale = Math.min(1, 1600 / Math.max(image.naturalWidth, image.naturalHeight));
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.max(1, Math.round(image.naturalWidth * scale));
+      canvas.height = Math.max(1, Math.round(image.naturalHeight * scale));
+      const context = canvas.getContext("2d", { alpha:false });
+      context.fillStyle = "#f5f1e9";
+      context.fillRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(image, 0, 0, canvas.width, canvas.height);
+      const blob = await new Promise(resolve => canvas.toBlob(resolve, "image/webp", 0.86));
+      if (!blob) throw new Error("Browser could not optimize this image.");
+      return blob;
+    } finally { URL.revokeObjectURL(objectUrl); }
+  }
+  async function uploadProductImage(file) {
+    const idInput = $('#editor-fields [name="id"]');
+    const id = idInput ? idInput.value.trim() : "";
+    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id)) throw new Error("Enter a valid product ID before uploading its image.");
+    const status = $("#image-upload-status");
+    const choose = $("#product-image-file");
+    status.textContent = "Optimizing image…";
+    choose.disabled = true;
+    try {
+      const blob = await optimizeImage(file);
+      const form = new FormData();
+      form.append("product_id", id);
+      form.append("file", blob, id + ".webp");
+      status.textContent = "Uploading to GitHub…";
+      const response = await fetch("/api/media", { method:"POST", credentials:"same-origin", body:form });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(result.error || "Image upload failed.");
+      const hidden = $('#editor-fields [name="image"]');
+      hidden.value = result.image;
+      const preview = $("#product-image-preview");
+      if (preview) {
+        if (preview.tagName === "IMG") preview.src = URL.createObjectURL(blob);
+        else {
+          const img = document.createElement("img");
+          img.id = "product-image-preview";
+          img.alt = "New product image preview";
+          img.src = URL.createObjectURL(blob);
+          preview.replaceWith(img);
+        }
+      }
+      status.textContent = result.image + " · uploaded";
+      toast("Image uploaded · " + (result.commit || "").slice(0,7));
+    } finally { choose.disabled = false; }
+  }
+
   function formObject(form) { return Object.fromEntries(new FormData(form).entries()); }
   async function saveEditor(event) {
     event.preventDefault();
@@ -147,6 +202,7 @@
   $("#products-table").addEventListener("click", e => { const button = e.target.closest("[data-edit-product]"); if (button) openEditor("product", state.products.find(p => p.id === button.dataset.editProduct)); });
   $("#articles-table").addEventListener("click", e => { const button = e.target.closest("[data-edit-article]"); if (button) openEditor("article", state.articles.find(a => a.slug === button.dataset.editArticle)); });
   $("#editor-form").addEventListener("submit", saveEditor);
+  $("#editor-fields").addEventListener("change", async event => { if (event.target.id === "product-image-file" && event.target.files[0]) { try { await uploadProductImage(event.target.files[0]); } catch (error) { $("#image-upload-status").textContent = error.message; toast(error.message, true); } } });
   $("#close-editor").addEventListener("click", () => $("#editor").close());
   $("#cancel-editor").addEventListener("click", () => $("#editor").close());
   $("#logout").addEventListener("click", async () => { await fetch("/api/auth/logout",{method:"POST"}); location.reload(); });
