@@ -9,7 +9,7 @@
 
 ## Custom admin scope
 - The first admin release supports dashboard overview, product and journal lists, search, status filters, add, and edit.
-- It does not yet provide media upload, delete, category/settings screens, revision restore, or a visual rich-text editor. Use draft status to temporarily unpublish content.
+- Product images can be uploaded directly from Edit Product. Delete, category/settings screens, revision restore, and a visual rich-text editor are not yet included. Use draft status to temporarily unpublish content.
 
 ## Products
 - Product records live in `content/products.json`.
