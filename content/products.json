@@ -310,9 +310,9 @@
       "Amber finish",
       "Timer function"
     ],
-    "image": "assets/AmberWarmer.webp",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B0GWLLNZ3T?tag=ohhgood0c-20"
+    "image": "assets/Amberwarm.webp",
+    "retailer_url": "https://www.amazon.com/dp/B0GWLLNZ3T?tag=ohhgood0c-20",
+    "status": "published"
   },
   {
     "id": "funistree-flower-candle-warmer",
