@@ -340,9 +340,9 @@
       "Vintage-inspired look",
       "Timer function"
     ],
-    "image": "assets/VintageWarmer.webp",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B0DZCFP556?tag=ohhgood0c-20"
+    "image": "assets/vintage-amber-candle-warmer.webp",
+    "retailer_url": "https://www.amazon.com/dp/B0DZCFP556?tag=ohhgood0c-20",
+    "status": "published"
   },
   {
     "id": "vankada-gold-candle-warmer",
