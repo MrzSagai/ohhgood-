@@ -200,7 +200,7 @@ async function uploadMedia(request, env) {
   return json({ ok: true, image: imagePath, commit: result.commit && result.commit.sha });
 }
 
-async function onRequest(context) {
+export async function onRequest(context) {
   const { request, env } = context;
   const url = new URL(request.url), path = url.pathname;
   if (path === "/api/auth/login" && request.method === "GET") {
