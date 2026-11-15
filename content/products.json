@@ -295,9 +295,9 @@
       "Vanilla sandalwood scent",
       "Two cotton wicks"
     ],
-    "image": "assets/VanillaCandle.webp",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B08RBBKC51?tag=ohhgood0c-20"
+    "image": "assets/sand-fog-vanilla-sandalwood-candle.webp",
+    "retailer_url": "https://www.amazon.com/dp/B08RBBKC51?tag=ohhgood0c-20",
+    "status": "published"
   },
   {
     "id": "candeldo-candle-warmer-amber",
