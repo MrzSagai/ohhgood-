@@ -237,6 +237,21 @@ export async function onRequest(context) {
     if (request.headers.get("Origin") !== url.origin) return json({ error: "Cross-origin logout rejected." }, 403);
     return json({ ok: true }, 200, { "set-cookie": cookie(SESSION_COOKIE, "", { maxAge: 0 }) });
   }
+  if (path === "/api/media/assets" && request.method === "GET") {
+    try {
+      const auth = await session(request, env);
+      if (!auth) return json({ error: "Unauthorized. Sign in with the approved GitHub account." }, 401);
+      const token = await installationToken(env);
+      const response = await fetch("https://api.github.com/repos/" + OWNER + "/" + REPO + "/contents/assets?ref=" + encodeURIComponent(BRANCH), { headers: githubHeaders(token) });
+      if (!response.ok) return json({ error: "Could not load the asset library from GitHub." }, response.status);
+      const entries = await response.json();
+      const images = (Array.isArray(entries) ? entries : [])
+        .filter(item => item.type === "file" && /\.(?:webp|jpe?g|png|avif|gif|svg)$/i.test(item.name || ""))
+        .map(item => ({ name: item.name, path: item.path }))
+        .sort((a, b) => a.name.localeCompare(b.name));
+      return json({ images });
+    } catch (error) { return json({ error: error.message || "Could not load asset library." }, 500); }
+  }
   if (path === "/api/media") {
     try { return await uploadMedia(request, env); }
     catch (error) { return json({ error: error.message || "Unexpected upload error." }, 500); }
