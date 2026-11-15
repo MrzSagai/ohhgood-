@@ -400,9 +400,9 @@
       "For book lovers",
       "Track reading in one place"
     ],
-    "image": "assets/ReadingJournal.webp",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B0FH4BD4J4?tag=ohhgood0c-20"
+    "image": "assets/comkiso-reading-journal.webp",
+    "retailer_url": "https://www.amazon.com/dp/B0FH4BD4J4?tag=ohhgood0c-20",
+    "status": "published"
   },
   {
     "id": "zicoto-reading-journal",
