@@ -355,9 +355,9 @@
       "Wooden base",
       "Glass shade"
     ],
-    "image": "assets/GoldWarmer.webp",
-    "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B0FKBD74L6?tag=ohhgood0c-20"
+    "image": "assets/vankada-gold-candle-warmer.webp",
+    "retailer_url": "https://www.amazon.com/dp/B0FKBD74L6?tag=ohhgood0c-20",
+    "status": "published"
   },
   {
     "id": "adjustable-candle-warmer-lamp",
