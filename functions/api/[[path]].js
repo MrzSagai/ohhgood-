@@ -161,7 +161,46 @@ async function api(request, env, path) {
   if (!response.ok) return json({ error: result.message || "GitHub could not save this file." }, response.status);
   return json({ ok: true, commit: result.commit && result.commit.sha, content_sha: result.content && result.content.sha });
 }
-export async function onRequest(context) {
+export 
+async function uploadMedia(request, env) {
+  if (request.method !== "POST") return json({ error: "Method not allowed." }, 405, { Allow: "POST" });
+  const origin = request.headers.get("Origin");
+  if (origin !== new URL(request.url).origin) return json({ error: "Cross-origin upload rejected." }, 403);
+  const auth = await session(request, env);
+  if (!auth) return json({ error: "Unauthorized. Sign in with the approved GitHub account." }, 401, { "set-cookie": cookie(SESSION_COOKIE, "", { maxAge: 0 }) });
+  const length = Number(request.headers.get("Content-Length") || 0);
+  if (length > 7 * 1024 * 1024) return json({ error: "Image is too large. Choose an image under 5 MB after optimization." }, 413);
+  const form = await request.formData();
+  const file = form.get("file");
+  const productId = String(form.get("product_id") || "");
+  if (!file || typeof file.arrayBuffer !== "function") return json({ error: "Choose an image file first." }, 400);
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(productId)) return json({ error: "Save a valid product ID before uploading its image." }, 422);
+  if (file.size > 5 * 1024 * 1024) return json({ error: "Optimized image must be 5 MB or smaller." }, 413);
+  const bytes = new Uint8Array(await file.arrayBuffer());
+  const isWebp = bytes.length > 12 && String.fromCharCode(...bytes.slice(0,4)) === "RIFF" && String.fromCharCode(...bytes.slice(8,12)) === "WEBP";
+  if (!isWebp) return json({ error: "Image conversion failed. Please choose a JPG, PNG, or WebP image." }, 415);
+  const imagePath = "assets/" + productId + ".webp";
+  const token = await installationToken(env);
+  const url = "https://api.github.com/repos/" + OWNER + "/" + REPO + "/contents/" + imagePath;
+  const existingResponse = await fetch(url + "?ref=" + encodeURIComponent(BRANCH), { headers: githubHeaders(token) });
+  let existingSha = "";
+  if (existingResponse.ok) {
+    const existing = await existingResponse.json();
+    existingSha = existing.sha || "";
+  } else if (existingResponse.status !== 404) {
+    return json({ error: "Could not check the existing image in GitHub." }, existingResponse.status);
+  }
+  let binary = "";
+  for (let i = 0; i < bytes.length; i += 0x8000) binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+  const payload = { message: "CMS: upload product image " + productId, content: btoa(binary), branch: BRANCH };
+  if (existingSha) payload.sha = existingSha;
+  const response = await fetch(url, { method: "PUT", headers: { ...githubHeaders(token), "content-type": "application/json" }, body: JSON.stringify(payload) });
+  const result = await response.json();
+  if (!response.ok) return json({ error: result.message || "GitHub could not upload this image." }, response.status);
+  return json({ ok: true, image: imagePath, commit: result.commit && result.commit.sha });
+}
+
+async function onRequest(context) {
   const { request, env } = context;
   const url = new URL(request.url), path = url.pathname;
   if (path === "/api/auth/login" && request.method === "GET") {
@@ -197,6 +236,10 @@ export async function onRequest(context) {
   if (path === "/api/auth/logout" && request.method === "POST") {
     if (request.headers.get("Origin") !== url.origin) return json({ error: "Cross-origin logout rejected." }, 403);
     return json({ ok: true }, 200, { "set-cookie": cookie(SESSION_COOKIE, "", { maxAge: 0 }) });
+  }
+  if (path === "/api/media") {
+    try { return await uploadMedia(request, env); }
+    catch (error) { return json({ error: error.message || "Unexpected upload error." }, 500); }
   }
   if (path === "/api/session" && request.method === "GET") {
     const auth = await session(request, env);
