@@ -142,7 +142,7 @@ for u in re.findall(r"url\(([^)]+)\)", css):
     u = u.strip().strip("\"'")
     if u.startswith(("data:", "http:", "https:", "#")): continue
     if not os.path.isfile(unquote(u.split("?")[0])): err(f"styles.css: missing asset {u}")
-for js in ("app.js", "site.js", "theme.js"):
+for js in ("app.js", "site.js", "theme.js", "pinterest-init.js", "pinterest-tag.js"):
     r = subprocess.run(["node", "--check", js], capture_output=True, text=True)
     if r.returncode: err(f"{js}: {r.stderr.strip()[:200]}")
 for f in sorted(Path("functions").rglob("*.js")) + [Path("admin/admin.js")]:
@@ -154,6 +154,15 @@ site_js = Path("functions/_lib/site.js").read_text(encoding="utf-8")
 m = re.search(r'export const CSP = "([^"]+)"', site_js)
 headers = Path("_headers").read_text(encoding="utf-8")
 if not m or f"Content-Security-Policy: {m.group(1)}" not in headers: err("_headers: Content-Security-Policy differs from functions/_lib/site.js (keep them identical)")
+if m and "https://s.pinimg.com" not in m.group(1): err("CSP: Pinterest script host s.pinimg.com is missing")
+if m and "https://ct.pinterest.com" not in m.group(1): err("CSP: Pinterest pixel host ct.pinterest.com is missing")
+if "2613721244798" not in site_js or "/pinterest-init.js" not in site_js or "/pinterest-tag.js" not in site_js: err("Functions layout: Pinterest Tag base, ID, or outbound tracking script is missing")
+if not Path("pinterest-init.js").is_file() or not Path("pinterest-tag.js").is_file(): err("Pinterest Tag script files are missing")
+for f in PAGES:
+    page = Path(f).read_text(encoding="utf-8")
+    if 'name="p:domain_verify" content="cc3f590b77ddd998c2fb596f820938d6"' not in page: err(f"{f}: Pinterest domain verification meta is missing")
+    if 'src="/pinterest-init.js"' not in page or 'src="/pinterest-tag.js"' not in page: err(f"{f}: Pinterest Tag scripts are missing")
+if "2613721244798" not in Path("privacy.html").read_text(encoding="utf-8"): err("privacy.html: Pinterest Tag disclosure is missing")
 for token in ("X-Content-Type-Options: nosniff", "Strict-Transport-Security", "Referrer-Policy"):
     if token not in headers: err(f"_headers: {token} missing")
 for f in PAGES + ["admin/index.html"]:
