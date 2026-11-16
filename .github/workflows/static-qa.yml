@@ -1,9 +1,9 @@
 name: Static QA
 on:
   push:
-    branches: [main, development]
+    branches: [main, development, Claude-Development]
   pull_request:
-    branches: [main, development]
+    branches: [main, development, Claude-Development]
   workflow_dispatch:
 permissions:
   contents: read
