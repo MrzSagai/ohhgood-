@@ -2,7 +2,7 @@ const DEFAULT_OWNER = "MrzSagai";
 const DEFAULT_REPO = "ohhgood-";
 const DEFAULT_BRANCH = "main";
 /* Optional Cloudflare variables GITHUB_OWNER / GITHUB_REPO / GITHUB_CONTENT_BRANCH let a preview deployment edit
-   a non-production branch (for example `development`) without touching `main`. */
+   a non-production branch (for example `Claude-Development`) without touching `main`. */
 let OWNER = DEFAULT_OWNER, REPO = DEFAULT_REPO, BRANCH = DEFAULT_BRANCH;
 function configure(env) {
   OWNER = String(env.GITHUB_OWNER || DEFAULT_OWNER);
