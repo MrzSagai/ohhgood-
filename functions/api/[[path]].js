@@ -1,13 +1,21 @@
-const OWNER = "MrzSagai";
-const REPO = "ohhgood-";
-const BRANCH = "main";
+const DEFAULT_OWNER = "MrzSagai";
+const DEFAULT_REPO = "ohhgood-";
+const DEFAULT_BRANCH = "main";
+/* Optional Cloudflare variables GITHUB_OWNER / GITHUB_REPO / GITHUB_CONTENT_BRANCH let a preview deployment edit
+   a non-production branch (for example `development`) without touching `main`. */
+let OWNER = DEFAULT_OWNER, REPO = DEFAULT_REPO, BRANCH = DEFAULT_BRANCH;
+function configure(env) {
+  OWNER = String(env.GITHUB_OWNER || DEFAULT_OWNER);
+  REPO = String(env.GITHUB_REPO || DEFAULT_REPO);
+  BRANCH = String(env.GITHUB_CONTENT_BRANCH || DEFAULT_BRANCH);
+}
 const ALLOWED_FILES = new Set(["content/products.json", "content/articles.json"]);
 const SESSION_COOKIE = "ohhgood_admin";
 const STATE_COOKIE = "ohhgood_oauth_state";
 const SESSION_TTL = 8 * 60 * 60;
 
 function json(data, status = 200, headers = {}) {
-  return new Response(JSON.stringify(data), { status, headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store", ...headers } });
+  return new Response(JSON.stringify(data), { status, headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store", "x-content-type-options": "nosniff", "x-robots-tag": "noindex", ...headers } });
 }
 function redirect(url, cookies = []) {
   const headers = new Headers({ Location: url, "Cache-Control": "no-store" });
@@ -67,7 +75,9 @@ async function appJwt(env) {
   const signature = await crypto.subtle.sign("RSASSA-PKCS1-v1_5", key, new TextEncoder().encode(unsigned));
   return unsigned + "." + base64url(new Uint8Array(signature));
 }
+let tokenCache = { token: "", exp: 0 };
 async function installationToken(env) {
+  if (tokenCache.token && tokenCache.exp > Date.now() + 60000) return tokenCache.token;
   if (!env.GITHUB_APP_INSTALLATION_ID) throw new Error("GitHub App installation ID is not configured.");
   const jwt = await appJwt(env);
   const response = await fetch("https://api.github.com/app/installations/" + env.GITHUB_APP_INSTALLATION_ID + "/access_tokens", {
@@ -77,6 +87,7 @@ async function installationToken(env) {
   });
   const data = await response.json();
   if (!response.ok || !data.token) throw new Error("Could not create a repository-scoped GitHub token: " + (data.message || response.status));
+  tokenCache = { token: data.token, exp: data.expires_at ? Date.parse(data.expires_at) : Date.now() + 50 * 60000 };
   return data.token;
 }
 async function session(request, env) {
@@ -100,10 +111,11 @@ function validate(path, records) {
       if (!item || typeof item !== "object") return "Each product must be an object.";
       if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(item.id || "") || ids.has(item.id)) return "Product IDs must be unique lowercase slugs.";
       ids.add(item.id);
-      if (!item.brand || !item.name || !item.description) return "Product brand, name, and description are required.";
+      if (!item.name || !item.description) return "Product name and description are required.";
       if (!categories.has(item.category)) return "Invalid product category: " + item.id;
       if (!["draft", "published"].includes(item.status)) return "Invalid product status: " + item.id;
-      if (item.image && (!/^assets\/[a-zA-Z0-9_./-]+$/.test(item.image) || item.image.includes(".."))) return "Product image must be a safe path under assets/.";
+      if (item.image && (!/^assets\/[a-zA-Z0-9_./% -]+$/.test(item.image) || item.image.includes(".."))) return "Product image must be a safe path under assets/.";
+      if (item.thumb && (!/^assets\/[a-zA-Z0-9_./% -]+$/.test(item.thumb) || item.thumb.includes(".."))) return "Product thumbnail must be a safe path under assets/.";
       if (item.status === "published" && !/^https:\/\/\S+$/i.test(item.retailer_url || "")) return "Published products require an HTTPS retailer URL: " + item.id;
       if (item.retailer_url && !/^https:\/\/\S+$/i.test(item.retailer_url)) return "Retailer URLs must use HTTPS: " + item.id;
       if (item.benefits !== undefined && !Array.isArray(item.benefits)) return "Product benefits must be a list: " + item.id;
@@ -161,7 +173,6 @@ async function api(request, env, path) {
   if (!response.ok) return json({ error: result.message || "GitHub could not save this file." }, response.status);
   return json({ ok: true, commit: result.commit && result.commit.sha, content_sha: result.content && result.content.sha });
 }
-export 
 async function uploadMedia(request, env) {
   if (request.method !== "POST") return json({ error: "Method not allowed." }, 405, { Allow: "POST" });
   const origin = request.headers.get("Origin");
@@ -202,6 +213,7 @@ async function uploadMedia(request, env) {
 
 export async function onRequest(context) {
   const { request, env } = context;
+  configure(env);
   const url = new URL(request.url), path = url.pathname;
   if (path === "/api/auth/login" && request.method === "GET") {
     if (!env.GITHUB_APP_CLIENT_ID || !env.GITHUB_APP_CLIENT_SECRET || !env.SESSION_SECRET || !env.GITHUB_APP_ID || !env.GITHUB_APP_PRIVATE_KEY || !env.GITHUB_APP_INSTALLATION_ID || !allowedUsers(env).length) {

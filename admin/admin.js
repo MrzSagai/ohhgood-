@@ -1,6 +1,6 @@
 (() => {
   const $ = (selector) => document.querySelector(selector);
-  const state = { products: [], articles: [], productSha: "", articleSha: "", user: null, editing: null };
+  const state = { products: [], articles: [], productSha: "", articleSha: "", user: null, editing: null, branch: "" };
   const categories = [["tidy","Tidy Space"],["cozy","Cozy Ambience"],["ritual","Slow Ritual"],["green","Green Corner"]];
   const today = new Intl.DateTimeFormat("en", { weekday:"long", month:"short", day:"numeric", year:"numeric" }).format(new Date());
   $("#today").textContent = today;
@@ -21,6 +21,7 @@
   async function init() {
     try {
       const auth = await request("/api/session");
+      state.branch = auth.branch || "";
       state.user = auth.user;
       $("#user-login").textContent = auth.user.login;
       $("#user-avatar").src = auth.user.avatar_url || "";
@@ -91,11 +92,16 @@
     if (type === "product") {
       const p = item || { id:"",brand:"",name:"",category:"tidy",description:"",benefits:[],image:"",status:"draft",retailer_url:"" };
       html += field("id","Stable ID",p.id,"text",false,"Lowercase letters, numbers and hyphens.");
-      html += field("brand","Brand",p.brand);
+      html += field("brand","Brand (leave blank if unknown)",p.brand);
       html += field("name","Product name",p.name,"text",true);
       html += selectField("category","Category",p.category,categories);
       html += field("description","Short description",p.description,"textarea",true);
       html += field("benefits","Benefits (one per line)",(p.benefits || []).join("\n"),"textarea",true);
+      const lines = value => Array.isArray(value) ? value.join("\n") : (value || "");
+      html += field("who_for","Who it may suit (one per line, optional)",lines(p.who_for),"textarea",true,"Shown on the product page. Write only what you can stand behind.");
+      html += field("who_skip","Who may want to skip it (one per line, optional)",lines(p.who_skip),"textarea",true);
+      html += field("check_before","What to check before buying (one per line, optional)",lines(p.check_before),"textarea",true);
+      html += field("how_to","How to use it (one per line, optional)",lines(p.how_to),"textarea",true);
       html += '<div class="field full-field image-upload-field"><label>Product image</label><div class="image-upload-preview">' + (p.image ? '<img id="product-image-preview" src="' + esc(imageUrl(p.image)) + '" alt="Current product image">' : '<div id="product-image-preview" class="image-placeholder">No image selected</div>') + '</div><div class="image-upload-actions"><label class="button subtle upload-button" for="product-image-file">＋ Upload new image</label><input id="product-image-file" type="file" accept="image/jpeg,image/png,image/webp" hidden><button type="button" id="browse-assets" class="button subtle">Choose from assets</button><span id="image-upload-status" class="hint">' + (p.image ? esc(p.image) : 'Select an existing asset or upload a new image.') + '</span></div><div id="asset-library" class="asset-library" hidden><input id="asset-search" type="search" placeholder="Search image filename…"><select id="asset-select" size="7" aria-label="Choose an existing image"></select><div class="asset-library-actions"><span id="asset-count" class="hint"></span><button type="button" id="use-asset" class="button primary" disabled>Use selected image</button></div></div><input name="image" type="hidden" value="' + esc(p.image || '') + '"><span class="hint">Choose an image already stored in assets/ to swap products without uploading it again.</span></div>';
       html += field("retailer_url","Retailer URL",p.retailer_url,"url",true,"Published products require a verified HTTPS destination.");
       html += selectField("status","Status",p.status,[["draft","Draft"],["published","Published"]]);
@@ -223,7 +229,20 @@
     const key = type === "product" ? "id" : "slug";
     if (id && form[key] !== id && collection.some(x => x[key] === form[key])) return toast("That ID or slug already exists.", true);
     if (!id && collection.some(x => x[key] === form[key])) return toast("That ID or slug already exists.", true);
-    const item = type === "product" ? { ...form, benefits:form.benefits.split("\n").map(x => x.trim()).filter(Boolean) } : form;
+    const existing = id ? (collection.find(x => x[key] === id) || {}) : {};
+    const toLines = value => String(value || "").split("\n").map(x => x.trim()).filter(Boolean);
+    let item;
+    if (type === "product") {
+      /* Merge onto the stored record so fields this form does not show (thumb, faq, ...) are never lost. */
+      item = { ...existing, ...form, benefits:toLines(form.benefits) };
+      for (const name of ["who_for","who_skip","check_before","how_to"]) {
+        const items = toLines(form[name]);
+        if (items.length) item[name] = items; else delete item[name];
+      }
+      if (existing.image && form.image !== existing.image) delete item.thumb;
+    } else {
+      item = { ...existing, ...form };
+    }
     const next = id ? collection.map(x => x[key] === id ? item : x) : [...collection, item];
     const path = type === "product" ? "/api/content/products" : "/api/content/articles";
     const sha = type === "product" ? state.productSha : state.articleSha;
@@ -232,7 +251,7 @@
       const result = await request(path, { method:"PUT", body:JSON.stringify({ data:next, sha }) });
       if (type === "product") { state.products = next; state.productSha = result.content_sha; }
       else { state.articles = next; state.articleSha = result.content_sha; }
-      $("#editor").close(); render(); toast("Saved to main · " + (result.commit || "").slice(0,7));
+      $("#editor").close(); render(); toast("Saved to " + (state.branch || "GitHub") + " · " + (result.commit || "").slice(0,7));
     } catch (error) { toast(error.message, true); }
     finally { button.disabled = false; button.textContent = "Save changes"; }
   }

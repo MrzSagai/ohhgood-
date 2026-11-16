@@ -1,25 +1,37 @@
-# Ohhgood! V5 — clean independent rebuild
+# Ohhgood!
 
-No code or styles from V4 are included. Only four concept product illustrations are reused. Pure static HTML/CSS/JS; works on Cloudflare Pages with build command empty and output directory `/`.
+Static site on Cloudflare Pages with a few Pages Functions. Content lives in `content/*.json` and is edited through `/admin/` (GitHub App login) or Pages CMS (`.pages.yml`).
 
-## Preview
-Run `python -m http.server 8080` in this folder, then open localhost:8080. Do not open index.html directly from disk because browsers disallow fetching local JSON.
+## How pages are served
+| URL | Source |
+|---|---|
+| `/`, `/privacy`, `/standards`, `/contact` | static HTML (`/` is also pre-rendered with the catalog by `functions/index.js`) |
+| `/product/<id>` | `functions/product/[id].js` |
+| `/category/<slug>` | `functions/category/[slug].js` (copy lives in `content/categories.json`) |
+| `/journal`, `/journal/<slug>` | `functions/journal.js`, `functions/journal/[slug].js` |
+| `/sitemap.xml` | `functions/sitemap.xml.js` (generated from content, never edit by hand) |
+| `/api/*`, `/admin/` | CMS (see `docs/CMS_ADMIN_SETUP.md`) |
 
-## Contents
-- `index.html` — semantic content and components
-- `styles.css` — mobile-first responsive design and tokenized themes
-- `app.js` — category filters, mobile navigation, modal, keyboard focus, theme
-- `content/products.json` — product data (all **draft/concept**)
-- `assets/` — concept images reused from V4
-- `robots.txt` — block crawlers until launch
+Shared HTML, headers and helpers: `functions/_lib/site.js`. Security headers for static files: `_headers` (its CSP must equal the one in `site.js`; QA checks this).
 
-All draft products appear in preview solely to exercise UI. Their retailer links are disabled, even if a URL is present. Never present concept visuals as verified retailer images. No invented prices, ratings, cart, newsletter sign-up, or affiliate links.
+## Cloudflare Pages settings
+Framework preset: none. Build command: empty. Output directory: `/` (repository root). Nothing in this repo needs a build step.
 
-## Testing
-Use automated screenshot and interaction checks before merging to production. Recheck on real phones as a final quality gate.
+Optional variables (Settings → Variables): `GITHUB_CONTENT_BRANCH` (default `main`) makes `/admin/` write to another branch, for example `development` on a preview deployment. `GITHUB_OWNER` / `GITHUB_REPO` override the repository.
 
-## Second UX/CMS pass
-- Logo hover greeting and CTA feedback added in `styles.css`.
-- Mobile navigation can close with Escape.
-- `.pages.yml` connects Pages CMS to the existing JSON product records; `content/articles.json` and CMS_GUIDE.md prepare future articles.
-- Actual CMS authorization and browser QA require verifying the connected GitHub repository and Cloudflare deployment.
+## Local work
+```bash
+python3 scripts/qa.py                 # content, links, SEO, headers, redirects, size budgets
+node --test tests/render.test.mjs     # renders every product/category/article through the Functions
+python3 scripts/optimize_images.py    # create grid thumbnails for new product images
+node scripts/dev-server.mjs           # local preview with Functions, redirects and headers (needs Node 22)
+```
+GitHub Actions runs QA and the render tests on pushes and PRs to `main` and `development`, and generates thumbnails when product images change.
+
+## Editing rules
+* Product IDs and article slugs are lowercase letters, digits and hyphens. Changing one breaks its URL, so add a line to `_redirects` pointing the old URL straight at the new one.
+* Leave `brand` blank when unknown. Do not type placeholder text.
+* Amazon links must use `https://www.amazon.com/dp/<ASIN>?tag=ohhgood0c-20`.
+* Optional product fields shown on the page: `who_for`, `who_skip`, `check_before`, `how_to`, `faq`. Only write what you can stand behind.
+* Articles can list `related_products` (product IDs) to show a "Finds mentioned" block, and `date` / `updated` (`YYYY-MM-DD`) for structured data and the sitemap.
+* Internal notes live in `docs/` and are not served publicly.

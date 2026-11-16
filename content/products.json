@@ -2,7 +2,7 @@
   {
     "id": "maxgear-mesh-3pack",
     "brand": "MaxGear",
-    "name": "Mesh Pen Holder , 3 Pack Black",
+    "name": "Mesh Pen Holder, 3 Pack Black",
     "category": "tidy",
     "description": "Premium mesh metal pencil holders with non-slip EVA pad. 3.7\" tall, round, for desk organization.",
     "benefits": [
@@ -12,12 +12,13 @@
     ],
     "image": "assets/maxgear.webp",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B0756X76P5?tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/dp/B0756X76P5?tag=ohhgood0c-20",
+    "thumb": "assets/thumbs/maxgear.webp"
   },
   {
     "id": "joyroom-cable-organizer",
     "brand": "JOYROOM",
-    "name": "Magnetic Cable Clips , 9 Pack",
+    "name": "Magnetic Cable Clips, 9 Pack",
     "category": "tidy",
     "description": "Magnetic cable clips designed to keep charging cables organized on a desk or nightstand.",
     "benefits": [
@@ -27,12 +28,13 @@
     ],
     "image": "assets/Joyroom.webp",
     "retailer_url": "https://www.amazon.com/dp/B0CGRQYCPT?tag=ohhgood0c-20",
-    "status": "published"
+    "status": "published",
+    "thumb": "assets/thumbs/Joyroom.webp"
   },
   {
     "id": "bagsmart-electronics-organizer",
     "brand": "BAGSMART",
-    "name": "Electronics Organizer Travel Case , 17 Compartments",
+    "name": "Electronics Organizer Travel Case, 17 Compartments",
     "category": "tidy",
     "description": "A double-layer electronics pouch for organizing cables, chargers, adapters and other small tech accessories.",
     "benefits": [
@@ -42,7 +44,8 @@
     ],
     "image": "assets/Bagsmart.webp",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B0D3XFN86F?tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/dp/B0D3XFN86F?tag=ohhgood0c-20",
+    "thumb": "assets/thumbs/Bagsmart.webp"
   },
   {
     "id": "yecaye-cable-tray-l-clamp",
@@ -57,12 +60,13 @@
     ],
     "image": "assets/yecaye.webp",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B0FX3GWXKN?tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/dp/B0FX3GWXKN?tag=ohhgood0c-20",
+    "thumb": "assets/thumbs/yecaye.webp"
   },
   {
     "id": "nuvograin-laptop-stand",
     "brand": "Nuvograin",
-    "name": "Adjustable Vertical Laptop Stand , Walnut",
+    "name": "Adjustable Vertical Laptop Stand, Walnut",
     "category": "tidy",
     "description": "Faceted diamond-cut walnut vertical laptop stand, adjustable width, saves desk space.",
     "benefits": [
@@ -72,7 +76,8 @@
     ],
     "image": "assets/nuvograin.webp",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B0FL6B9MDD?tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/dp/B0FL6B9MDD?tag=ohhgood0c-20",
+    "thumb": "assets/thumbs/nuvograin.webp"
   },
   {
     "id": "lamicall-phone-stand",
@@ -87,7 +92,8 @@
     ],
     "image": "assets/Lamicall.webp",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B01M7U6F8T?tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/dp/B01M7U6F8T?tag=ohhgood0c-20",
+    "thumb": "assets/thumbs/Lamicall.webp"
   },
   {
     "id": "oxo-laptop-cleaner",
@@ -102,12 +108,13 @@
     ],
     "image": "assets/Oxodesk.webp",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B07W1L7TCF?tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/dp/B07W1L7TCF?tag=ohhgood0c-20",
+    "thumb": "assets/thumbs/Oxodesk.webp"
   },
   {
     "id": "yecaye-cable-tray-all-metal",
     "brand": "YECAYE",
-    "name": "All-Metal Under Desk Cable Management Tray , Clamp Mount",
+    "name": "All-Metal Under Desk Cable Management Tray, Clamp Mount",
     "category": "tidy",
     "description": "A two-tray all-metal cable management system that clamps to the desk without drilling.",
     "benefits": [
@@ -117,7 +124,8 @@
     ],
     "image": "assets/yecaye-metal.webp",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B0953L1ML6?tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/dp/B0953L1ML6?tag=ohhgood0c-20",
+    "thumb": "assets/thumbs/yecaye-metal.webp"
   },
   {
     "id": "s-and-c-living-bamboo-dividers",
@@ -132,12 +140,13 @@
     ],
     "image": "assets/bamboo-dividers.webp",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B08CQ8HRVG?tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/dp/B08CQ8HRVG?tag=ohhgood0c-20",
+    "thumb": "assets/thumbs/bamboo-dividers.webp"
   },
   {
     "id": "dawntrees-felt-desk-mat",
     "brand": "DAWNTREES",
-    "name": "Felt Desk Mat , 36 × 12 Inches",
+    "name": "Felt Desk Mat, 36 × 12 Inches",
     "category": "tidy",
     "description": "A dark gray felt desk mat that adds a soft work surface and helps protect the desktop.",
     "benefits": [
@@ -147,7 +156,8 @@
     ],
     "image": "assets/dawntrees.webp",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B09MVT9Y98?tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/dp/B09MVT9Y98?tag=ohhgood0c-20",
+    "thumb": "assets/thumbs/dawntrees.webp"
   },
   {
     "id": "weenson-dual-monitor-stand",
@@ -162,12 +172,13 @@
     ],
     "image": "assets/weenson.webp",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B0BM64FBBD?tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/dp/B0BM64FBBD?tag=ohhgood0c-20",
+    "thumb": "assets/thumbs/weenson.webp"
   },
   {
     "id": "rocdeer-bamboo-monitor-shelf",
     "brand": "ROCDEER",
-    "name": "Underneath Desk Shelf , Natural Finish",
+    "name": "Underneath Desk Shelf, Natural Finish",
     "category": "tidy",
     "description": "An under-desk shelf designed to add a convenient storage surface beneath the desktop.",
     "benefits": [
@@ -177,7 +188,8 @@
     ],
     "image": "assets/rocdeer.webp",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B09BYFR44J?tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/dp/B09BYFR44J?tag=ohhgood0c-20",
+    "thumb": "assets/thumbs/rocdeer.webp"
   },
   {
     "id": "benq-screenbar-halo",
@@ -192,12 +204,13 @@
     ],
     "image": "assets/benq.webp",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B08WT889V3?tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/dp/B08WT889V3?tag=ohhgood0c-20",
+    "thumb": "assets/thumbs/benq.webp"
   },
   {
     "id": "amber-sandalwood-candle",
-    "brand": "Brand not specified",
-    "name": "Amber & Sandalwood Scented Candle , 16 oz",
+    "brand": "",
+    "name": "Amber & Sandalwood Scented Candle, 16 oz",
     "category": "cozy",
     "description": "A large 16-ounce jar candle with an amber and sandalwood fragrance profile.",
     "benefits": [
@@ -207,12 +220,13 @@
     ],
     "image": "assets/AmberCandle.webp",
     "retailer_url": "https://www.amazon.com/dp/B0FR42GPV1?tag=ohhgood0c-20",
-    "status": "published"
+    "status": "published",
+    "thumb": "assets/thumbs/AmberCandle.webp"
   },
   {
     "id": "mind-design-purpose-planner",
     "brand": "Mind Design",
-    "name": "Purpose Planner , Solid Walnut Holder",
+    "name": "Purpose Planner, Solid Walnut Holder",
     "category": "ritual",
     "description": "Analog system with 120 Today cards and walnut tray that holds the stack.",
     "benefits": [
@@ -222,7 +236,8 @@
     ],
     "image": "assets/mind-design.webp",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B0BT73XYQG?tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/dp/B0BT73XYQG?tag=ohhgood0c-20",
+    "thumb": "assets/thumbs/mind-design.webp"
   },
   {
     "id": "ceramic-planter-stand-set",
@@ -237,11 +252,12 @@
     ],
     "image": "assets/ceramic-planter-stand-set.webp",
     "retailer_url": "https://www.amazon.com/dp/B0CFZPZTMC?tag=ohhgood0c-20",
-    "status": "published"
+    "status": "published",
+    "thumb": "assets/thumbs/ceramic-planter-stand-set.webp"
   },
   {
     "id": "under-drawer-clamp-organizer",
-    "brand": "Brand not specified",
+    "brand": "",
     "name": "Clamp-On Under-Drawer Storage Organizer",
     "category": "tidy",
     "description": "A clamp-on storage organizer designed to add a small storage space beneath a desk or drawer.",
@@ -252,11 +268,12 @@
     ],
     "image": "assets/homeify.webp",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B0DRJ61BZC?tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/dp/B0DRJ61BZC?tag=ohhgood0c-20",
+    "thumb": "assets/thumbs/homeify.webp"
   },
   {
     "id": "magnolia-sandalwood-candle",
-    "brand": "Brand not specified",
+    "brand": "",
     "name": "Magnolia Sandalwood Scented Candle",
     "category": "cozy",
     "description": "A scented candle combining magnolia and sandalwood fragrance notes.",
@@ -267,12 +284,13 @@
     ],
     "image": "assets/MagnoliaCandle.webp",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B0DRJRPDZ1?tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/dp/B0DRJRPDZ1?tag=ohhgood0c-20",
+    "thumb": "assets/thumbs/MagnoliaCandle.webp"
   },
   {
     "id": "manly-indulgence-black-sandalwood-candle",
     "brand": "Manly Indulgence",
-    "name": "Black Sandalwood Scented Candle , 15 oz",
+    "name": "Black Sandalwood Scented Candle, 15 oz",
     "category": "cozy",
     "description": "A 15-ounce black sandalwood candle made with a soy-blend wax and a wood wick.",
     "benefits": [
@@ -282,12 +300,13 @@
     ],
     "image": "assets/manly-indulgence-black-sandalwood-candle.webp",
     "retailer_url": "https://www.amazon.com/dp/B07Z844M1F?tag=ohhgood0c-20",
-    "status": "published"
+    "status": "published",
+    "thumb": "assets/thumbs/manly-indulgence-black-sandalwood-candle.webp"
   },
   {
     "id": "sand-fog-vanilla-sandalwood-candle",
     "brand": "Sand + Fog",
-    "name": "Vanilla Sandalwood Candle , 12 oz",
+    "name": "Vanilla Sandalwood Candle, 12 oz",
     "category": "cozy",
     "description": "A 12-ounce glass-jar candle with vanilla sandalwood fragrance and two cotton wicks.",
     "benefits": [
@@ -297,12 +316,13 @@
     ],
     "image": "assets/sand-fog-vanilla-sandalwood-candle.webp",
     "retailer_url": "https://www.amazon.com/dp/B08RBBKC51?tag=ohhgood0c-20",
-    "status": "published"
+    "status": "published",
+    "thumb": "assets/thumbs/sand-fog-vanilla-sandalwood-candle.webp"
   },
   {
     "id": "candeldo-candle-warmer-amber",
     "brand": "Candeldo",
-    "name": "Candle Warmer Lamp with Timer , Amber",
+    "name": "Candle Warmer Lamp with Timer, Amber",
     "category": "cozy",
     "description": "An amber candle warmer lamp intended to warm jar candles without an open flame.",
     "benefits": [
@@ -312,12 +332,13 @@
     ],
     "image": "assets/Amberwarm.webp",
     "retailer_url": "https://www.amazon.com/dp/B0GWLLNZ3T?tag=ohhgood0c-20",
-    "status": "published"
+    "status": "published",
+    "thumb": "assets/thumbs/Amberwarm.webp"
   },
   {
     "id": "funistree-flower-candle-warmer",
     "brand": "Funistree",
-    "name": "Flower Candle Warmer Lamp , Timer and Dimmer",
+    "name": "Flower Candle Warmer Lamp, Timer and Dimmer",
     "category": "cozy",
     "description": "A flower-style candle warmer lamp with adjustable height, dimming and timer settings.",
     "benefits": [
@@ -327,11 +348,12 @@
     ],
     "image": "assets/FlowerWarmer.webp",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B0DWMNVVQV?tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/dp/B0DWMNVVQV?tag=ohhgood0c-20",
+    "thumb": "assets/thumbs/FlowerWarmer.webp"
   },
   {
     "id": "vintage-amber-candle-warmer",
-    "brand": "Brand not specified",
+    "brand": "",
     "name": "Vintage Amber Candle Warmer Lamp with Timer",
     "category": "cozy",
     "description": "A vintage-style candle warmer lamp with an amber glass shade and timer function.",
@@ -342,7 +364,8 @@
     ],
     "image": "assets/vintage-amber-candle-warmer.webp",
     "retailer_url": "https://www.amazon.com/dp/B0DZCFP556?tag=ohhgood0c-20",
-    "status": "published"
+    "status": "published",
+    "thumb": "assets/thumbs/vintage-amber-candle-warmer.webp"
   },
   {
     "id": "vankada-gold-candle-warmer",
@@ -357,11 +380,12 @@
     ],
     "image": "assets/vankada-gold-candle-warmer.webp",
     "retailer_url": "https://www.amazon.com/dp/B0FKBD74L6?tag=ohhgood0c-20",
-    "status": "published"
+    "status": "published",
+    "thumb": "assets/thumbs/vankada-gold-candle-warmer.webp"
   },
   {
     "id": "adjustable-candle-warmer-lamp",
-    "brand": "Brand not specified",
+    "brand": "",
     "name": "Adjustable Candle Warmer Lamp with Timer",
     "category": "cozy",
     "description": "An adjustable-height candle warmer lamp with dimming and timer controls.",
@@ -372,7 +396,8 @@
     ],
     "image": "assets/AdjustableWarmer.webp",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B0CT274BX5?tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/dp/B0CT274BX5?tag=ohhgood0c-20",
+    "thumb": "assets/thumbs/AdjustableWarmer.webp"
   },
   {
     "id": "moncur-home-bookish-stickers",
@@ -387,7 +412,8 @@
     ],
     "image": "assets/BookishStickers.webp",
     "status": "published",
-    "retailer_url": "https://www.amazon.com/dp/B0H9S7GXPW?tag=ohhgood0c-20"
+    "retailer_url": "https://www.amazon.com/dp/B0H9S7GXPW?tag=ohhgood0c-20",
+    "thumb": "assets/thumbs/BookishStickers.webp"
   },
   {
     "id": "comkiso-reading-journal",
@@ -402,12 +428,13 @@
     ],
     "image": "assets/ReadingJournal.webp",
     "retailer_url": "https://www.amazon.com/dp/B0FH4BD4J4?tag=ohhgood0c-20",
-    "status": "published"
+    "status": "published",
+    "thumb": "assets/thumbs/ReadingJournal.webp"
   },
   {
     "id": "zicoto-reading-journal",
     "brand": "ZICOTO",
-    "name": "Beautiful Reading Journal , Linen Hardcover",
+    "name": "Beautiful Reading Journal, Linen Hardcover",
     "category": "ritual",
     "description": "A linen hardcover reading journal with dedicated sections for tracking books and reading goals.",
     "benefits": [
@@ -436,8 +463,8 @@
   },
   {
     "id": "linen-reading-journal-120",
-    "brand": "Brand not specified",
-    "name": "Linen-Bound Reading Journal , 120 Pages",
+    "brand": "",
+    "name": "Linen-Bound Reading Journal, 120 Pages",
     "category": "ritual",
     "description": "A linen-bound reading journal with 120 pages for recording books and reading notes.",
     "benefits": [
@@ -467,7 +494,7 @@
   {
     "id": "tazo-calm-chamomile-tea",
     "brand": "TAZO",
-    "name": "Calm Chamomile Herbal Tea , 16 Bags",
+    "name": "Calm Chamomile Herbal Tea, 16 Bags",
     "category": "ritual",
     "description": "A caffeine-free herbal tea blend featuring chamomile and complementary botanicals.",
     "benefits": [
@@ -482,7 +509,7 @@
   {
     "id": "vahdam-turmeric-ginger-tea",
     "brand": "VAHDAM",
-    "name": "Organic Turmeric Ginger Herbal Tea , 100 Bags",
+    "name": "Organic Turmeric Ginger Herbal Tea, 100 Bags",
     "category": "ritual",
     "description": "A caffeine-free herbal tea made with turmeric and ginger in pyramid tea bags.",
     "benefits": [
@@ -512,7 +539,7 @@
   {
     "id": "ziozertt-adjustable-plant-stand",
     "brand": "ZIOZERTT",
-    "name": "Adjustable Indoor Plant Stand , 2 Pack",
+    "name": "Adjustable Indoor Plant Stand, 2 Pack",
     "category": "green",
     "description": "A two-pack of adjustable indoor plant stands in a walnut-look bamboo finish.",
     "benefits": [
@@ -556,7 +583,7 @@
   },
   {
     "id": "artificial-monstera-plant",
-    "brand": "Brand not specified",
+    "brand": "",
     "name": "Artificial Monstera Deliciosa Plant",
     "category": "green",
     "description": "An artificial Monstera-style plant for adding greenery without live-plant care.",
@@ -571,7 +598,7 @@
   },
   {
     "id": "faux-tree-monstera",
-    "brand": "Brand not specified",
+    "brand": "",
     "name": "Artificial Faux Monstera Tree",
     "category": "green",
     "description": "An artificial Monstera-style tree for decorative indoor greenery.",

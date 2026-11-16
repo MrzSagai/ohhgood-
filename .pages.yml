@@ -18,9 +18,8 @@ content:
         required: true
         description: Unique lowercase identifier; do not change after publishing.
       - name: brand
-        label: Brand
+        label: Brand (leave blank if unknown)
         type: string
-        required: true
       - name: name
         label: Product name
         type: string
@@ -47,6 +46,26 @@ content:
         label: Key benefits
         type: string
         list: true
+      - name: who_for
+        label: Who it may suit
+        type: string
+        list: true
+      - name: who_skip
+        label: Who may want to skip it
+        type: string
+        list: true
+      - name: check_before
+        label: What to check before buying
+        type: string
+        list: true
+      - name: how_to
+        label: How to use it
+        type: string
+        list: true
+      - name: thumb
+        label: Grid thumbnail (generated automatically)
+        type: string
+        description: Created by scripts/optimize_images.py. Leave as is.
       - name: image
         label: Product image
         type: image
@@ -87,6 +106,10 @@ content:
         label: Featured image
         type: image
         description: Journal cover; use an image with suitable commercial-use rights.
+      - name: related_products
+        label: Related product IDs (shown under the story)
+        type: string
+        list: true
       - name: body
         label: Article content
         type: rich-text

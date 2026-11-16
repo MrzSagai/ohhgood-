@@ -1,0 +1,66 @@
+[
+  {
+    "key": "tidy",
+    "title": "Desk & Home Organization Finds",
+    "description": "Cable trays, desk mats, monitor risers, drawer dividers and other tidy-space finds, with practical notes on what to check before you buy.",
+    "intro": [
+      "A tidy space is rarely about owning more organizers. It is usually about giving the few things you touch every day a clear home: cables, phone, pens, a laptop you open and close all week.",
+      "These finds focus on small, practical fixes for desks, drawers and bags. Each one links to a retailer listing, so you can check current details before buying."
+    ],
+    "checklist": [
+      "Measure first: desk thickness for clamps and trays, drawer width for dividers, and monitor or laptop size for stands and risers.",
+      "Check the weight limit listed by the manufacturer, especially for monitor stands and under-desk shelves.",
+      "Leave a little slack when routing cables, and avoid bundling power cords tightly together.",
+      "Pick the material that matches your desk: bamboo and felt read warm, metal reads minimal, and a mat can protect a surface while quieting keystrokes.",
+      "Follow the device maker's cleaning guidance when using any cleaning tool on screens or keyboards."
+    ]
+  },
+  {
+    "key": "cozy",
+    "title": "Cozy Ambience: Candles, Warmers & Warm Light",
+    "description": "Scented candles, candle warmer lamps and warm desk light for calmer evenings, with simple safety and fit checks.",
+    "intro": [
+      "Evenings feel calmer when the light is softer and the room smells like something you chose. This category collects scented candles, candle warmer lamps and one desk light for quieter hours.",
+      "Scent is personal, so read each listing carefully. If you share a space with pets or people sensitive to fragrance, start small and ventilate."
+    ],
+    "checklist": [
+      "For candle warmers, check that your candle jar's diameter and height fit under the lamp, and confirm the lamp is meant for your wax type.",
+      "Look for a timer or auto shut-off, and use the warmer on a heat-safe surface away from curtains, paper and other flammables.",
+      "Follow the manufacturer's instructions and never leave a lit candle or a warmer running unattended.",
+      "Check whether the bulb is replaceable and what type it uses.",
+      "For monitor lights, confirm compatibility with your monitor's top edge, including curved or very thin screens."
+    ]
+  },
+  {
+    "key": "ritual",
+    "title": "Slow Ritual: Journals, Planners & Tea",
+    "description": "Reading journals, hardcover notebooks, a card-based planner and herbal teas for slower, more intentional days.",
+    "intro": [
+      "A slow ritual can be as small as ten quiet minutes with a notebook or a warm cup before the day starts. The goal is a routine you actually enjoy keeping.",
+      "These finds cover paper goods and tea. They are suggestions for building a calmer routine, not health advice."
+    ],
+    "checklist": [
+      "For notebooks and journals, look at page count, size, binding and whether pages are dated or undated.",
+      "Test how paper handles your favorite pen if you can: thicker paper usually shows less bleed-through.",
+      "Planners work best when the format matches how you plan, whether that is daily cards or weekly spreads.",
+      "For tea, read the ingredient list and allergen notes, and check whether the tea is caffeine-free if that matters to you.",
+      "If you are pregnant, nursing, or taking medication, check with a healthcare professional before adding herbal teas."
+    ]
+  },
+  {
+    "key": "green",
+    "title": "Green Corner: Plants, Plant Stands & Planters",
+    "description": "Live and artificial monstera plants, plant stands and planters to start a calm green corner at home.",
+    "intro": [
+      "A single plant in a bright corner can change how a room feels. This category covers live and artificial options plus stands and planters that give them a place to sit.",
+      "Live plants need light and regular care, while artificial plants trade realism and life for zero upkeep. Pick what fits your routine."
+    ],
+    "checklist": [
+      "Match live plants to the light in your space, and confirm the pot has drainage or use a liner pot.",
+      "Check the plant stand's size against your pot's diameter and the weight limit against a watered plant.",
+      "Many popular houseplants, including monstera, can be harmful to pets if chewed, so check a pet-safety list if you have animals.",
+      "For artificial plants, look at height, pot style and whether the stems can be adjusted.",
+      "Live plants can vary in size on arrival, so read the listing for the stated size and care notes."
+    ]
+  }
+]

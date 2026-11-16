@@ -1,18 +1,7 @@
-export async function onRequest(context) {
-  const url = new URL(context.request.url);
-
-  // Legacy product URLs used /product?id=<product-id>.
-  // Permanently consolidate them onto the clean product path.
-  if (url.pathname === "/product" || url.pathname === "/product/") {
-    const id = url.searchParams.get("id");
-
-    if (id && /^[a-z0-9-]+$/.test(id)) {
-      return Response.redirect(
-        new URL("/product/" + encodeURIComponent(id), url).toString(),
-        301
-      );
-    }
-  }
-
-  return context.next();
+/* /product?id=<id> (legacy) -> /product/<id>; bare /product -> catalog. */
+export async function onRequest({ request }) {
+  const url = new URL(request.url);
+  const id = url.searchParams.get("id");
+  const target = id && /^[a-z0-9-]+$/.test(id) ? "/product/" + encodeURIComponent(id) : "/#featured";
+  return Response.redirect(new URL(target, url.origin).toString(), 301);
 }
