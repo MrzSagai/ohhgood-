@@ -33,6 +33,11 @@ test("every published product renders a complete, indexable page", async () => {
     jsonLdBlocks(html).forEach((b) => assert.ok(b["@type"]));
     assert.equal(res.headers.get("x-content-type-options"), "nosniff");
     assert.match(res.headers.get("content-security-policy"), /default-src 'self'/);
+    assert.match(res.headers.get("content-security-policy"), /https:\/\/s\.pinimg\.com/);
+    assert.match(res.headers.get("content-security-policy"), /https:\/\/ct\.pinterest\.com/);
+    assert.ok(html.includes('name="p:domain_verify" content="cc3f590b77ddd998c2fb596f820938d6"'), p.id);
+    assert.ok(html.includes('src="/pinterest-init.js"'), p.id);
+    assert.ok(html.includes('src="/pinterest-tag.js"'), p.id);
   }
 });
 
