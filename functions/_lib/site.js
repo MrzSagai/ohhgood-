@@ -5,7 +5,7 @@ export const SITE_NAME = "Ohhgood!";
 export const DEFAULT_OG_IMAGE = ORIGIN + "/assets/og-default.jpg";
 
 /* Keep this string identical to the Content-Security-Policy in /_headers (scripts/qa.py checks it). */
-export const CSP = "default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests";
+export const CSP = "default-src 'self'; script-src 'self' https://static.cloudflareinsights.com https://s.pinimg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com https://ct.pinterest.com; connect-src 'self' https://cloudflareinsights.com https://ct.pinterest.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests";
 
 export const SECURITY_HEADERS = Object.freeze({
   "content-security-policy": CSP,
@@ -196,7 +196,11 @@ export function layout({ title, description, path, image, type = "website", robo
     '<link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">' +
     '<script src="/theme.js"></script>' +
     '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="' + FONTS_URL + '" rel="stylesheet">' +
-    '<link rel="stylesheet" href="/styles.css">' + jsonld.map(jsonLd).join("") + "</head><body>" +
+    '<link rel="stylesheet" href="/styles.css">' +
+    '<meta name="p:domain_verify" content="cc3f590b77ddd998c2fb596f820938d6">' +
+    '<script src="/pinterest-init.js" defer></script><script src="/pinterest-tag.js" defer></script>' +
+    jsonld.map(jsonLd).join("") + "</head><body>" +
+    '<noscript><img height="1" width="1" style="display:none;" alt="" src="https://ct.pinterest.com/v3/?tid=2613721244798&amp;event=init&amp;noscript=1"></noscript>' +
     '<a class="skip-link" href="#main">Skip to main content</a>' + headerHTML() +
     '<main id="main" class="' + esc(mainClass) + '">' + main + "</main>" + footerHTML() +
     '<script src="/site.js" defer></script></body></html>';
